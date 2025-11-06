@@ -16,6 +16,7 @@ use Spryker\Yves\Kernel\View\View;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Throwable;
 
 /**
  * @method \Spryker\Yves\MultiFactorAuth\MultiFactorAuthFactory getFactory()
@@ -61,6 +62,11 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
      * @var string
      */
     protected const MESSAGE_CORRUPTED_CODE_ERROR = 'multi_factor_auth.error.corrupted_code';
+
+    /**
+     * @var string
+     */
+    protected const MESSAGE_SENDING_CODE_ERROR = 'multi_factor_auth.send_code.error';
 
     /**
      * @var string
@@ -139,9 +145,16 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
             ->handleRequest($request);
 
         if ($codeValidationForm->isSubmitted() === false) {
-            $this->sendCode($multiFactorAuthType, $identityTransfer, $request);
+            try {
+                $this->sendCode($multiFactorAuthType, $identityTransfer, $request);
 
-            return $this->view(['form' => $codeValidationForm->createView()], [], $this->getCodeValidationFormTemplate());
+                return $this->view(['form' => $codeValidationForm->createView()], [], $this->getCodeValidationFormTemplate());
+            } catch (Throwable $e) {
+                return $this->view([
+                    'form' => $codeValidationForm->addError(new FormError(static::MESSAGE_SENDING_CODE_ERROR))
+                        ->createView(),
+                ], [], $this->getCodeValidationFormTemplate());
+            }
         }
 
         return $this->executeCodeValidation($request, $codeValidationForm, $identityTransfer);

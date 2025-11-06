@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerTest\Zed\MultiFactorAuth\Business\Facade\Generator;
+namespace SprykerTest\Zed\MultiFactorAuth\Business\Generator;
 
 use Codeception\Test\Unit;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -20,7 +20,6 @@ use SprykerTest\Zed\MultiFactorAuth\MultiFactorAuthBusinessTester;
  * @group Zed
  * @group MultiFactorAuth
  * @group Business
- * @group Facade
  * @group Generator
  * @group CodeGeneratorTest
  * Add your own group annotations below this line
