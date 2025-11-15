@@ -1,3 +1,5 @@
+var bootstrap = require('bootstrap');
+
 export class MfaHandler {
     static #defaultOptions = MfaHandler.#createDefaultOptions();
 
@@ -34,11 +36,11 @@ export class MfaHandler {
                 continue;
             }
 
-            $(data.modal).appendTo('body');
+            document.body.appendChild(data.modal);
 
             this.renderJsValidationToken(data.form);
 
-            $(data.modal).on('hidden.bs.modal', () => this.onModalHide(data));
+            data.modal.addEventListener('hidden.bs.modal', () => this.onModalHide(data));
 
             data.form.addEventListener('submit', async (event) => await this.onSubmit(event, data));
         }
@@ -127,28 +129,39 @@ export class MfaHandler {
     }
 
     onModalHide(data) {
-        const submitButton = $(data.form.querySelector(this.options.submitSelector));
+        const submitButton = data.form.querySelector(this.options.submitSelector);
 
-        submitButton.prop('disabled', false).removeClass('disabled');
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.classList.remove('disabled');
+        }
     }
 
     onSuccess(html, data) {
-        const modal = $(data.modal);
-        modal.find('.modal-body').html(html);
-        modal.modal('show');
+        const modalBody = data.modal.querySelector('.modal-body');
+        if (modalBody) {
+            modalBody.innerHTML = html;
+        }
 
-        this.attachModalFormListener(modal, data);
+        const modalInstance = new bootstrap.Modal(data.modal);
+        modalInstance.show();
+
+        this.attachModalFormListener(data.modal, data);
     }
 
     attachModalFormListener(modal, data) {
-        modal.find('form').on('submit', (event) => this.onModalResponse(event, modal, data));
+        const form = modal.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', (event) => this.onModalResponse(event, modal, data));
+        }
     }
 
     async onModalResponse(event, modal, data) {
         event.preventDefault();
 
         try {
-            const actionUrl = modal.find('.js-mfa-data').data('url');
+            const mfaDataElement = modal.querySelector('.js-mfa-data');
+            const actionUrl = mfaDataElement ? mfaDataElement.dataset.url : '';
             const formData = new FormData(event.currentTarget);
 
             const response = await fetch(new URL(actionUrl, window.location.origin).toString(), {
@@ -157,13 +170,19 @@ export class MfaHandler {
             });
 
             const html = await response.text();
-            const tempContainer = $('<div>').html(html);
 
-            if (tempContainer.find('[data\\-close\\-popup]').length > 0) {
+            const tempContainer = document.createElement('div');
+            tempContainer.innerHTML = html;
+
+            if (tempContainer.querySelector('[data-close-popup]')) {
                 this.closePopupOnSuccess(modal, data);
             }
 
-            modal.find('.modal-body').html(html);
+            const modalBody = modal.querySelector('.modal-body');
+            if (modalBody) {
+                modalBody.innerHTML = html;
+            }
+
             this.attachModalFormListener(modal, data);
         } catch (error) {
             console.error('Error:', error);
@@ -172,7 +191,8 @@ export class MfaHandler {
     }
 
     closePopupOnSuccess(modal, data) {
-        modal.modal('hide');
+        const modalInstance = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+        modalInstance.hide();
 
         if (data.isLogin) {
             location.reload();
@@ -183,9 +203,8 @@ export class MfaHandler {
     }
 
     closePopupOnError(data) {
-        const modal = $(data.modal);
-
-        modal.modal('hide');
+        const modalInstance = bootstrap.Modal.getInstance(data.modal) || new bootstrap.Modal(data.modal);
+        modalInstance.hide();
     }
 
     renderJsValidationToken(form) {
