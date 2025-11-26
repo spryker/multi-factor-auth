@@ -42,6 +42,7 @@
         <property name="type" type="string"/>
         <property name="isDeactivation" type="bool"/>
         <property name="isActivation" type="bool"/>
+        <property name="isLogin" type="bool"/>
         <property name="additionalStatuses" type="array" singular="additionalStatus"/>
     </transfer>
 

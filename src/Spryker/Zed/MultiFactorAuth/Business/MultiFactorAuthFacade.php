@@ -240,4 +240,24 @@ class MultiFactorAuthFacade extends AbstractFacade implements MultiFactorAuthFac
     {
         return $this->getRepository()->getUserMultiFactorAuthTypes($multiFactorAuthCriteriaTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
+    public function invalidateUserCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->getEntityManager()->invalidateUserCodes($multiFactorAuthTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->getEntityManager()->invalidateCustomerCodes($multiFactorAuthTransfer);
+    }
 }

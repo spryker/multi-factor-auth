@@ -131,4 +131,12 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
         return $multiFactorAuthCodeTransfer;
     }
+
+    /**
+     * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::invalidateCustomerCodesAction()}
+     */
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->zedStub->call('/multi-factor-auth/gateway/invalidate-customer-codes', $multiFactorAuthTransfer);
+    }
 }

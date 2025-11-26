@@ -7,9 +7,11 @@
 
 namespace Spryker\Zed\MultiFactorAuth\Communication\Plugin\AuthenticationHandler\User;
 
+use Generated\Shared\Transfer\MultiFactorAuthTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
+use Spryker\Zed\SecurityGuiExtension\Dependency\Plugin\AuthenticationCodeInvalidatorPluginInterface;
 use Spryker\Zed\SecurityGuiExtension\Dependency\Plugin\AuthenticationHandlerPluginInterface;
 
 /**
@@ -17,7 +19,7 @@ use Spryker\Zed\SecurityGuiExtension\Dependency\Plugin\AuthenticationHandlerPlug
  * @method \Spryker\Zed\MultiFactorAuth\Business\MultiFactorAuthFacadeInterface getFacade()()
  * @method \Spryker\Zed\MultiFactorAuth\MultiFactorAuthConfig getConfig()
  */
-class UserMultiFactorAuthenticationHandlerPlugin extends AbstractPlugin implements AuthenticationHandlerPluginInterface
+class UserMultiFactorAuthenticationHandlerPlugin extends AbstractPlugin implements AuthenticationHandlerPluginInterface, AuthenticationCodeInvalidatorPluginInterface
 {
     /**
      * @var string
@@ -52,5 +54,16 @@ class UserMultiFactorAuthenticationHandlerPlugin extends AbstractPlugin implemen
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
     ): MultiFactorAuthValidationResponseTransfer {
         return $this->getFacade()->validateUserMultiFactorAuthStatus($multiFactorAuthValidationRequestTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     * - Invalidates all multi-factor authentication codes for the provided user.
+     *
+     * @api
+     */
+    public function invalidateUserCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->getFacade()->invalidateUserCodes($multiFactorAuthTransfer);
     }
 }
