@@ -165,4 +165,18 @@ class GatewayController extends AbstractGatewayController
 
         return $multiFactorAuthTransfer;
     }
+
+    public function invalidateCustomerCodesAction(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
+    {
+        $this->getFacade()->invalidateCustomerCodes($multiFactorAuthTransfer);
+
+        return $multiFactorAuthTransfer;
+    }
+
+    public function invalidateUserCodesAction(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
+    {
+        $this->getFacade()->invalidateUserCodes($multiFactorAuthTransfer);
+
+        return $multiFactorAuthTransfer;
+    }
 }

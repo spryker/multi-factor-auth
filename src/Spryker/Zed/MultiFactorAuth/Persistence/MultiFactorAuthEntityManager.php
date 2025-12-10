@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\MultiFactorAuthCodeTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthTransfer;
 use Orm\Zed\MultiFactorAuth\Persistence\Map\SpyCustomerMultiFactorAuthCodesTableMap;
 use Orm\Zed\MultiFactorAuth\Persistence\Map\SpyUserMultiFactorAuthCodesTableMap;
+use Propel\Runtime\ActiveQuery\Criteria;
 use Spryker\Shared\MultiFactorAuth\MultiFactorAuthConstants;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
@@ -255,5 +256,64 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
             $multiFactorAuthTransfer->getMultiFactorAuthCodeOrFail()->setStatus(MultiFactorAuthConstants::CODE_INVALIDATED);
             $this->updateUserCode($multiFactorAuthTransfer);
         }
+    }
+
+    public function invalidateUserCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $codeIds = $this->getFactory()
+            ->createSpyUserMultiFactorAuthCodeQuery()
+            ->useSpyUserMultiFactorAuthQuery()
+                ->filterByFkUser($multiFactorAuthTransfer->getUserOrFail()->getIdUserOrFail())
+            ->endUse()
+            ->filterByStatus(
+                [
+                    MultiFactorAuthConstants::CODE_UNVERIFIED,
+                    MultiFactorAuthConstants::CODE_VERIFIED,
+                ],
+                Criteria::IN,
+            )
+            ->select([SpyUserMultiFactorAuthCodesTableMap::COL_ID_USER_MULTI_FACTOR_AUTH_CODE])
+            ->find()
+            ->getData();
+
+        if ($codeIds === []) {
+            return;
+        }
+
+        $this->getFactory()
+            ->createSpyUserMultiFactorAuthCodeQuery()
+            ->filterByIdUserMultiFactorAuthCode_In($codeIds)
+            ->update(['Status' => MultiFactorAuthConstants::CODE_INVALIDATED]);
+    }
+
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        /** @var \Orm\Zed\MultiFactorAuth\Persistence\SpyCustomerMultiFactorAuthCodesQuery $customerMultiFactorAuthCodesQuery */
+        $customerMultiFactorAuthCodesQuery = $this->getFactory()
+            ->createSpyCustomerMultiFactorAuthCodeQuery()
+            ->useSpyCustomerMultiFactorAuthQuery()
+                ->filterByFkCustomer($multiFactorAuthTransfer->getCustomerOrFail()->getIdCustomerOrFail())
+            ->endUse();
+
+        $codeIds = $customerMultiFactorAuthCodesQuery
+            ->filterByStatus(
+                [
+                    MultiFactorAuthConstants::CODE_UNVERIFIED,
+                    MultiFactorAuthConstants::CODE_VERIFIED,
+                ],
+                Criteria::IN,
+            )
+            ->select([SpyCustomerMultiFactorAuthCodesTableMap::COL_ID_CUSTOMER_MULTI_FACTOR_AUTH_CODE])
+            ->find()
+            ->getData();
+
+        if ($codeIds === []) {
+            return;
+        }
+
+        $this->getFactory()
+            ->createSpyCustomerMultiFactorAuthCodeQuery()
+            ->filterByIdCustomerMultiFactorAuthCode_In($codeIds)
+            ->update(['Status' => MultiFactorAuthConstants::CODE_INVALIDATED]);
     }
 }

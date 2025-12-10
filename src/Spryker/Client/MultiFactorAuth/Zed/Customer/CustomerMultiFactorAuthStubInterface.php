@@ -69,4 +69,6 @@ interface CustomerMultiFactorAuthStubInterface
     public function findCustomerMultiFactorAuthType(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer;
+
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 }

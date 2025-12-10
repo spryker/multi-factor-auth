@@ -7,15 +7,17 @@
 
 namespace Spryker\Yves\MultiFactorAuth\Plugin\AuthenticationHandler\Customer;
 
+use Generated\Shared\Transfer\MultiFactorAuthTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer;
 use Spryker\Yves\Kernel\AbstractPlugin;
+use SprykerShop\Yves\CustomerPageExtension\Dependency\Plugin\AuthenticationCodeInvalidatorPluginInterface;
 use SprykerShop\Yves\CustomerPageExtension\Dependency\Plugin\AuthenticationHandlerPluginInterface;
 
 /**
  * @method \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface getClient()
  */
-class CustomerMultiFactorAuthenticationHandlerPlugin extends AbstractPlugin implements AuthenticationHandlerPluginInterface
+class CustomerMultiFactorAuthenticationHandlerPlugin extends AbstractPlugin implements AuthenticationHandlerPluginInterface, AuthenticationCodeInvalidatorPluginInterface
 {
     /**
      * @var string
@@ -50,5 +52,16 @@ class CustomerMultiFactorAuthenticationHandlerPlugin extends AbstractPlugin impl
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
     ): MultiFactorAuthValidationResponseTransfer {
         return $this->getClient()->validateCustomerMultiFactorAuthStatus($multiFactorAuthValidationRequestTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     * - Invalidates all multi-factor authentication codes for the provided customer.
+     *
+     * @api
+     */
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->getClient()->invalidateCustomerCodes($multiFactorAuthTransfer);
     }
 }

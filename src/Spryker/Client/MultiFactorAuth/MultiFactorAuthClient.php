@@ -205,4 +205,24 @@ class MultiFactorAuthClient extends AbstractClient implements MultiFactorAuthCli
     ): MultiFactorAuthCodeTransfer {
         return $this->getFactory()->createCustomerMultiFactorAuthStub()->findCustomerMultiFactorAuthType($multiFactorAuthCodeCriteriaTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->getFactory()->createCustomerMultiFactorAuthStub()->invalidateCustomerCodes($multiFactorAuthTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
+    public function invalidateAgentCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->getFactory()->createAgentMultiFactorAuthStub()->invalidateAgentCodes($multiFactorAuthTransfer);
+    }
 }

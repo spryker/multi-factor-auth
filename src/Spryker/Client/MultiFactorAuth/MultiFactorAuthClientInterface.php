@@ -201,4 +201,24 @@ interface MultiFactorAuthClientInterface
     public function findCustomerMultiFactorAuthType(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer;
+
+    /**
+     * Specification:
+     * - Makes Zed request.
+     * - Invalidates all active multi-factor authentication codes for a customer.
+     * - Sets all active codes status to invalidated.
+     *
+     * @api
+     */
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
+
+    /**
+     * Specification:
+     * - Makes Zed request.
+     * - Invalidates all active multi-factor authentication codes for a user.
+     * - Sets all active codes status to invalidated.
+     *
+     * @api
+     */
+    public function invalidateAgentCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 }

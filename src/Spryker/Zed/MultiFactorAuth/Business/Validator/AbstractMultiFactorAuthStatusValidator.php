@@ -45,7 +45,8 @@ abstract class AbstractMultiFactorAuthStatusValidator implements MultiFactorAuth
         if (
             $multiFactorAuthCodeTransfer->getCode() === null ||
             $multiFactorAuthCodeTransfer->getStatus() !== MultiFactorAuthConstants::CODE_VERIFIED ||
-            new DateTime($multiFactorAuthCodeTransfer->getExpirationDateOrFail()) < $currentDateTime
+            new DateTime($multiFactorAuthCodeTransfer->getExpirationDateOrFail()) < $currentDateTime ||
+            $multiFactorAuthValidationRequestTransfer->getIsLogin() === true
         ) {
             return $this->createMultiFactorAuthValidationResponseTransfer(true, $multiFactorAuthCodeTransfer->getStatus());
         }

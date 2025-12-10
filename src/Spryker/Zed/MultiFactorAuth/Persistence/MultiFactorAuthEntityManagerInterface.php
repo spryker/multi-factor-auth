@@ -81,4 +81,8 @@ interface MultiFactorAuthEntityManagerInterface
      * @return void
      */
     public function saveUserMultiFactorAuthCodeAttempt(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): void;
+
+    public function invalidateUserCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
+
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 }

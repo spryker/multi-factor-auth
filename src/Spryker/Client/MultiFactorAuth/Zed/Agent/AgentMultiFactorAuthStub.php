@@ -113,4 +113,12 @@ class AgentMultiFactorAuthStub implements AgentMultiFactorAuthStubInterface
 
         return $multiFactorAuthTransfer;
     }
+
+    /**
+     * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::invalidateUserCodesAction()}
+     */
+    public function invalidateAgentCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
+    {
+        $this->zedStub->call('/multi-factor-auth/gateway/invalidate-user-codes', $multiFactorAuthTransfer);
+    }
 }

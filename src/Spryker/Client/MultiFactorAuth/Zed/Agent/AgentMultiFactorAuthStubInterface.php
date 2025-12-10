@@ -58,4 +58,6 @@ interface AgentMultiFactorAuthStubInterface
      * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
      */
     public function deactivateAgentMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer;
+
+    public function invalidateAgentCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 }

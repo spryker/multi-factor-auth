@@ -217,4 +217,28 @@ interface MultiFactorAuthFacadeInterface
      * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     public function getUserMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer;
+
+    /**
+     * Specification:
+     * - Invalidates all active multi-factor authentication codes for a user.
+     * - Sets all active codes status to invalidated.
+     * - Called before login MFA flow to ensure fresh codes.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
+     *
+     * @return void
+     */
+    public function invalidateUserCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
+
+    /**
+     * Specification:
+     * - Invalidates all active multi-factor authentication codes for a customer.
+     * - Sets all active codes status to invalidated.
+     * - Called before login MFA flow to ensure fresh codes.
+     *
+     * @api
+     */
+    public function invalidateCustomerCodes(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 }
