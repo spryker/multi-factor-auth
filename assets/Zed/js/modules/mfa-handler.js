@@ -86,6 +86,13 @@ export class MfaHandler {
                 failedLogin: false,
             };
 
+            // Error handling for HTTP errors
+            if (xhr.status !== 200) {
+                result.failedLogin = true;
+
+                return result;
+            }
+
             const contentType = xhr.getResponseHeader('Content-Type');
 
             if (contentType?.includes('application/json')) {
