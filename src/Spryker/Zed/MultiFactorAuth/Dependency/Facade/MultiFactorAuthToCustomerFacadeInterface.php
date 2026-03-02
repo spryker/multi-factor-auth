@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\CustomerResponseTransfer;
 
 interface MultiFactorAuthToCustomerFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CustomerCriteriaTransfer $customerCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\CustomerResponseTransfer
-     */
     public function getCustomerByCriteria(CustomerCriteriaTransfer $customerCriteriaTransfer): CustomerResponseTransfer;
 }

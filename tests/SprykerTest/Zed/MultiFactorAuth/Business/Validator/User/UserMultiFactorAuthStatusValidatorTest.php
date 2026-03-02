@@ -50,9 +50,6 @@ class UserMultiFactorAuthStatusValidatorTest extends Unit
      */
     protected UserMultiFactorAuthStatusValidator $userMultiFactorAuthStatusValidator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -61,9 +58,6 @@ class UserMultiFactorAuthStatusValidatorTest extends Unit
         $this->userMultiFactorAuthStatusValidator = new UserMultiFactorAuthStatusValidator($this->repositoryMock);
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsUnsuccessfulResponseWhenNoAuthTypes(): void
     {
         $this->repositoryMock->method('getUserMultiFactorAuthTypes')->willReturn(new MultiFactorAuthTypesCollectionTransfer());
@@ -73,9 +67,6 @@ class UserMultiFactorAuthStatusValidatorTest extends Unit
         $this->assertFalse($response->getIsRequired());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsSuccessfulResponseWhenAuthTypesExist(): void
     {
         $multiFactorAuthTypesCollectionTransfer = new MultiFactorAuthTypesCollectionTransfer();
@@ -88,9 +79,6 @@ class UserMultiFactorAuthStatusValidatorTest extends Unit
         $this->assertTrue($response->getIsRequired());
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer
-     */
     protected function createMultiFactorAuthValidationRequestTransfer(): MultiFactorAuthValidationRequestTransfer
     {
         return (new MultiFactorAuthValidationRequestTransfer())

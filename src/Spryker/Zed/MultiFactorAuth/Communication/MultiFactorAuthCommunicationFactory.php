@@ -44,9 +44,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface
-     */
     public function getUserFacade(): MultiFactorAuthToUserFacadeInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::FACADE_USER);
@@ -88,9 +85,6 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::PLUGINS_POST_LOGIN_MULTI_FACTOR_AUTH);
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Communication\Form\DataProvider\TypeSelectionFormDataProvider
-     */
     public function createTypeSelectionFormDataProvider(): TypeSelectionFormDataProvider
     {
         return new TypeSelectionFormDataProvider(
@@ -100,17 +94,11 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Communication\Reader\Request\RequestReaderInterface
-     */
     public function createRequestReader(): RequestReaderInterface
     {
         return new RequestReader();
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Communication\Activator\User\UserMultiFactorAuthActivatorInterface
-     */
     public function createUserMultiFactorAuthActivator(): UserMultiFactorAuthActivatorInterface
     {
         return new UserMultiFactorAuthActivator(
@@ -119,9 +107,6 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Communication\Deactivator\User\UserMultiFactorAuthDeactivatorInterface
-     */
     public function createUserMultiFactorAuthDeactivator(): UserMultiFactorAuthDeactivatorInterface
     {
         return new UserMultiFactorAuthDeactivator(
@@ -130,25 +115,16 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
-     */
     public function getCsrfTokenManager(): CsrfTokenManagerInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::SERVICE_FORM_CSRF_PROVIDER);
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToMailFacadeInterface
-     */
     public function getMailFacade(): MultiFactorAuthToMailFacadeInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::FACADE_MAIL);
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Communication\ButtonCreator\MultiFactorAuthButtonCreatorInterface
-     */
     public function createMultiFactorAuthButtonCreator(): MultiFactorAuthButtonCreatorInterface
     {
         return new MultiFactorAuthButtonCreator(
@@ -157,17 +133,11 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToCustomerFacadeInterface
-     */
     public function getCustomerFacade(): MultiFactorAuthToCustomerFacadeInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::FACADE_CUSTOMER);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormTypeExtensionInterface
-     */
     public function createMultiFactorAuthValidationExtension(): FormTypeExtensionInterface
     {
         return new MultiFactorAuthValidationExtension(
@@ -189,25 +159,16 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Symfony\Contracts\Translation\TranslatorInterface
-     */
     public function getTranslatorService(): TranslatorInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::SERVICE_TRANSLATOR);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\RequestStack
-     */
     public function getRequestStackService(): RequestStack
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::SERVICE_REQUEST_STACK);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormTypeExtensionInterface
-     */
     public function createMultiFactorAuthHandlerExtension(): FormTypeExtensionInterface
     {
         return new MultiFactorAuthHandlerExtension(
@@ -219,9 +180,6 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Communication\Reader\User\UserReaderInterface
-     */
     public function createUserReader(): UserReaderInterface
     {
         return new UserReader(
@@ -230,9 +188,6 @@ class MultiFactorAuthCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Dependency\Client\MultiFactorAuthToSessionClientInterface
-     */
     public function getSessionClient(): MultiFactorAuthToSessionClientInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::CLIENT_SESSION);

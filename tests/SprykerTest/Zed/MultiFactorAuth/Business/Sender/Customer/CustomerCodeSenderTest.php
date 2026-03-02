@@ -60,9 +60,6 @@ class CustomerCodeSenderTest extends Unit
      */
     protected CustomerCodeSender $customerCodeSender;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -78,9 +75,6 @@ class CustomerCodeSenderTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testSendCodeReturnsMultiFactorAuthTransferWhenTypeIsEmail(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);
@@ -99,9 +93,6 @@ class CustomerCodeSenderTest extends Unit
         $this->assertEquals($this->tester::VALID_CODE, $result->getMultiFactorAuthCode()->getCode());
     }
 
-    /**
-     * @return void
-     */
     public function testSendCodeReturnsMultiFactorAuthTransferWhenNoStrategyIsApplicable(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);

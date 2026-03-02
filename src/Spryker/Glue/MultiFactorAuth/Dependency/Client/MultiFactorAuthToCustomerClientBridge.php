@@ -24,11 +24,6 @@ class MultiFactorAuthToCustomerClientBridge implements MultiFactorAuthToCustomer
         $this->customerClient = $customerClient;
     }
 
-    /**
-     * @param int $idCustomer
-     *
-     * @return \Generated\Shared\Transfer\CustomerTransfer
-     */
     public function getCustomerById(int $idCustomer): CustomerTransfer
     {
         return $this->customerClient->getCustomerById($idCustomer);

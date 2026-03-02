@@ -114,9 +114,6 @@ class UserManagementController extends AbstractController
      */
     protected const MULTI_FACTOR_AUTH_LOGIN_USER_EMAIL_SESSION_KEY = '_multi_factor_auth_login_user_email';
 
-    /**
-     * @return void
-     */
     public function initialize(): void
     {
         parent::initialize();
@@ -144,11 +141,6 @@ class UserManagementController extends AbstractController
         ]);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function activateAction(Request $request): RedirectResponse
     {
         $userTransfer = $this->getFactory()->createUserReader()->getUser();
@@ -175,11 +167,6 @@ class UserManagementController extends AbstractController
         return $this->redirectResponse(static::URL_REDIRECT_SET_UP_PAGE);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function deactivateAction(Request $request): RedirectResponse
     {
         $userTransfer = $this->getFactory()->createUserReader()->getUser();
@@ -207,11 +194,6 @@ class UserManagementController extends AbstractController
         return $this->redirectResponse(static::URL_REDIRECT_SET_UP_PAGE);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorValidationRequestTransfer
-     *
-     * @return bool
-     */
     protected function isCodeBlocked(MultiFactorAuthValidationRequestTransfer $multiFactorValidationRequestTransfer): bool
     {
         $multiFactorValidationResponseTransfer = $this->getFacade()
@@ -223,12 +205,6 @@ class UserManagementController extends AbstractController
         return $multiFactorValidationResponseTransfer->getStatus() === MultiFactorAuthConstants::CODE_BLOCKED;
     }
 
-    /**
-     * @param string|null $token
-     * @param string $tokenId
-     *
-     * @return bool
-     */
     protected function isCsrfTokenValid(?string $token, string $tokenId): bool
     {
         if (!$token) {
@@ -240,45 +216,21 @@ class UserManagementController extends AbstractController
         return $this->csrfTokenManager->isTokenValid($csrfToken);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $formName
-     *
-     * @return bool
-     */
     protected function isRequestCorrupted(Request $request, string $formName): bool
     {
         return $this->getParameterFromRequest($request, static::MULTI_FACTOR_AUTH_ENABLED, $formName) === null;
     }
 
-    /**
-     * @return string
-     */
     protected function getSetUpTemplatePath(): string
     {
         return '@MultiFactorAuth/UserManagement/set-up.twig';
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $parameter
-     * @param string|null $formName
-     *
-     * @return mixed
-     */
     protected function getParameterFromRequest(Request $request, string $parameter, ?string $formName = null): mixed
     {
         return $this->getFactory()->createRequestReader()->get($request, $parameter, $formName);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorValidationRequestTransfer
-     * @param string $csrfTokenId
-     * @param string $formName
-     *
-     * @return bool
-     */
     protected function isRequestInvalid(
         Request $request,
         MultiFactorAuthValidationRequestTransfer $multiFactorValidationRequestTransfer,

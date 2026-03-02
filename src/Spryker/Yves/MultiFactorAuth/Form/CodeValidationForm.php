@@ -36,19 +36,11 @@ class CodeValidationForm extends BaseMultiFactorAuthForm
      */
     protected const PARAM_TYPE = '%type%';
 
-    /**
-     * @return string
-     */
     public function getBlockPrefix(): string
     {
         return 'codeValidationForm';
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);

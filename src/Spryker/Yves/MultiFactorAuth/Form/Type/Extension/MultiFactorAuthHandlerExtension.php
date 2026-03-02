@@ -29,13 +29,6 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
      */
     protected const FORM_SELECTOR_PLACEHOLDER = '[name="%s"]';
 
-    /**
-     * @param \Spryker\Yves\MultiFactorAuth\MultiFactorAuthConfig $config
-     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-     * @param \Twig\Environment $twig
-     * @param \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface $client
-     * @param \Spryker\Yves\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     */
     public function __construct(
         protected MultiFactorAuthConfig $config,
         protected RequestStack $requestStack,
@@ -63,11 +56,6 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
         $view->vars[static::MULTI_FACTOR_AUTH_HANDLERS][$formName] = $this->renderMultiFactorHandler($formName);
     }
 
-    /**
-     * @param string $formName
-     *
-     * @return string
-     */
     protected function renderMultiFactorHandler(string $formName): string
     {
         return $this->twig->render('@MultiFactorAuth/views/multi-factor-auth-handler/multi-factor-auth-handler.twig', [
@@ -79,9 +67,6 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
         ]);
     }
 
-    /**
-     * @return bool
-     */
     protected function assertCustomerIsMultiFactorAuthEnabled(): bool
     {
         $customerTransfer = $this->customerClient->getCustomer();

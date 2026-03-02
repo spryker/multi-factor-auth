@@ -78,12 +78,6 @@ class MultiFactorAuthValidator implements MultiFactorAuthValidatorInterface
         return $this->isMultiFactorAuthCodeVerified($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     public function isPendingActivationMultiFactorAuthType(
         CustomerTransfer $customerTransfer,
         string $multiFactorAuthType
@@ -106,12 +100,6 @@ class MultiFactorAuthValidator implements MultiFactorAuthValidatorInterface
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     public function isActivatedMultiFactorAuthType(
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer,
         string $multiFactorAuthType
@@ -125,12 +113,6 @@ class MultiFactorAuthValidator implements MultiFactorAuthValidatorInterface
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer|null
-     */
     public function validateMultiFactorAuthType(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
@@ -151,11 +133,6 @@ class MultiFactorAuthValidator implements MultiFactorAuthValidatorInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return bool
-     */
     protected function isMultiFactorAuthCodeVerified(MultiFactorAuthTransfer $multiFactorAuthTransfer): bool
     {
         $validationResponse = $this->multiFactorAuthClient->validateCustomerCode($multiFactorAuthTransfer);

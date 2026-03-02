@@ -39,39 +39,21 @@ class CustomerMultiFactorAuthFlowController extends AbstractMultiFactorAuthContr
      */
     protected const MULTI_FACTOR_AUTH_LOGIN_CUSTOMER_EMAIL_SESSION_KEY = '_multi_factor_auth_login_customer_email';
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function getCustomerEnabledTypesAction(Request $request): View
     {
         return $this->getEnabledTypesAction($request);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $multiFactorAuthType
-     * @param \Symfony\Component\Form\FormInterface|null $form
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function sendCustomerCodeAction(Request $request, ?string $multiFactorAuthType = null, ?FormInterface $form = null): View
     {
         return $this->sendCodeAction($request, $multiFactorAuthType, $form);
     }
 
-    /**
-     * @return string
-     */
     protected function getTypeSelectionFormTemplate(): string
     {
         return '@MultiFactorAuth/views/customer-type-selection-form/customer-type-selection-form.twig';
     }
 
-    /**
-     * @return string
-     */
     protected function getCodeValidationFormTemplate(): string
     {
         return '@MultiFactorAuth/views/customer-code-validation-form/customer-code-validation-form.twig';
@@ -103,9 +85,6 @@ class CustomerMultiFactorAuthFlowController extends AbstractMultiFactorAuthContr
         }
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerTransfer
-     */
     protected function getIdentity(): CustomerTransfer
     {
         $customerTransfer = $this->getFactory()->getCustomerClient()->getCustomer();
@@ -185,9 +164,6 @@ class CustomerMultiFactorAuthFlowController extends AbstractMultiFactorAuthContr
         return $options;
     }
 
-    /**
-     * @return int
-     */
     protected function resolveCodeLength(): int
     {
         return $this->getFactory()->getConfig()->getCustomerCodeLength();

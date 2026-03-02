@@ -23,13 +23,6 @@ use Spryker\Shared\MultiFactorAuth\MultiFactorAuthConstants;
 
 class MultiFactorAuthTypeVerifyProcessor implements MultiFactorAuthTypeVerifyProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\Validator\MultiFactorAuthValidatorInterface $multiFactorAuthValidator
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient,
         protected MultiFactorAuthToCustomerClientInterface $customerClient,
@@ -39,12 +32,6 @@ class MultiFactorAuthTypeVerifyProcessor implements MultiFactorAuthTypeVerifyPro
     ) {
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function verifyMultiFactorAuth(
         RestRequestInterface $restRequest,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

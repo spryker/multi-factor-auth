@@ -22,19 +22,12 @@ class UserReader implements UserReaderInterface
      */
     protected const MULTI_FACTOR_AUTH_LOGIN_USER_EMAIL_SESSION_KEY = '_multi_factor_auth_login_user_email';
 
-    /**
-     * @param \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface $userFacade
-     * @param \Spryker\Zed\MultiFactorAuth\Dependency\Client\MultiFactorAuthToSessionClientInterface $sessionClient
-     */
     public function __construct(
         protected MultiFactorAuthToUserFacadeInterface $userFacade,
         protected MultiFactorAuthToSessionClientInterface $sessionClient
     ) {
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     public function getUser(): UserTransfer
     {
         if ($this->userFacade->hasCurrentUser() === true) {

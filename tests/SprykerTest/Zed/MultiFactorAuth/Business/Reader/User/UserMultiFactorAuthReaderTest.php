@@ -73,9 +73,6 @@ class UserMultiFactorAuthReaderTest extends Unit
      */
     protected UserMultiFactorAuthReader $userMultiFactorAuthReader;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -104,9 +101,6 @@ class UserMultiFactorAuthReaderTest extends Unit
         $this->userMultiFactorAuthReader = new UserMultiFactorAuthReader($this->multiFactorAuthRepositoryMock, $this->userMultiFactorAuthPlugins);
     }
 
-    /**
-     * @return void
-     */
     public function testGetAvailableUserMultiFactorAuthTypesReturnsCollectionWithProperData(): void
     {
         // Arrange

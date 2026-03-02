@@ -17,22 +17,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CustomerMultiFactorAuthActivator implements CustomerMultiFactorAuthActivatorInterface
 {
-    /**
-     * @param \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface $client
-     * @param \Spryker\Yves\MultiFactorAuth\Reader\Request\RequestReaderInterface $requestReader
-     */
     public function __construct(
         protected MultiFactorAuthClientInterface $client,
         protected RequestReaderInterface $requestReader
     ) {
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return void
-     */
     public function activate(Request $request, CustomerTransfer $customerTransfer): void
     {
         $isActivation = $this->requestReader->get($request, CustomerMultiFactorAuthFlowController::IS_ACTIVATION);

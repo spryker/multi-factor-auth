@@ -66,9 +66,6 @@ class UserCodeValidatorTest extends Unit
      */
     protected UserCodeValidator $userCodeValidator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -89,9 +86,6 @@ class UserCodeValidatorTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsTrueWhenCodeIsValid(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);
@@ -109,9 +103,6 @@ class UserCodeValidatorTest extends Unit
         $this->assertEquals(MultiFactorAuthConstants::CODE_VERIFIED, $result->getStatus());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsFalseWhenCodeIsExpired(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);
@@ -129,9 +120,6 @@ class UserCodeValidatorTest extends Unit
         $this->assertEquals(MultiFactorAuthConstants::CODE_BLOCKED, $result->getStatus());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsFalseWhenCodeIsInvalid(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);

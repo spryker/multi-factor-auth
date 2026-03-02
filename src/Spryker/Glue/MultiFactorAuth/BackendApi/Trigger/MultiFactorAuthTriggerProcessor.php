@@ -23,13 +23,6 @@ use Throwable;
 
 class MultiFactorAuthTriggerProcessor implements MultiFactorAuthTriggerProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface $userFacade
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\Validator\MultiFactorAuthValidatorInterface $multiFactorAuthValidator
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade,
         protected MultiFactorAuthToUserFacadeInterface $userFacade,
@@ -39,12 +32,6 @@ class MultiFactorAuthTriggerProcessor implements MultiFactorAuthTriggerProcessor
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function triggerMultiFactorAuth(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
@@ -73,11 +60,6 @@ class MultiFactorAuthTriggerProcessor implements MultiFactorAuthTriggerProcessor
         return $this->multiFactorAuthResponseBuilder->createNotFoundTypeErrorResponse();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     protected function safelySendActivationCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): GlueResponseTransfer
     {
         try {

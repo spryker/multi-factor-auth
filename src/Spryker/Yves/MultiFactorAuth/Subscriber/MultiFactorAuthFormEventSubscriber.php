@@ -24,11 +24,6 @@ class MultiFactorAuthFormEventSubscriber implements EventSubscriberInterface
      */
     protected const ERROR_MESSAGE_ACCESS_DENIED = 'multi_factor_auth.access_denied';
 
-    /**
-     * @param \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface $client
-     * @param \Spryker\Yves\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
     public function __construct(
         protected MultiFactorAuthClientInterface $client,
         protected MultiFactorAuthToCustomerClientInterface $customerClient,
@@ -46,11 +41,6 @@ class MultiFactorAuthFormEventSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     *
-     * @return void
-     */
     public function onPreSubmit(FormEvent $event): void
     {
         $customerTransfer = $this->customerClient->getCustomer();

@@ -26,11 +26,6 @@ class UserCodeSender implements CodeSenderInterface
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function sendCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
         $multiFactorAuthTransfer = $this->codeGenerator->generateCode($multiFactorAuthTransfer);

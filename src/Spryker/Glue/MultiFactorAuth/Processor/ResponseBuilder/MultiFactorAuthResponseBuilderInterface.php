@@ -13,53 +13,23 @@ use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface;
 
 interface MultiFactorAuthResponseBuilderInterface
 {
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createNoCustomerIdentifierErrorResponse(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createCustomerNotFoundResponse(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createMissingTypeErrorResponse(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createNotFoundTypeErrorResponse(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createMissingMultiFactorAuthCodeError(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createInvalidMultiFactorAuthCodeError(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createDeactivationFailedError(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createAlreadyActivatedMultiFactorAuthError(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createSendingCodeError(): RestResponseInterface;
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createSuccessResponse(): RestResponseInterface;
 }

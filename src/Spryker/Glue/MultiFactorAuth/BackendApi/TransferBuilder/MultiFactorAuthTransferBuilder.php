@@ -18,24 +18,11 @@ use Generated\Shared\Transfer\UserTransfer;
 
 class MultiFactorAuthTransferBuilder implements MultiFactorAuthTransferBuilderInterface
 {
-    /**
-     * @param string $multiFactorAuthCode
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function buildMultiFactorAuthCodeTransfer(string $multiFactorAuthCode): MultiFactorAuthCodeTransfer
     {
         return (new MultiFactorAuthCodeTransfer())->setCode($multiFactorAuthCode);
     }
 
-    /**
-     * @param string $multiFactorAuthType
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer|null $multiFactorAuthCodeTransfer
-     * @param int|null $status
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function buildMultiFactorAuthTransfer(
         string $multiFactorAuthType,
         UserTransfer $userTransfer,
@@ -57,11 +44,6 @@ class MultiFactorAuthTransferBuilder implements MultiFactorAuthTransferBuilderIn
         return $multiFactorAuthTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     public function buildUserTransfer(GlueRequestTransfer $glueRequestTransfer): UserTransfer
     {
         return (new UserTransfer())

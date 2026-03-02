@@ -30,11 +30,6 @@ class MultiFactorAuthFormEventSubscriber implements EventSubscriberInterface
      */
     protected const ERROR_ACCESS_DENIED_CAUSE = 'access_denied';
 
-    /**
-     * @param \Spryker\Zed\MultiFactorAuth\Business\MultiFactorAuthFacadeInterface $facade
-     * @param \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface $userFacade
-     * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     */
     public function __construct(
         protected MultiFactorAuthFacadeInterface $facade,
         protected MultiFactorAuthToUserFacadeInterface $userFacade,
@@ -52,11 +47,6 @@ class MultiFactorAuthFormEventSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     *
-     * @return void
-     */
     public function onPreSubmit(FormEvent $event): void
     {
         if ($this->userFacade->hasCurrentUser() === false) {
@@ -97,11 +87,6 @@ class MultiFactorAuthFormEventSubscriber implements EventSubscriberInterface
         }
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     *
-     * @return void
-     */
     protected function removeExtraFields(FormEvent $event): void
     {
         $formFields = array_keys($event->getForm()->all());
@@ -111,21 +96,11 @@ class MultiFactorAuthFormEventSubscriber implements EventSubscriberInterface
         $event->setData($filteredData);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer $multiFactorAuthValidationResponseTransfer
-     *
-     * @return bool
-     */
     protected function assertCodeIsNotVerified(MultiFactorAuthValidationResponseTransfer $multiFactorAuthValidationResponseTransfer): bool
     {
         return $multiFactorAuthValidationResponseTransfer->getStatus() === MultiFactorAuthConstants::CODE_UNVERIFIED || $multiFactorAuthValidationResponseTransfer->getStatus() === null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer $multiFactorAuthValidationResponseTransfer
-     *
-     * @return bool
-     */
     protected function assertCodeIsBlocked(MultiFactorAuthValidationResponseTransfer $multiFactorAuthValidationResponseTransfer): bool
     {
         return $multiFactorAuthValidationResponseTransfer->getStatus() === MultiFactorAuthConstants::CODE_BLOCKED;

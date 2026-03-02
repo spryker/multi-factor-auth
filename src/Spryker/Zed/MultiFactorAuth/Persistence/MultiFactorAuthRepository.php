@@ -28,11 +28,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
  */
 class MultiFactorAuthRepository extends AbstractRepository implements MultiFactorAuthRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function getCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthCodeTransfer
     {
         $customerMultiFactorAuthCodeEntity = $this->getFactory()
@@ -59,11 +54,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->mapCustomerMultiFactorAuthCodeEntityToMultiFactorAuthCodeTransfer($customerMultiFactorAuthCodeEntity, new MultiFactorAuthCodeTransfer());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function getUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthCodeTransfer
     {
         $userMultiFactorAuthCodeEntity = $this->getFactory()
@@ -90,11 +80,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->mapUserMultiFactorAuthCodeEntityToMultiFactorAuthCodeTransfer($userMultiFactorAuthCodeEntity, new MultiFactorAuthCodeTransfer());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function findCustomerMultiFactorAuthCodeByCriteria(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer {
@@ -133,11 +118,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
         return $multiFactorAuthCodeTransfer->setType($customerMultiFactorAuthCodeEntity->getSpyCustomerMultiFactorAuth()->getType());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getCustomerMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer
     {
         $customerMultiFactorAuthQuery = $this->getFactory()
@@ -156,11 +136,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->mapMultiFactorAuthEntitiesToMultiFactorAuthTypesCollectionTransfer($customerMultiFactorAuthEntities, new MultiFactorAuthTypesCollectionTransfer());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getUserMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer
     {
         $userMultiFactorAuthQuery = $this->getFactory()
@@ -179,11 +154,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->mapMultiFactorAuthEntitiesToMultiFactorAuthTypesCollectionTransfer($userMultiFactorAuthEntities, new MultiFactorAuthTypesCollectionTransfer());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return string|null
-     */
     public function getVerifiedCustomerMultiFactorAuthType(CustomerTransfer $customerTransfer): ?string
     {
         return $this->getFactory()
@@ -197,11 +167,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->findOne();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return string|null
-     */
     public function getVerifiedUserMultiFactorAuthType(UserTransfer $userTransfer): ?string
     {
         return $this->getFactory()
@@ -215,11 +180,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->findOne();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return int
-     */
     public function getCustomerCodeEnteringAttemptsCount(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): int
     {
         return $this->getFactory()
@@ -228,11 +188,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->count();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return int
-     */
     public function getUserCodeEnteringAttemptsCount(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): int
     {
         return $this->getFactory()
@@ -241,11 +196,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
             ->count();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function findUserMultiFactorAuthCodeByCriteria(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer {

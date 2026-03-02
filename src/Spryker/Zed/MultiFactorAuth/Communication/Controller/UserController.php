@@ -176,13 +176,6 @@ class UserController extends AbstractController
         return $this->executeCodeValidation($request, $codeValidationForm, $userTransfer);
     }
 
-    /**
-     * @param string $multiFactorAuthType
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return void
-     */
     protected function sendUserCode(string $multiFactorAuthType, UserTransfer $userTransfer, Request $request): void
     {
         foreach ($this->getFactory()->getUserMultiFactorAuthPlugins() as $plugin) {
@@ -241,12 +234,6 @@ class UserController extends AbstractController
         return $this->renderView(static::SEND_CODE_TWIG_TEMPLATE, ['form' => $codeValidationForm->createView()]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param \Symfony\Component\Form\FormInterface $codeValidationForm
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     protected function validateCode(
         UserTransfer $userTransfer,
         FormInterface $codeValidationForm
@@ -270,11 +257,6 @@ class UserController extends AbstractController
         return $this->getFacade()->validateUserCode($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
     protected function executePostLoginMultiFactorAuthenticationPlugins(UserTransfer $userTransfer): void
     {
         foreach ($this->getFactory()->getPostLoginMultiFactorAuthenticationPlugins() as $plugin) {
@@ -287,24 +269,11 @@ class UserController extends AbstractController
         }
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
-     * @return bool
-     */
     protected function isSetUpMultiFactorAuthStep(Request $request, ?string $formName = null): bool
     {
         return $this->assertIsActivation($request, $formName) || $this->assertIsDeactivation($request, $formName);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $multiFactorAuthType
-     * @param string|null $formName
-     *
-     * @return bool
-     */
     protected function isSelectedTypeVerificationRequired(Request $request, string $multiFactorAuthType, ?string $formName = null): bool
     {
         return $this->assertIsActivation($request, $formName) && $this->getParameterFromRequest($request, static::TYPE_TO_SET_UP, $formName) !== $multiFactorAuthType;
@@ -330,23 +299,11 @@ class UserController extends AbstractController
         return count($options[static::TYPES]) === 1;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
-     * @return string|null
-     */
     protected function assertIsActivation(Request $request, ?string $formName = null): ?string
     {
         return $this->getParameterFromRequest($request, static::IS_ACTIVATION, $formName);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
-     * @return string|null
-     */
     protected function assertIsDeactivation(Request $request, ?string $formName = null): ?string
     {
         return $this->getParameterFromRequest($request, static::IS_DEACTIVATION, $formName);
@@ -367,13 +324,6 @@ class UserController extends AbstractController
         ];
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $parameter
-     * @param string|null $formName
-     *
-     * @return mixed
-     */
     protected function getParameterFromRequest(Request $request, string $parameter, ?string $formName = null): mixed
     {
         return $this->getFactory()->createRequestReader()->get($request, $parameter, $formName);

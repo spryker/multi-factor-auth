@@ -50,9 +50,6 @@ class MultiFactorAuthSetupNavigationPluginTest extends Unit
      */
     protected $factoryMock;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -68,9 +65,6 @@ class MultiFactorAuthSetupNavigationPluginTest extends Unit
         $factoryProperty->setValue($this->multiFactorAuthSetupNavigationPlugin, $this->factoryMock);
     }
 
-    /**
-     * @return void
-     */
     public function testGetNavigationItemsReturnsNullWhenNoPluginsAvailable(): void
     {
         // Arrange
@@ -84,9 +78,6 @@ class MultiFactorAuthSetupNavigationPluginTest extends Unit
         $this->assertNull($result);
     }
 
-    /**
-     * @return void
-     */
     public function testGetNavigationItemsReturnsLinkTransferWhenPluginsAvailable(): void
     {
         // Arrange

@@ -61,9 +61,6 @@ class CustomerCodeValidatorTest extends Unit
      */
     protected CustomerCodeValidator $customerCodeValidator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -81,9 +78,6 @@ class CustomerCodeValidatorTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsSuccessfulResponseWhenCodeIsValid(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);
@@ -101,9 +95,6 @@ class CustomerCodeValidatorTest extends Unit
         $this->assertTrue((bool)$response->getStatus());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsUnsuccessfulResponseWhenCodeIsInvalid(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);

@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\MultiFactorAuthTransfer;
 
 interface CodeSenderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function sendCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer;
 }

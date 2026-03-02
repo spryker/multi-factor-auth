@@ -30,72 +30,37 @@ class MultiFactorAuthToMultiFactorAuthClientBridge implements MultiFactorAuthToM
         $this->multiFactorAuthClient = $multiFactorAuthClient;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getCustomerMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer
     {
         return $this->multiFactorAuthClient->getCustomerMultiFactorAuthTypes($multiFactorAuthCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     public function validateCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer
     {
         return $this->multiFactorAuthClient->validateCustomerCode($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     public function validateCustomerMultiFactorAuthStatus(
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
     ): MultiFactorAuthValidationResponseTransfer {
         return $this->multiFactorAuthClient->validateCustomerMultiFactorAuthStatus($multiFactorAuthValidationRequestTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function sendCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
         return $this->multiFactorAuthClient->sendCustomerCode($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function deactivateCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $this->multiFactorAuthClient->deactivateCustomerMultiFactorAuth($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function activateCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $this->multiFactorAuthClient->activateCustomerMultiFactorAuth($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function findCustomerMultiFactorAuthType(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer {

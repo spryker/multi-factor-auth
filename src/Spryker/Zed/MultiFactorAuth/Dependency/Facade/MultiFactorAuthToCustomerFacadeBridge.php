@@ -25,11 +25,6 @@ class MultiFactorAuthToCustomerFacadeBridge implements MultiFactorAuthToCustomer
         $this->customerFacade = $customerFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerCriteriaTransfer $customerCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\CustomerResponseTransfer
-     */
     public function getCustomerByCriteria(CustomerCriteriaTransfer $customerCriteriaTransfer): CustomerResponseTransfer
     {
         return $this->customerFacade->getCustomerByCriteria($customerCriteriaTransfer);

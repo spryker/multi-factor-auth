@@ -115,9 +115,6 @@ class AgentMultiFactorAuthManagementController extends AbstractController
      */
     protected CsrfTokenManagerInterface $csrfTokenManager;
 
-    /**
-     * @return void
-     */
     public function initialize(): void
     {
         parent::initialize();
@@ -155,11 +152,6 @@ class AgentMultiFactorAuthManagementController extends AbstractController
         );
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function activateAgentMultiFactorAuthAction(Request $request): Response
     {
         if (!$this->isCsrfTokenValid($this->getParameterFromRequest($request, static::PARAM_REQUEST_TOKEN), static::CSRF_TOKEN_ID_ACTIVATE)) {
@@ -190,11 +182,6 @@ class AgentMultiFactorAuthManagementController extends AbstractController
         return $this->redirectResponseInternal(MultiFactorAuthAgentRouteProviderPlugin::MULTI_FACTOR_AUTH_NAME_SET_MULTI_FACTOR_AUTH);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function deactivateAgentMultiFactorAuthAction(Request $request): Response
     {
         if (!$this->isCsrfTokenValid($this->getParameterFromRequest($request, static::PARAM_REQUEST_TOKEN), static::CSRF_TOKEN_ID_DEACTIVATE)) {
@@ -225,23 +212,11 @@ class AgentMultiFactorAuthManagementController extends AbstractController
         return $this->redirectResponseInternal(MultiFactorAuthAgentRouteProviderPlugin::MULTI_FACTOR_AUTH_NAME_SET_MULTI_FACTOR_AUTH);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $formName
-     *
-     * @return bool
-     */
     protected function isRequestCorrupted(Request $request, string $formName): bool
     {
         return $this->getParameterFromRequest($request, static::MULTI_FACTOR_AUTH_ENABLED, $formName) === null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param string|null $multiFactorAuthType
-     *
-     * @return bool
-     */
     protected function isCodeBlocked(UserTransfer $userTransfer, ?string $multiFactorAuthType): bool
     {
         $multiFactorValidationRequestTransfer = (new MultiFactorAuthValidationRequestTransfer())
@@ -251,12 +226,6 @@ class AgentMultiFactorAuthManagementController extends AbstractController
         return $this->getClient()->validateAgentMultiFactorAuthStatus($multiFactorValidationRequestTransfer)->getStatus() === MultiFactorAuthConstants::CODE_BLOCKED;
     }
 
-    /**
-     * @param string|null $token
-     * @param string $tokenId
-     *
-     * @return bool
-     */
     protected function isCsrfTokenValid(?string $token, string $tokenId): bool
     {
         if (!$token) {
@@ -268,12 +237,6 @@ class AgentMultiFactorAuthManagementController extends AbstractController
         return $this->csrfTokenManager->isTokenValid($csrfToken);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
-     * @return \Generated\Shared\Transfer\UserTransfer|null
-     */
     protected function getAgent(Request $request, ?string $formName = null): ?UserTransfer
     {
         if ($this->getFactory()->getAgentClient()->isLoggedIn() === true) {
@@ -286,13 +249,6 @@ class AgentMultiFactorAuthManagementController extends AbstractController
         return $this->getFactory()->getAgentClient()->findAgentByUsername($userTransfer);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $parameter
-     * @param string|null $formName
-     *
-     * @return mixed
-     */
     protected function getParameterFromRequest(Request $request, string $parameter, ?string $formName = null): mixed
     {
         return $this->getFactory()->createRequestReader()->get($request, $parameter, $formName);

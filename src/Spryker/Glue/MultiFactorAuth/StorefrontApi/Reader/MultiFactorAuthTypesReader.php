@@ -39,11 +39,6 @@ class MultiFactorAuthTypesReader implements MultiFactorAuthTypesReaderInterface
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function getMultiFactorAuthTypes(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {
         if (!$glueRequestTransfer->getRequestCustomer()) {
@@ -90,12 +85,6 @@ class MultiFactorAuthTypesReader implements MultiFactorAuthTypesReaderInterface
         return $glueResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueResponseTransfer $glueResponseTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     protected function addMultiFactorAuthTypeResourceToResponse(
         GlueResponseTransfer $glueResponseTransfer,
         MultiFactorAuthTransfer $multiFactorAuthTransfer

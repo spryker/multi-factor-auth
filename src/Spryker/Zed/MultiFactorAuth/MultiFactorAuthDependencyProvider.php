@@ -101,11 +101,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const CLIENT_SESSION = 'CLIENT_SESSION';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container): Container
     {
         $container = parent::provideBusinessLayerDependencies($container);
@@ -119,11 +114,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = parent::provideCommunicationLayerDependencies($container);
@@ -142,11 +132,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMailFacade(Container $container): Container
     {
         $container->set(static::FACADE_MAIL, function (Container $container) {
@@ -158,11 +143,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addGlossaryFacade(Container $container): Container
     {
         $container->set(static::FACADE_GLOSSARY, function (Container $container) {
@@ -174,11 +154,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUserFacade(Container $container): Container
     {
         $container->set(static::FACADE_USER, function (Container $container) {
@@ -190,11 +165,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUserMultiFactorAuthPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_USER_MULTI_FACTOR_AUTH, function () {
@@ -212,11 +182,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPostLoginMultiFactorAuthenticationPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_POST_LOGIN_MULTI_FACTOR_AUTH, function () {
@@ -234,11 +199,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCustomerSendStrategyPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_CUSTOMER_SEND_STRATEGY, function () {
@@ -256,11 +216,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUserSendStrategyPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_USER_SEND_STRATEGY, function () {
@@ -278,11 +233,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCsrfProviderService(Container $container): Container
     {
         $container->set(static::SERVICE_FORM_CSRF_PROVIDER, function (Container $container) {
@@ -292,11 +242,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCustomerFacade(Container $container): Container
     {
         $container->set(static::FACADE_CUSTOMER, function (Container $container) {
@@ -306,11 +251,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function addTranslatorService(Container $container): Container
     {
         $container->set(static::SERVICE_TRANSLATOR, function (Container $container) {
@@ -320,11 +260,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addRequestStackService(Container $container): Container
     {
         $container->set(static::SERVICE_REQUEST_STACK, function (Container $container) {
@@ -334,11 +269,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addTwigService(Container $container): Container
     {
         $container->set(static::TWIG_ENVIRONMENT, function (Container $container) {
@@ -348,11 +278,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addSessionClient(Container $container): Container
     {
         $container->set(static::CLIENT_SESSION, function (Container $container) {
@@ -364,11 +289,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addMultiFactorAuthPluginExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_MULTI_FACTOR_AUTH_PLUGIN_EXPANDER, function () {

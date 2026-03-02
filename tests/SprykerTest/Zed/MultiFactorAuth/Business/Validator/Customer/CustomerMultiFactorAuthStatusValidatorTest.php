@@ -50,9 +50,6 @@ class CustomerMultiFactorAuthStatusValidatorTest extends Unit
      */
     protected CustomerMultiFactorAuthStatusValidator $customerMultiFactorAuthStatusValidator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -61,9 +58,6 @@ class CustomerMultiFactorAuthStatusValidatorTest extends Unit
         $this->customerMultiFactorAuthStatusValidator = new CustomerMultiFactorAuthStatusValidator($this->repositoryMock);
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsUnsuccessfulResponseWhenNoAuthTypes(): void
     {
         $this->repositoryMock->method('getCustomerMultiFactorAuthTypes')->willReturn(new MultiFactorAuthTypesCollectionTransfer());
@@ -73,9 +67,6 @@ class CustomerMultiFactorAuthStatusValidatorTest extends Unit
         $this->assertFalse($response->getIsRequired());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsSuccessfulResponseWhenCodeIsValid(): void
     {
         $validMultiFactorAuthCodeTransfer = $this->tester->createMultiFactorAuthCodeTransfer(
@@ -95,9 +86,6 @@ class CustomerMultiFactorAuthStatusValidatorTest extends Unit
         $this->assertTrue((bool)$response->getStatus());
     }
 
-    /**
-     * @return void
-     */
     public function testValidateReturnsUnsuccessfulResponseWhenCodeIsInvalid(): void
     {
         $invalidMultiFactorAuthCodeTransfer = $this->tester->createMultiFactorAuthCodeTransfer(
@@ -116,9 +104,6 @@ class CustomerMultiFactorAuthStatusValidatorTest extends Unit
         $this->assertFalse((bool)$response->getStatus());
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer
-     */
     protected function createMultiFactorAuthValidationRequestTransfer(): MultiFactorAuthValidationRequestTransfer
     {
         return (new MultiFactorAuthValidationRequestTransfer())->setCustomer(new CustomerTransfer());

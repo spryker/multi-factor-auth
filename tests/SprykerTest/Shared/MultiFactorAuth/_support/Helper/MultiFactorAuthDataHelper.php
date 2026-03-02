@@ -29,12 +29,6 @@ class MultiFactorAuthDataHelper extends Module
      */
     protected const COL_CODE = 'code';
 
-    /**
-     * @param string $email
-     * @param string $type
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function getMultiFactorAuthCode(string $email, string $type): MultiFactorAuthCodeTransfer
     {
         $codeEntity = SpyCustomerMultiFactorAuthCodesQuery::create()
@@ -51,12 +45,6 @@ class MultiFactorAuthDataHelper extends Module
         return (new MultiFactorAuthCodeTransfer())->setCode($codeEntity);
     }
 
-    /**
-     * @param string $username
-     * @param string $type
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function getUserMultiFactorAuthCode(string $username, string $type): MultiFactorAuthCodeTransfer
     {
         $codeEntity = SpyUserMultiFactorAuthCodesQuery::create()
@@ -73,11 +61,6 @@ class MultiFactorAuthDataHelper extends Module
         return (new MultiFactorAuthCodeTransfer())->setCode($codeEntity);
     }
 
-    /**
-     * @param string $code
-     *
-     * @return void
-     */
     public function cleanUpMultiFactorAuthCode(string $code): void
     {
         SpyCustomerMultiFactorAuthCodesAttemptsQuery::create()->deleteAll();
@@ -87,11 +70,6 @@ class MultiFactorAuthDataHelper extends Module
             ->delete();
     }
 
-    /**
-     * @param string $code
-     *
-     * @return void
-     */
     public function cleanUpUserMultiFactorAuthCode(string $code): void
     {
         SpyUserMultiFactorAuthCodesAttemptsQuery::create()->deleteAll();
@@ -101,9 +79,6 @@ class MultiFactorAuthDataHelper extends Module
             ->delete();
     }
 
-    /**
-     * @return void
-     */
     public function cleanUpCustomerMultiFactorAuth(): void
     {
         SpyCustomerMultiFactorAuthCodesAttemptsQuery::create()->deleteAll();
@@ -111,9 +86,6 @@ class MultiFactorAuthDataHelper extends Module
         SpyCustomerMultiFactorAuthQuery::create()->deleteAll();
     }
 
-    /**
-     * @return void
-     */
     public function cleanUpUserMultiFactorAuth(): void
     {
         SpyUserMultiFactorAuthCodesAttemptsQuery::create()->deleteAll();

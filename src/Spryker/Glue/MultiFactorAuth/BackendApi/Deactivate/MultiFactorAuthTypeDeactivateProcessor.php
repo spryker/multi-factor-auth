@@ -22,13 +22,6 @@ use Spryker\Glue\MultiFactorAuth\MultiFactorAuthConfig;
 
 class MultiFactorAuthTypeDeactivateProcessor implements MultiFactorAuthTypeDeactivateProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface $userFacade
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\Validator\MultiFactorAuthValidatorInterface $multiFactorAuthValidator
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade,
         protected MultiFactorAuthToUserFacadeInterface $userFacade,
@@ -38,12 +31,6 @@ class MultiFactorAuthTypeDeactivateProcessor implements MultiFactorAuthTypeDeact
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function deactivateMultiFactorAuth(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

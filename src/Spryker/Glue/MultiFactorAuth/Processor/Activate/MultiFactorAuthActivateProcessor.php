@@ -28,13 +28,6 @@ use Throwable;
 
 class MultiFactorAuthActivateProcessor implements MultiFactorAuthActivateProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\Validator\MultiFactorAuthValidatorInterface $multiFactorAuthValidator
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient,
         protected MultiFactorAuthToCustomerClientInterface $customerClient,
@@ -44,12 +37,6 @@ class MultiFactorAuthActivateProcessor implements MultiFactorAuthActivateProcess
     ) {
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function activateMultiFactorAuth(
         RestRequestInterface $restRequest,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
@@ -88,12 +75,6 @@ class MultiFactorAuthActivateProcessor implements MultiFactorAuthActivateProcess
         return $this->safelySendActivationCode($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     *
-     * @return bool
-     */
     protected function assertTheCodeIsMissing(
         RestRequestInterface $restRequest,
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
@@ -101,13 +82,6 @@ class MultiFactorAuthActivateProcessor implements MultiFactorAuthActivateProcess
         return $this->hasExistingMultiFactorAuth($multiFactorAuthTypesCollectionTransfer) && $restRequest->getHttpRequest()->headers->get(MultiFactorAuthConfig::HEADER_MULTI_FACTOR_AUTH_CODE) === null;
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return bool
-     */
     protected function assertTheProvidedCodeIsNotApplicable(
         RestRequestInterface $restRequest,
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer,
@@ -128,11 +102,6 @@ class MultiFactorAuthActivateProcessor implements MultiFactorAuthActivateProcess
         return $hasExistingMultiFactorAuth && !$isCodeValid;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     *
-     * @return bool
-     */
     protected function hasExistingMultiFactorAuth(MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer): bool
     {
         if (count($multiFactorAuthTypesCollectionTransfer->getMultiFactorAuthTypes()) === 0) {
@@ -148,12 +117,6 @@ class MultiFactorAuthActivateProcessor implements MultiFactorAuthActivateProcess
         return false;
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return bool
-     */
     protected function isMultiFactorAuthActivationCodeValid(
         RestRequestInterface $restRequest,
         CustomerTransfer $customerTransfer
@@ -180,11 +143,6 @@ class MultiFactorAuthActivateProcessor implements MultiFactorAuthActivateProcess
         return $this->multiFactorAuthValidator->isMultiFactorAuthCodeValid($multiFactorAuthCode, $customerTransfer, $multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     protected function safelySendActivationCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): RestResponseInterface
     {
         try {

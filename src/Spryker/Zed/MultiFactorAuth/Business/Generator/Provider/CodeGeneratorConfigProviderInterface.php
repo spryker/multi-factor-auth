@@ -9,13 +9,7 @@ namespace Spryker\Zed\MultiFactorAuth\Business\Generator\Provider;
 
 interface CodeGeneratorConfigProviderInterface
 {
-    /**
-     * @return int
-     */
     public function getCodeLength(): int;
 
-    /**
-     * @return int
-     */
     public function getCodeValidityTtl(): int;
 }

@@ -18,12 +18,6 @@ use Propel\Runtime\Collection\Collection;
 
 class MultiFactorAuthMapper
 {
-    /**
-     * @param \Orm\Zed\MultiFactorAuth\Persistence\SpyCustomerMultiFactorAuthCodes $customerMultiFactorAuthCode
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function mapCustomerMultiFactorAuthCodeEntityToMultiFactorAuthCodeTransfer(
         SpyCustomerMultiFactorAuthCodes $customerMultiFactorAuthCode,
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
@@ -33,12 +27,6 @@ class MultiFactorAuthMapper
             ->setType($customerMultiFactorAuthCode->getSpyCustomerMultiFactorAuth()->getType());
     }
 
-    /**
-     * @param \Orm\Zed\MultiFactorAuth\Persistence\SpyUserMultiFactorAuthCodes $userMultiFactorAuthCode
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function mapUserMultiFactorAuthCodeEntityToMultiFactorAuthCodeTransfer(
         SpyUserMultiFactorAuthCodes $userMultiFactorAuthCode,
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
@@ -48,12 +36,6 @@ class MultiFactorAuthMapper
             ->setType($userMultiFactorAuthCode->getSpyUserMultiFactorAuth()->getType());
     }
 
-    /**
-     * @param \Propel\Runtime\Collection\Collection $multiFactorAuthEntities
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function mapMultiFactorAuthEntitiesToMultiFactorAuthTypesCollectionTransfer(
         Collection $multiFactorAuthEntities,
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
@@ -68,12 +50,6 @@ class MultiFactorAuthMapper
         return $multiFactorAuthTypesCollectionTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     * @param \Orm\Zed\MultiFactorAuth\Persistence\SpyCustomerMultiFactorAuth $customerMultiFactorAuth
-     *
-     * @return \Orm\Zed\MultiFactorAuth\Persistence\SpyCustomerMultiFactorAuth
-     */
     public function mapMultiFactorAuthTransferToCustomerMultiFactorAuthEntity(
         MultiFactorAuthTransfer $multiFactorAuthTransfer,
         SpyCustomerMultiFactorAuth $customerMultiFactorAuth
@@ -87,12 +63,6 @@ class MultiFactorAuthMapper
         return $customerMultiFactorAuth;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     * @param \Orm\Zed\MultiFactorAuth\Persistence\SpyUserMultiFactorAuth $userMultiFactorAuth
-     *
-     * @return \Orm\Zed\MultiFactorAuth\Persistence\SpyUserMultiFactorAuth
-     */
     public function mapMultiFactorAuthTransferToUserMultiFactorAuthEntity(
         MultiFactorAuthTransfer $multiFactorAuthTransfer,
         SpyUserMultiFactorAuth $userMultiFactorAuth

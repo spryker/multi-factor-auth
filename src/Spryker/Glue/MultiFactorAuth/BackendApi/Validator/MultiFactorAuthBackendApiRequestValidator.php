@@ -30,12 +30,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBackendApiRequestValidatorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface $userFacade
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\MultiFactorAuthConfig $multiFactorAuthConfig
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade,
         protected MultiFactorAuthToUserFacadeInterface $userFacade,
@@ -44,12 +38,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceInterface $resource
-     *
-     * @return \Generated\Shared\Transfer\GlueRequestValidationTransfer
-     */
     public function validate(GlueRequestTransfer $glueRequestTransfer, ResourceInterface $resource): GlueRequestValidationTransfer
     {
         $glueRequestValidationTransfer = (new GlueRequestValidationTransfer())->setIsValid(true);
@@ -92,12 +80,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
         return $glueRequestValidationTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     protected function isActivatedMultiFactorAuthType(
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer,
         string $multiFactorAuthType
@@ -111,11 +93,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return bool
-     */
     protected function shouldSkipValidation(GlueRequestTransfer $glueRequestTransfer): bool
     {
         $resourceType = $glueRequestTransfer->getResourceOrFail()->getType();
@@ -127,21 +104,11 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
             || !$this->isRestApiMultiFactorAuthProtectedResource($resourceType);
     }
 
-    /**
-     * @param string $resourceType
-     *
-     * @return bool
-     */
     protected function isRestApiMultiFactorAuthProtectedResource(string $resourceType): bool
     {
         return in_array($resourceType, $this->multiFactorAuthConfig->getMultiFactorAuthProtectedBackendResources(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return bool
-     */
     protected function hasMultiFactorAuthCodeHeader(GlueRequestTransfer $glueRequestTransfer): bool
     {
         return array_key_exists(strtolower(MultiFactorAuthConfig::HEADER_MULTI_FACTOR_AUTH_CODE), $glueRequestTransfer->getMeta()) &&
@@ -149,11 +116,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
             $glueRequestTransfer->getMeta()[strtolower(MultiFactorAuthConfig::HEADER_MULTI_FACTOR_AUTH_CODE)][0] !== '';
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestValidationTransfer $glueRequestValidationTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueRequestValidationTransfer
-     */
     protected function createMissingMultiFactorAuthCodeError(GlueRequestValidationTransfer $glueRequestValidationTransfer): GlueRequestValidationTransfer
     {
         $glueErrorTransfer = new GlueErrorTransfer();
@@ -168,11 +130,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
             ->setStatus(Response::HTTP_FORBIDDEN);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestValidationTransfer $glueRequestValidationTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueRequestValidationTransfer
-     */
     protected function createInvalidMultiFactorAuthCodeError(GlueRequestValidationTransfer $glueRequestValidationTransfer): GlueRequestValidationTransfer
     {
         $glueErrorTransfer = new GlueErrorTransfer();
@@ -187,12 +144,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
             ->setStatus(Response::HTTP_FORBIDDEN);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     protected function buildMultiFactorAuthTransfer(
         UserTransfer $userTransfer,
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
@@ -203,12 +154,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
             ->setMultiFactorAuthCode($multiFactorAuthCodeTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeWithTypeTransfer
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return bool
-     */
     protected function isMultiFactorAuthCodeValid(
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeWithTypeTransfer,
         UserTransfer $userTransfer
@@ -233,11 +178,6 @@ class MultiFactorAuthBackendApiRequestValidator implements MultiFactorAuthBacken
         return $this->isMultiFactorAuthCodeVerified($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return bool
-     */
     protected function isMultiFactorAuthCodeVerified(MultiFactorAuthTransfer $multiFactorAuthTransfer): bool
     {
         $validationResponse = $this->multiFactorAuthFacade->validateUserCode($multiFactorAuthTransfer);

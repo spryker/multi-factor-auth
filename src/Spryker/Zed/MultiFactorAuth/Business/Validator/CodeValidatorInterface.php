@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer;
 
 interface CodeValidatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     public function validate(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer;
 }

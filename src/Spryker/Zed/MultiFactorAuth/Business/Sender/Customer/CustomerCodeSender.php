@@ -26,11 +26,6 @@ class CustomerCodeSender implements CodeSenderInterface
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function sendCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
         $this->entityManager->saveCustomerCode(

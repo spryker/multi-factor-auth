@@ -24,13 +24,6 @@ use Throwable;
 
 class MultiFactorAuthTriggerProcessor implements MultiFactorAuthTriggerProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\Processor\Validator\MultiFactorAuthValidatorInterface $multiFactorAuthValidator
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient,
         protected MultiFactorAuthToCustomerClientInterface $customerClient,
@@ -40,12 +33,6 @@ class MultiFactorAuthTriggerProcessor implements MultiFactorAuthTriggerProcessor
     ) {
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function triggerMultiFactorAuthCode(
         RestRequestInterface $restRequest,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
@@ -73,11 +60,6 @@ class MultiFactorAuthTriggerProcessor implements MultiFactorAuthTriggerProcessor
         return $this->multiFactorAuthResponseBuilder->createNotFoundTypeErrorResponse();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     protected function safelySendActivationCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): RestResponseInterface
     {
         try {

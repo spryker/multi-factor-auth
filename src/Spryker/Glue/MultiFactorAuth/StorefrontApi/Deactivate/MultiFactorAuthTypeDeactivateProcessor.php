@@ -22,13 +22,6 @@ use Spryker\Glue\MultiFactorAuth\StorefrontApi\Validator\MultiFactorAuthValidato
 
 class MultiFactorAuthTypeDeactivateProcessor implements MultiFactorAuthTypeDeactivateProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     * @param \Spryker\Glue\MultiFactorAuth\StorefrontApi\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\StorefrontApi\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\StorefrontApi\Validator\MultiFactorAuthValidatorInterface $multiFactorAuthValidator
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient,
         protected MultiFactorAuthToCustomerClientInterface $customerClient,
@@ -38,12 +31,6 @@ class MultiFactorAuthTypeDeactivateProcessor implements MultiFactorAuthTypeDeact
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function deactivateMultiFactorAuth(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

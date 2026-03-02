@@ -78,11 +78,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
      */
     protected const DATA_SUCCESS_PARAMETER = 'data-success';
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function getEnabledTypesAction(Request $request): View
     {
         $options = $this->getOptions($request);
@@ -123,13 +118,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
         return $this->view(['form' => $typeSelectionForm->createView()], [], $this->getTypeSelectionFormTemplate());
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $multiFactorAuthType
-     * @param \Symfony\Component\Form\FormInterface|null $form
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function sendCodeAction(Request $request, ?string $multiFactorAuthType = null, ?FormInterface $form = null): View
     {
         $formName = $form?->getName() ?? $this->getFactory()->getCodeValidationForm()->getName();
@@ -160,13 +148,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
         return $this->executeCodeValidation($request, $codeValidationForm, $identityTransfer);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Symfony\Component\Form\FormInterface $codeValidationForm
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $identityTransfer
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     protected function executeCodeValidation(
         Request $request,
         FormInterface $codeValidationForm,
@@ -199,36 +180,14 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
         return $this->view(['form' => $codeValidationForm->createView()], [], $this->getCodeValidationFormTemplate());
     }
 
-    /**
-     * @return string
-     */
     abstract protected function getTypeSelectionFormTemplate(): string;
 
-    /**
-     * @return string
-     */
     abstract protected function getCodeValidationFormTemplate(): string;
 
-    /**
-     * @param string $multiFactorAuthType
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $transfer
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return void
-     */
     abstract protected function sendCode(string $multiFactorAuthType, AbstractTransfer $transfer, Request $request): void;
 
-    /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $identityTransfer
-     * @param \Symfony\Component\Form\FormInterface $codeValidationForm
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     abstract protected function validateCode(AbstractTransfer $identityTransfer, FormInterface $codeValidationForm): MultiFactorAuthValidationResponseTransfer;
 
-    /**
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer
-     */
     abstract protected function getIdentity(): AbstractTransfer;
 
     /**
@@ -238,36 +197,15 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
      */
     abstract protected function getOptions(Request $request): array;
 
-    /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $identityTransfer
-     *
-     * @return void
-     */
     abstract protected function executePostLoginMultiFactorAuthenticationPlugins(AbstractTransfer $identityTransfer): void;
 
-    /**
-     * @return int
-     */
     abstract protected function resolveCodeLength(): int;
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
-     * @return bool
-     */
     protected function isSetUpMultiFactorAuthStep(Request $request, ?string $formName = null): bool
     {
         return $this->assertIsActivation($request, $formName) || $this->assertIsDeactivation($request, $formName);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $multiFactorAuthType
-     * @param string|null $formName
-     *
-     * @return bool
-     */
     protected function isSelectedTypeVerificationRequired(Request $request, string $multiFactorAuthType, ?string $formName = null): bool
     {
         return $this->assertIsActivation($request, $formName) && $this->getParameterFromRequest($request, static::TYPE_TO_SET_UP, $formName) !== $multiFactorAuthType;
@@ -293,23 +231,11 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
         return count($options[static::TYPES]) === 1;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
-     * @return string|null
-     */
     protected function assertIsActivation(Request $request, ?string $formName = null): ?string
     {
         return $this->getParameterFromRequest($request, static::IS_ACTIVATION, $formName);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
-     * @return string|null
-     */
     protected function assertIsDeactivation(Request $request, ?string $formName = null): ?string
     {
         return $this->getParameterFromRequest($request, static::IS_DEACTIVATION, $formName);
@@ -330,13 +256,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
         ];
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $parameter
-     * @param string|null $formName
-     *
-     * @return mixed
-     */
     protected function getParameterFromRequest(Request $request, string $parameter, ?string $formName = null): mixed
     {
         return $this->getFactory()->createRequestReader()->get($request, $parameter, $formName);

@@ -74,9 +74,6 @@ use Spryker\Glue\MultiFactorAuth\StorefrontApi\Verify\MultiFactorAuthTypeVerifyP
  */
 class MultiFactorAuthFactory extends AbstractBackendApiFactory
 {
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\Reader\MultiFactorAuthTypesReaderInterface
-     */
     public function createMultiFactorAuthTypesReader(): MultiFactorAuthTypesReaderInterface
     {
         return new MultiFactorAuthTypesReader(
@@ -89,9 +86,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\Trigger\MultiFactorAuthTriggerProcessorInterface
-     */
     public function createMultiFactorAuthTriggerProcessor(): MultiFactorAuthTriggerProcessorInterface
     {
         return new MultiFactorAuthTriggerProcessor(
@@ -103,9 +97,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\Activate\MultiFactorAuthActivateProcessorInterface
-     */
     public function createMultiFactorAuthActivateProcessor(): MultiFactorAuthActivateProcessorInterface
     {
         return new MultiFactorAuthActivateProcessor(
@@ -117,9 +108,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\Verify\MultiFactorAuthTypeVerifyProcessorInterface
-     */
     public function createMultiFactorAuthTypeVerifyProcessor(): MultiFactorAuthTypeVerifyProcessorInterface
     {
         return new MultiFactorAuthTypeVerifyProcessor(
@@ -131,9 +119,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\Deactivate\MultiFactorAuthTypeDeactivateProcessorInterface
-     */
     public function createMultiFactorAuthTypeDeactivateProcessor(): MultiFactorAuthTypeDeactivateProcessorInterface
     {
         return new MultiFactorAuthTypeDeactivateProcessor(
@@ -145,9 +130,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\Validator\MultiFactorAuthRestUserValidatorInterface
-     */
     public function createMultiFactorAuthRestUserValidator(): MultiFactorAuthRestUserValidatorInterface
     {
         return new MultiFactorAuthRestUserValidator(
@@ -158,33 +140,21 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToMultiFactorAuthClientInterface
-     */
     public function getMultiFactorAuthClient(): MultiFactorAuthToMultiFactorAuthClientInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::CLIENT_MULTI_FACTOR_AUTH);
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToMultiFactorAuthFacadeInterface
-     */
     public function getMultiFactorAuthFacade(): MultiFactorAuthToMultiFactorAuthFacadeInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::FACADE_MULTI_FACTOR_AUTH);
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface
-     */
     public function getCustomerClient(): MultiFactorAuthToCustomerClientInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::CLIENT_CUSTOMER);
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface
-     */
     public function getUserFacade(): MultiFactorAuthToUserFacadeInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::FACADE_USER);
@@ -206,17 +176,11 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::PLUGINS_USER_MULTI_FACTOR_AUTH);
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\ResponseBuilder\MultiFactorAuthResponseBuilderInterface
-     */
     public function createMultiFactorAuthResponseBuilder(): MultiFactorAuthResponseBuilderInterface
     {
         return new MultiFactorAuthResponseBuilder($this->getResourceBuilder());
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\Validator\MultiFactorAuthValidatorInterface
-     */
     public function createMultiFactorAuthValidator(): MultiFactorAuthValidatorInterface
     {
         return new MultiFactorAuthValidator(
@@ -226,17 +190,11 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\Processor\TransferBuilder\MultiFactorAuthTransferBuilderInterface
-     */
     public function createMultiFactorAuthTransferBuilder(): MultiFactorAuthTransferBuilderInterface
     {
         return new MultiFactorAuthTransferBuilder();
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\Activate\MultiFactorAuthTypeActivateProcessorInterface
-     */
     public function createMultiFactorAuthBackendApiActivateProcessor(): MultiFactorAuthTypeBackendApiActivateProcessorInterface
     {
         return new MultiFactorAuthTypeBackendApiActivateProcessor(
@@ -248,9 +206,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\Verify\MultiFactorAuthTypeVerifyProcessorInterface
-     */
     public function createMultiFactorAuthBackendApiVerifyProcessor(): MultiFactorAuthTypeBackendApiVerifyProcessorInterface
     {
         return new MultiFactorAuthTypeBackendApiVerifyProcessor(
@@ -262,9 +217,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\Deactivate\MultiFactorAuthTypeDeactivateProcessorInterface
-     */
     public function createMultiFactorAuthBackendApiDeactivateProcessor(): MultiFactorAuthTypeBackendApiDeactivateProcessorInterface
     {
         return new MultiFactorAuthTypeBackendApiDeactivateProcessor(
@@ -276,9 +228,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\Trigger\MultiFactorAuthTriggerProcessorInterface
-     */
     public function createMultiFactorAuthBackendApiTriggerProcessor(): MultiFactorAuthBackendApiTriggerProcessorInterface
     {
         return new MultiFactorAuthBackendApiTriggerProcessor(
@@ -290,25 +239,16 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\ResponseBuilder\MultiFactorAuthResponseBuilderInterface
-     */
     public function createMultiFactorAuthBackendApiResponseBuilder(): MultiFactorAuthBackendApiResponseBuilderInterface
     {
         return new MultiFactorAuthBackendApiResponseBuilder();
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\TransferBuilder\MultiFactorAuthTransferBuilderInterface
-     */
     public function createMultiFactorAuthBackendApiTransferBuilder(): MultiFactorAuthBackendApiTransferBuilderInterface
     {
         return new MultiFactorAuthBackendApiTransferBuilder();
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\Validator\MultiFactorAuthValidatorInterface
-     */
     public function createMultiFactorAuthBackendApiValidator(): MultiFactorAuthBackendApiValidatorInterface
     {
         return new MultiFactorAuthBackendApiValidator(
@@ -318,9 +258,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\Reader\MultiFactorAuthTypesReaderInterface
-     */
     public function createMultiFactorAuthBackendApiReader(): MultiFactorAuthTypesBackendApiReaderInterface
     {
         return new MultiFactorAuthTypesBackendApiReader(
@@ -332,9 +269,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\BackendApi\Validator\MultiFactorAuthBackendApiRequestValidatorInterface
-     */
     public function createMultiFactorAuthBackendApiRequestValidator(): MultiFactorAuthBackendApiRequestValidatorInterface
     {
         return new MultiFactorAuthBackendApiRequestValidator(
@@ -345,9 +279,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\Reader\MultiFactorAuthTypesReaderInterface
-     */
     public function createMultiFactorAuthStorefrontApiReader(): MultiFactorAuthTypesStorefrontApiReaderInterface
     {
         return new MultiFactorAuthTypesStorefrontApiReader(
@@ -359,9 +290,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\Activate\MultiFactorAuthTypeActivateProcessorInterface
-     */
     public function createMultiFactorAuthTypeStorefrontApiActivateProcessor(): MultiFactorAuthTypeStorefrontApiActivateProcessorInterface
     {
         return new MultiFactorAuthTypeStorefrontApiActivateProcessor(
@@ -373,9 +301,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\Verify\MultiFactorAuthTypeVerifyProcessorInterface
-     */
     public function createMultiFactorAuthTypeStorefrontApiVerifyProcessor(): MultiFactorAuthTypeStorefrontApiVerifyProcessorInterface
     {
         return new MultiFactorAuthTypeStorefrontApiVerifyProcessor(
@@ -387,9 +312,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\Deactivate\MultiFactorAuthTypeDeactivateProcessorInterface
-     */
     public function createMultiFactorAuthTypeStorefrontApiDeactivateProcessor(): MultiFactorAuthTypeStorefrontApiDeactivateProcessorInterface
     {
         return new MultiFactorAuthTypeStorefrontApiDeactivateProcessor(
@@ -401,9 +323,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\Trigger\MultiFactorAuthTriggerProcessorInterface
-     */
     public function createMultiFactorAuthStorefrontApiTriggerProcessor(): MultiFactorAuthStorefrontApiTriggerProcessorInterface
     {
         return new MultiFactorAuthStorefrontApiTriggerProcessor(
@@ -415,25 +334,16 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\ResponseBuilder\MultiFactorAuthResponseBuilderInterface
-     */
     public function createMultiFactorAuthStorefrontApiResponseBuilder(): MultiFactorAuthStorefrontApiResponseBuilderInterface
     {
         return new MultiFactorAuthStorefrontApiResponseBuilder();
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\TransferBuilder\MultiFactorAuthTransferBuilderInterface
-     */
     public function createMultiFactorAuthStorefrontApiTransferBuilder(): MultiFactorAuthStorefrontApiTransferBuilderInterface
     {
         return new MultiFactorAuthStorefrontApiTransferBuilder();
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\Validator\MultiFactorAuthValidatorInterface
-     */
     public function createMultiFactorAuthStorefrontApiValidator(): MultiFactorAuthStorefrontApiValidatorInterface
     {
         return new MultiFactorAuthStorefrontApiValidator(
@@ -443,9 +353,6 @@ class MultiFactorAuthFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\MultiFactorAuth\StorefrontApi\Validator\MultiFactorAuthStorefrontApiRequestValidatorInterface
-     */
     public function createMultiFactorAuthStorefrontApiRequestValidator(): MultiFactorAuthStorefrontApiRequestValidatorInterface
     {
         return new MultiFactorAuthStorefrontApiRequestValidator(

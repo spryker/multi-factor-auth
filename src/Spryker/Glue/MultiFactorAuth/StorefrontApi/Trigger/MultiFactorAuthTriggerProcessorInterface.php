@@ -15,12 +15,6 @@ use Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer;
 
 interface MultiFactorAuthTriggerProcessorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function triggerMultiFactorAuth(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

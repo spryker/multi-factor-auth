@@ -57,9 +57,6 @@ class CodeGeneratorTest extends Unit
      */
     protected CodeGenerator $codeGenerator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -68,9 +65,6 @@ class CodeGeneratorTest extends Unit
         $this->codeGenerator = new CodeGenerator($this->configProviderMock);
     }
 
-    /**
-     * @return void
-     */
     public function testGenerateCodeReturnsCorrectLength(): void
     {
         $code = ($this->codeGenerator->generateCode($this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL)))->getMultiFactorAuthCode()->getCode();
@@ -78,9 +72,6 @@ class CodeGeneratorTest extends Unit
         $this->assertEquals(static::CODE_LENGTH, strlen($code));
     }
 
-    /**
-     * @return void
-     */
     public function testGenerateCodeReturnsCodeWithinRange(): void
     {
         $code = ($this->codeGenerator->generateCode($this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL)))->getMultiFactorAuthCode()->getCode();
@@ -89,9 +80,6 @@ class CodeGeneratorTest extends Unit
         $this->assertLessThanOrEqual(static::MAX_CODE_VALUE, (int)$code);
     }
 
-    /**
-     * @return void
-     */
     public function testGenerateCodeReturnsDifferentCodes(): void
     {
         $code1 = ($this->codeGenerator->generateCode($this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL)))->getMultiFactorAuthCode()->getCode();
@@ -100,9 +88,6 @@ class CodeGeneratorTest extends Unit
         $this->assertNotEquals($code1, $code2);
     }
 
-    /**
-     * @return void
-     */
     protected function createCodeGeneratorConfigProviderMock(): void
     {
         $this->configProviderMock = $this->createMock(CodeGeneratorConfigProviderInterface::class);

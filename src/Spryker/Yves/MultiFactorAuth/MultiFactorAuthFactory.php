@@ -47,17 +47,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class MultiFactorAuthFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface
-     */
     public function getCustomerClient(): MultiFactorAuthToCustomerClientInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::CLIENT_CUSTOMER);
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Dependency\Client\MultiFactorAuthToAgentClientInterface
-     */
     public function getAgentClient(): MultiFactorAuthToAgentClientInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::CLIENT_AGENT);
@@ -87,9 +81,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::PLUGINS_POST_LOGIN_MULTI_FACTOR_AUTH);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormFactory
-     */
     public function getFormFactory(): FormFactory
     {
         return $this->getProvidedDependency(ApplicationConstants::FORM_FACTORY);
@@ -115,9 +106,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         return $this->getFormFactory()->create(CodeValidationForm::class, null, $formOptions);
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Form\DataProvider\Customer\CustomerTypeSelectionFormDataProvider
-     */
     public function createCustomerTypeSelectionFormDataProvider(): CustomerTypeSelectionFormDataProvider
     {
         return new CustomerTypeSelectionFormDataProvider(
@@ -126,9 +114,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Form\DataProvider\Agent\AgentTypeSelectionFormDataProvider
-     */
     public function createAgentTypeSelectionFormDataProvider(): AgentTypeSelectionFormDataProvider
     {
         return new AgentTypeSelectionFormDataProvider(
@@ -137,9 +122,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Symfony\Contracts\Translation\TranslatorInterface
-     */
     public function getTranslatorService(): TranslatorInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::SERVICE_TRANSLATOR);
@@ -157,9 +139,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormTypeExtensionInterface
-     */
     public function createMultiFactorAuthValidationExtension(): FormTypeExtensionInterface
     {
         return new MultiFactorAuthValidationExtension(
@@ -169,9 +148,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormTypeExtensionInterface
-     */
     public function createMultiFactorAuthHandlerExtension(): FormTypeExtensionInterface
     {
         return new MultiFactorAuthHandlerExtension(
@@ -183,9 +159,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Reader\Customer\CustomerMultiFactorAuthReaderInterface
-     */
     public function createCustomerMultiFactorAuthReader(): CustomerMultiFactorAuthReaderInterface
     {
         return new CustomerMultiFactorAuthReader(
@@ -194,9 +167,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Reader\Agent\AgentMultiFactorAuthReaderInterface
-     */
     public function createAgentMultiFactorAuthReader(): AgentMultiFactorAuthReaderInterface
     {
         return new AgentMultiFactorAuthReader(
@@ -205,9 +175,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Activator\Customer\CustomerMultiFactorAuthActivatorInterface
-     */
     public function createCustomerMultiFactorAuthActivator(): CustomerMultiFactorAuthActivatorInterface
     {
         return new CustomerMultiFactorAuthActivator(
@@ -216,9 +183,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Activator\Agent\AgentMultiFactorAuthActivatorInterface
-     */
     public function createAgentMultiFactorAuthActivator(): AgentMultiFactorAuthActivatorInterface
     {
         return new AgentMultiFactorAuthActivator(
@@ -249,33 +213,21 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Reader\Request\RequestReaderInterface
-     */
     public function createRequestReader(): RequestReaderInterface
     {
         return new RequestReader();
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\RequestStack
-     */
     public function getRequestStackService(): RequestStack
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::SERVICE_REQUEST_STACK);
     }
 
-    /**
-     * @return \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
-     */
     public function getCsrfTokenManager(): CsrfTokenManagerInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::SERVICE_FORM_CSRF_PROVIDER);
     }
 
-    /**
-     * @return \Spryker\Yves\MultiFactorAuth\Dependency\Client\MultiFactorAuthToSessionClientInterface
-     */
     public function getSessionClient(): MultiFactorAuthToSessionClientInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::CLIENT_SESSION);

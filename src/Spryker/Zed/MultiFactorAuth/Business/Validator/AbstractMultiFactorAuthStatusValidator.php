@@ -58,12 +58,6 @@ abstract class AbstractMultiFactorAuthStatusValidator implements MultiFactorAuth
         return $this->createMultiFactorAuthValidationResponseTransfer();
     }
 
-    /**
-     * @param bool $isRequired
-     * @param int|null $status
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     protected function createMultiFactorAuthValidationResponseTransfer(
         bool $isRequired = false,
         ?int $status = MultiFactorAuthConstants::CODE_VERIFIED
@@ -73,11 +67,6 @@ abstract class AbstractMultiFactorAuthStatusValidator implements MultiFactorAuth
             ->setIsRequired($isRequired);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
-     *
-     * @return \Spryker\Shared\Kernel\Transfer\AbstractTransfer
-     */
     abstract protected function extractEntity(MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer): AbstractTransfer;
 
     /**
@@ -91,17 +80,7 @@ abstract class AbstractMultiFactorAuthStatusValidator implements MultiFactorAuth
         array $statuses = []
     ): MultiFactorAuthTypesCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     abstract protected function getCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthCodeTransfer;
 
-    /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $entityTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     abstract protected function buildMultiFactorAuthTransfer(AbstractTransfer $entityTransfer): MultiFactorAuthTransfer;
 }

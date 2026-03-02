@@ -16,9 +16,6 @@ use Spryker\Client\MultiFactorAuth\Dependency\Client\MultiFactorAuthToZedRequest
 
 class AgentMultiFactorAuthStub implements AgentMultiFactorAuthStubInterface
 {
-    /**
-     * @param \Spryker\Client\MultiFactorAuth\Dependency\Client\MultiFactorAuthToZedRequestClientInterface $zedStub
-     */
     public function __construct(protected MultiFactorAuthToZedRequestClientInterface $zedStub)
     {
     }

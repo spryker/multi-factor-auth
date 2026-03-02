@@ -19,11 +19,6 @@ use Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer;
 
 interface MultiFactorAuthToMultiFactorAuthFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     public function validateUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer;
 
     /**
@@ -37,40 +32,15 @@ interface MultiFactorAuthToMultiFactorAuthFacadeInterface
         array $additionalStatuses = []
     ): MultiFactorAuthValidationResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function activateUserMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function deactivateUserMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function sendUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function findUserMultiFactorAuthType(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getUserMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer;
 }

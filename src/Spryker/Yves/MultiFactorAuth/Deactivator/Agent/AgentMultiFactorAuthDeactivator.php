@@ -17,22 +17,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AgentMultiFactorAuthDeactivator implements AgentMultiFactorAuthDeactivatorInterface
 {
-    /**
-     * @param \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface $client
-     * @param \Spryker\Yves\MultiFactorAuth\Reader\Request\RequestReaderInterface $requestReader
-     */
     public function __construct(
         protected MultiFactorAuthClientInterface $client,
         protected RequestReaderInterface $requestReader
     ) {
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
     public function deactivate(Request $request, UserTransfer $userTransfer): void
     {
         $isDeactivation = $this->requestReader->get($request, AgentMultiFactorAuthFlowController::IS_DEACTIVATION);

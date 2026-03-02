@@ -25,19 +25,11 @@ class CodeGenerator implements CodeGeneratorInterface
      */
     protected const EXPIRATION_INTERVAL_FORMAT = 'PT%dM';
 
-    /**
-     * @param \Spryker\Zed\MultiFactorAuth\Business\Generator\Provider\CodeGeneratorConfigProviderInterface $configProvider
-     */
     public function __construct(
         protected CodeGeneratorConfigProviderInterface $configProvider
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function generateCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
         $code = $this->generateNumericCode();
@@ -51,9 +43,6 @@ class CodeGenerator implements CodeGeneratorInterface
         return $multiFactorAuthTransfer->setMultiFactorAuthCode($multiFactorAuthCodeTransfer);
     }
 
-    /**
-     * @return string
-     */
     protected function generateNumericCode(): string
     {
         $min = (int)str_pad('1', $this->configProvider->getCodeLength(), '0', STR_PAD_RIGHT);
@@ -62,9 +51,6 @@ class CodeGenerator implements CodeGeneratorInterface
         return (string)random_int($min, $max);
     }
 
-    /**
-     * @return \DateTime
-     */
     protected function getExpirationDate(): DateTime
     {
         return (new DateTime())->add(

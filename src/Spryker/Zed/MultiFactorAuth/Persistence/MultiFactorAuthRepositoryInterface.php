@@ -19,76 +19,26 @@ use Generated\Shared\Transfer\UserTransfer;
 
 interface MultiFactorAuthRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function getCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthCodeTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getCustomerMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function getUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthCodeTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getUserMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return string|null
-     */
     public function getVerifiedCustomerMultiFactorAuthType(CustomerTransfer $customerTransfer): ?string;
 
-    /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return string|null
-     */
     public function getVerifiedUserMultiFactorAuthType(UserTransfer $userTransfer): ?string;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return int
-     */
     public function getCustomerCodeEnteringAttemptsCount(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): int;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return int
-     */
     public function getUserCodeEnteringAttemptsCount(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): int;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function findCustomerMultiFactorAuthCodeByCriteria(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function findUserMultiFactorAuthCodeByCriteria(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer;

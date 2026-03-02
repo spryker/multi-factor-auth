@@ -36,19 +36,11 @@ abstract class AbstractCodeValidator implements CodeValidatorInterface
      */
     protected const GLOSSARY_PARAM_REMAINING_ATTEMPTS = '%remainingAttempts%';
 
-    /**
-     * @param \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToGlossaryFacadeInterface $glossaryFacade
-     */
     public function __construct(
         protected MultiFactorAuthToGlossaryFacadeInterface $glossaryFacade
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     public function validate(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer
     {
         $validMultiFactorAuthCodeTransfer = $this->getValidCode($multiFactorAuthTransfer);
@@ -69,12 +61,6 @@ abstract class AbstractCodeValidator implements CodeValidatorInterface
         return $this->handleInvalidAttempt($validMultiFactorAuthCodeTransfer, $multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return bool
-     */
     protected function isCodeVerificationSuccessful(
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer,
         MultiFactorAuthTransfer $multiFactorAuthTransfer
@@ -84,12 +70,6 @@ abstract class AbstractCodeValidator implements CodeValidatorInterface
             && $multiFactorAuthCodeTransfer->getStatus() === MultiFactorAuthConstants::CODE_UNVERIFIED;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer $responseTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     protected function handleSuccessfulCodeVerification(
         MultiFactorAuthTransfer $multiFactorAuthTransfer,
         MultiFactorAuthValidationResponseTransfer $responseTransfer
@@ -105,12 +85,6 @@ abstract class AbstractCodeValidator implements CodeValidatorInterface
         return $responseTransfer->setStatus(MultiFactorAuthConstants::CODE_VERIFIED);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     protected function handleMaxAttemptsReached(
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer,
         MultiFactorAuthTransfer $multiFactorAuthTransfer
@@ -123,12 +97,6 @@ abstract class AbstractCodeValidator implements CodeValidatorInterface
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     protected function handleInvalidAttempt(
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer,
         MultiFactorAuthTransfer $multiFactorAuthTransfer
@@ -152,14 +120,6 @@ abstract class AbstractCodeValidator implements CodeValidatorInterface
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     * @param int $status
-     * @param string $message
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     protected function processMultiFactorAuthFailure(
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer,
         MultiFactorAuthTransfer $multiFactorAuthTransfer,
@@ -176,63 +136,25 @@ abstract class AbstractCodeValidator implements CodeValidatorInterface
             ->setMessage($message);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return bool
-     */
     protected function isCodeExpired(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): bool
     {
         return new DateTime($multiFactorAuthCodeTransfer->getExpirationDateOrFail()) < new DateTime();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return bool
-     */
     protected function hasReachedMaxAttempts(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): bool
     {
         return $multiFactorAuthCodeTransfer->getAttempts() >= $this->getAttemptsLimit();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     abstract protected function getValidCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthCodeTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return void
-     */
     abstract protected function saveMultiFactorAuthCodeAttempt(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     abstract protected function updateCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     abstract protected function saveMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return int
-     */
     abstract protected function getCodeEnteringAttemptsCount(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): int;
 
-    /**
-     * @return int
-     */
     abstract protected function getAttemptsLimit(): int;
 }

@@ -32,11 +32,6 @@ class MultiFactorAuthToMultiFactorAuthFacadeBridge implements MultiFactorAuthToM
         $this->multiFactorAuthFacade = $multiFactorAuthFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
-     */
     public function validateUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer
     {
         return $this->multiFactorAuthFacade->validateUserCode($multiFactorAuthTransfer);
@@ -55,52 +50,27 @@ class MultiFactorAuthToMultiFactorAuthFacadeBridge implements MultiFactorAuthToM
         return $this->multiFactorAuthFacade->validateUserMultiFactorAuthStatus($multiFactorAuthValidationRequestTransfer, $additionalStatuses);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function activateUserMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $this->multiFactorAuthFacade->activateUserMultiFactorAuth($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function deactivateUserMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $this->multiFactorAuthFacade->deactivateUserMultiFactorAuth($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function sendUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
         return $this->multiFactorAuthFacade->sendUserCode($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function findUserMultiFactorAuthType(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
     ): MultiFactorAuthCodeTransfer {
         return $this->multiFactorAuthFacade->findUserMultiFactorAuthType($multiFactorAuthCodeCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getUserMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer
     {
         return $this->multiFactorAuthFacade->getUserMultiFactorAuthTypes($multiFactorAuthCriteriaTransfer);

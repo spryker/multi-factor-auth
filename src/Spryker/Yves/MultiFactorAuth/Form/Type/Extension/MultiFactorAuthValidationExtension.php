@@ -14,11 +14,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class MultiFactorAuthValidationExtension extends BasicMultiFactorAuthTypeExtension
 {
-    /**
-     * @param \Spryker\Yves\MultiFactorAuth\MultiFactorAuthConfig $config
-     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-     * @param \Symfony\Component\EventDispatcher\EventSubscriberInterface $multiFactorAuthFormEventSubscriber
-     */
     public function __construct(
         protected MultiFactorAuthConfig $config,
         protected RequestStack $requestStack,

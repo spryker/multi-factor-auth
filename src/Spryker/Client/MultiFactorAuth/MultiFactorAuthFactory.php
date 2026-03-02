@@ -16,9 +16,6 @@ use Spryker\Client\MultiFactorAuth\Zed\Customer\CustomerMultiFactorAuthStubInter
 
 class MultiFactorAuthFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\MultiFactorAuth\Zed\Customer\CustomerMultiFactorAuthStubInterface
-     */
     public function createCustomerMultiFactorAuthStub(): CustomerMultiFactorAuthStubInterface
     {
         return new CustomerMultiFactorAuthStub(
@@ -26,9 +23,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\MultiFactorAuth\Zed\Agent\AgentMultiFactorAuthStubInterface
-     */
     public function createAgentMultiFactorAuthStub(): AgentMultiFactorAuthStubInterface
     {
         return new AgentMultiFactorAuthStub(
@@ -36,9 +30,6 @@ class MultiFactorAuthFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\MultiFactorAuth\Dependency\Client\MultiFactorAuthToZedRequestClientInterface
-     */
     public function getZedRequestClient(): MultiFactorAuthToZedRequestClientInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::CLIENT_ZED_REQUEST);

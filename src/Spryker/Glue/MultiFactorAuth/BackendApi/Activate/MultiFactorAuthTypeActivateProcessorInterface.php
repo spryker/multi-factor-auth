@@ -13,12 +13,6 @@ use Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer;
 
 interface MultiFactorAuthTypeActivateProcessorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function activateMultiFactorAuth(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

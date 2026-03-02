@@ -79,11 +79,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected const SERVICE_TWIG = 'twig';
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     public function provideDependencies(Container $container): Container
     {
         $container = parent::provideDependencies($container);
@@ -102,11 +97,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addCustomerClient(Container $container): Container
     {
         $container->set(static::CLIENT_CUSTOMER, function (Container $container) {
@@ -118,11 +108,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addAgentClient(Container $container): Container
     {
         $container->set(static::CLIENT_AGENT, function (Container $container) {
@@ -134,11 +119,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     public function addTranslatorService(Container $container): Container
     {
         $container->set(static::SERVICE_TRANSLATOR, function (Container $container) {
@@ -148,11 +128,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addCustomerMultiFactorAuthPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_CUSTOMER_MULTI_FACTOR_AUTH, function () {
@@ -170,11 +145,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addAgentMultiFactorAuthPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_AGENT_MULTI_FACTOR_AUTH, function () {
@@ -184,11 +154,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addPostLoginMultiFactorAuthenticationPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_POST_LOGIN_MULTI_FACTOR_AUTH, function () {
@@ -214,11 +179,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addRequestStackService(Container $container): Container
     {
         $container->set(static::SERVICE_REQUEST_STACK, function (Container $container) {
@@ -228,11 +188,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addTwigService(Container $container): Container
     {
         $container->set(static::TWIG_ENVIRONMENT, function (Container $container) {
@@ -242,11 +197,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addCsrfTokenManager(Container $container): Container
     {
         $container->set(static::SERVICE_FORM_CSRF_PROVIDER, function (Container $container) {
@@ -256,11 +206,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addSessionClient(Container $container): Container
     {
         $container->set(static::CLIENT_SESSION, function (Container $container) {

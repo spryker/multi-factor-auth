@@ -16,9 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderInterface
 {
- /**
-  * @return \Generated\Shared\Transfer\GlueResponseTransfer
-  */
     public function createNoUserIdentifierErrorResponse(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -31,9 +28,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createUserNotFoundResponse(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -46,9 +40,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createMissingTypeErrorResponse(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -61,9 +52,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createNotFoundTypeErrorResponse(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -76,9 +64,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createMissingMultiFactorAuthCodeError(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -91,9 +76,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createInvalidMultiFactorAuthCodeError(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -106,9 +88,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createDeactivationFailedError(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -121,9 +100,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createAlreadyActivatedMultiFactorAuthError(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -136,9 +112,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createSendingCodeError(): GlueResponseTransfer
     {
         $glueResponseTransfer = (new GlueResponseTransfer())
@@ -151,9 +124,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $glueResponseTransfer->addError($glueErrorTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createSuccessResponse(): GlueResponseTransfer
     {
         return (new GlueResponseTransfer())

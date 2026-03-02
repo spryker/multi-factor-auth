@@ -12,17 +12,9 @@ use Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer;
 
 interface CustomerMultiFactorAuthReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getAvailableCustomerMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
     ): MultiFactorAuthTypesCollectionTransfer;
 
-    /**
-     * @return bool
-     */
     public function isCustomerMultiFactorAuthPluginsAvailable(): bool;
 }

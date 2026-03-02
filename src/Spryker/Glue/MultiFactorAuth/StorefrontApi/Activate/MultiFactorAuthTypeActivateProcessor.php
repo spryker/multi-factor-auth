@@ -28,13 +28,6 @@ use Throwable;
 
 class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivateProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     * @param \Spryker\Glue\MultiFactorAuth\StorefrontApi\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\StorefrontApi\TransferBuilder\MultiFactorAuthTransferBuilderInterface $multiFactorAuthTransferBuilder
-     * @param \Spryker\Glue\MultiFactorAuth\StorefrontApi\Validator\MultiFactorAuthValidatorInterface $multiFactorAuthValidator
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient,
         protected MultiFactorAuthToCustomerClientInterface $customerClient,
@@ -44,12 +37,6 @@ class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivat
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function activateMultiFactorAuth(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
@@ -89,12 +76,6 @@ class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivat
         return $this->safelySendActivationCode($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     *
-     * @return bool
-     */
     protected function assertTheCodeIsMissing(
         GlueRequestTransfer $glueRequestTransfer,
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
@@ -102,13 +83,6 @@ class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivat
         return $this->hasExistingMultiFactorAuth($multiFactorAuthTypesCollectionTransfer) && !isset($glueRequestTransfer->getMeta()[strtolower(MultiFactorAuthConfig::HEADER_MULTI_FACTOR_AUTH_CODE)]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return bool
-     */
     protected function assertTheProvidedCodeIsNotApplicable(
         GlueRequestTransfer $glueRequestTransfer,
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer,
@@ -129,11 +103,6 @@ class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivat
         return $hasExistingMultiFactorAuth && !$isCodeValid;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     *
-     * @return bool
-     */
     protected function hasExistingMultiFactorAuth(MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer): bool
     {
         if (count($multiFactorAuthTypesCollectionTransfer->getMultiFactorAuthTypes()) === 0) {
@@ -149,12 +118,6 @@ class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivat
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return bool
-     */
     protected function isMultiFactorAuthActivationCodeValid(
         GlueRequestTransfer $glueRequestTransfer,
         CustomerTransfer $customerTransfer
@@ -180,11 +143,6 @@ class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivat
         return $this->multiFactorAuthValidator->isMultiFactorAuthCodeValid($multiFactorAuthCode, $customerTransfer, $multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     protected function safelySendActivationCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): GlueResponseTransfer
     {
         try {

@@ -17,17 +17,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderInterface
 {
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface $restResourceBuilder
-     */
     public function __construct(
         protected RestResourceBuilderInterface $restResourceBuilder
     ) {
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createNoCustomerIdentifierErrorResponse(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -41,9 +35,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createCustomerNotFoundResponse(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -57,9 +48,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createMissingTypeErrorResponse(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -73,9 +61,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createNotFoundTypeErrorResponse(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -89,9 +74,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createMissingMultiFactorAuthCodeError(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -105,9 +87,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createInvalidMultiFactorAuthCodeError(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -121,9 +100,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createDeactivationFailedError(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -137,9 +113,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createAlreadyActivatedMultiFactorAuthError(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -153,9 +126,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createSendingCodeError(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();
@@ -169,9 +139,6 @@ class MultiFactorAuthResponseBuilder implements MultiFactorAuthResponseBuilderIn
         return $restResponse;
     }
 
-    /**
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function createSuccessResponse(): RestResponseInterface
     {
         $restResponse = $this->restResourceBuilder->createRestResponse();

@@ -34,9 +34,6 @@ use Spryker\Zed\MultiFactorAuth\MultiFactorAuthDependencyProvider;
  */
 class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Validator\MultiFactorAuthStatusValidatorInterface
-     */
     public function createCustomerMultiFactorAuthStatusValidator(): MultiFactorAuthStatusValidatorInterface
     {
         return new CustomerMultiFactorAuthStatusValidator(
@@ -44,9 +41,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Validator\MultiFactorAuthStatusValidatorInterface
-     */
     public function createUserMultiFactorAuthStatusValidator(): MultiFactorAuthStatusValidatorInterface
     {
         return new UserMultiFactorAuthStatusValidator(
@@ -54,9 +48,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Validator\CodeValidatorInterface
-     */
     public function createCustomerCodeValidator(): CodeValidatorInterface
     {
         return new CustomerCodeValidator(
@@ -67,9 +58,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Validator\CodeValidatorInterface
-     */
     public function createUserCodeValidator(): CodeValidatorInterface
     {
         return new UserCodeValidator(
@@ -80,17 +68,11 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToGlossaryFacadeInterface
-     */
     public function getGlossaryFacade(): MultiFactorAuthToGlossaryFacadeInterface
     {
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::FACADE_GLOSSARY);
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Sender\CodeSenderInterface
-     */
     public function createCustomerCodeSender(): CodeSenderInterface
     {
         return new CustomerCodeSender(
@@ -100,9 +82,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Sender\CodeSenderInterface
-     */
     public function createUserCodeSender(): CodeSenderInterface
     {
         return new UserCodeSender(
@@ -112,9 +91,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Generator\CodeGeneratorInterface
-     */
     public function createCustomerCodeGenerator(): CodeGeneratorInterface
     {
         return new CodeGenerator(
@@ -122,9 +98,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Generator\CodeGeneratorInterface
-     */
     public function createUserCodeGenerator(): CodeGeneratorInterface
     {
         return new CodeGenerator(
@@ -132,9 +105,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Generator\Provider\CodeGeneratorConfigProviderInterface
-     */
     public function createCustomerCodeGeneratorConfigProvider(): CodeGeneratorConfigProviderInterface
     {
         return new CustomerCodeGeneratorConfigProvider(
@@ -142,9 +112,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Generator\Provider\CodeGeneratorConfigProviderInterface
-     */
     public function createUserCodeGeneratorConfigProvider(): CodeGeneratorConfigProviderInterface
     {
         return new UserCodeGeneratorConfigProvider(
@@ -168,9 +135,6 @@ class MultiFactorAuthBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(MultiFactorAuthDependencyProvider::PLUGINS_USER_SEND_STRATEGY);
     }
 
-    /**
-     * @return \Spryker\Zed\MultiFactorAuth\Business\Reader\User\UserMultiFactorAuthReaderInterface
-     */
     public function createUserMultiFactorAuthReader(): UserMultiFactorAuthReaderInterface
     {
         return new UserMultiFactorAuthReader(

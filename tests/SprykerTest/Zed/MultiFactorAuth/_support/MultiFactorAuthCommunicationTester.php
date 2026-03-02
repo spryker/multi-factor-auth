@@ -43,11 +43,6 @@ class MultiFactorAuthCommunicationTester extends Actor
      */
     public const TYPE_EMAIL = 'email';
 
-    /**
-     * @param string $type
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function createMultiFactorAuthTransfer(string $type): MultiFactorAuthTransfer
     {
         $multiFactorAuthTransfer = new MultiFactorAuthTransfer();

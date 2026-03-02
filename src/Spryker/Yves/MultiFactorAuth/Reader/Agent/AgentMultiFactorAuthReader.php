@@ -25,11 +25,6 @@ class AgentMultiFactorAuthReader implements AgentMultiFactorAuthReaderInterface
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getAvailableAgentMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
     ): MultiFactorAuthTypesCollectionTransfer {
@@ -71,9 +66,6 @@ class AgentMultiFactorAuthReader implements AgentMultiFactorAuthReaderInterface
         return $multiFactorAuthTypesCollectionTransfer;
     }
 
-    /**
-     * @return bool
-     */
     public function isAgentMultiFactorAuthPluginsAvailable(): bool
     {
         return $this->multiFactorAuthPlugins !== [];

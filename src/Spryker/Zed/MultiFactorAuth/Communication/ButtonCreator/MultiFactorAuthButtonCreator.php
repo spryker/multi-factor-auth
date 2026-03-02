@@ -34,10 +34,6 @@ class MultiFactorAuthButtonCreator implements MultiFactorAuthButtonCreatorInterf
         'data-qa' => 'remove-mfa-button',
     ];
 
-    /**
-     * @param \Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthRepositoryInterface $repository
-     * @param \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToCustomerFacadeInterface $customerFacade
-     */
     public function __construct(
         protected MultiFactorAuthRepositoryInterface $repository,
         protected MultiFactorAuthToCustomerFacadeInterface $customerFacade

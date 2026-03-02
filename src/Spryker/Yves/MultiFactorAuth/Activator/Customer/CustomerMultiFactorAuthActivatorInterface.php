@@ -12,11 +12,5 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface CustomerMultiFactorAuthActivatorInterface
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return void
-     */
     public function activate(Request $request, CustomerTransfer $customerTransfer): void;
 }

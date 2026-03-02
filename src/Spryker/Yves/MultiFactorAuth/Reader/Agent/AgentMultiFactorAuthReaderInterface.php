@@ -12,17 +12,9 @@ use Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer;
 
 interface AgentMultiFactorAuthReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getAvailableAgentMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
     ): MultiFactorAuthTypesCollectionTransfer;
 
-    /**
-     * @return bool
-     */
     public function isAgentMultiFactorAuthPluginsAvailable(): bool;
 }

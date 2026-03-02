@@ -68,9 +68,6 @@ class UserMultiFactorAuthDeactivatorTest extends Unit
      */
     protected UserMultiFactorAuthDeactivator $userMultiFactorAuthDeactivator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -85,9 +82,6 @@ class UserMultiFactorAuthDeactivatorTest extends Unit
         $this->userMultiFactorAuthDeactivator = new UserMultiFactorAuthDeactivator($this->facadeMock, $this->requestReaderMock);
     }
 
-    /**
-     * @return void
-     */
     public function testDeactivateCallsFacadeWithProperData(): void
     {
         // Arrange
@@ -117,9 +111,6 @@ class UserMultiFactorAuthDeactivatorTest extends Unit
         $this->userMultiFactorAuthDeactivator->deactivate($request, $this->userTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testDeactivateCallsFacadeWithProperDataWhenDeactivationFlagSet(): void
     {
         // Arrange

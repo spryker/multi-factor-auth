@@ -47,9 +47,6 @@ class RequestReaderTest extends Unit
      */
     protected RequestReader $requestReader;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -57,9 +54,6 @@ class RequestReaderTest extends Unit
         $this->requestReader = new RequestReader();
     }
 
-    /**
-     * @return void
-     */
     public function testGetReturnsValueFromQuery(): void
     {
         // Arrange
@@ -72,9 +66,6 @@ class RequestReaderTest extends Unit
         $this->assertSame(static::TEST_VALUE, $value);
     }
 
-    /**
-     * @return void
-     */
     public function testGetReturnsValueFromRequest(): void
     {
         // Arrange
@@ -87,9 +78,6 @@ class RequestReaderTest extends Unit
         $this->assertSame(static::TEST_VALUE, $value);
     }
 
-    /**
-     * @return void
-     */
     public function testGetReturnsValueFromFormData(): void
     {
         // Arrange
@@ -103,9 +91,6 @@ class RequestReaderTest extends Unit
         $this->assertSame(static::TEST_VALUE, $value);
     }
 
-    /**
-     * @return void
-     */
     public function testGetReturnsNullWhenParameterNotFound(): void
     {
         // Arrange

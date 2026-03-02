@@ -91,9 +91,6 @@ class CustomerController extends AbstractController
      */
     protected CsrfTokenManagerInterface $csrfTokenManager;
 
-    /**
-     * @return void
-     */
     public function initialize(): void
     {
         parent::initialize();
@@ -173,11 +170,6 @@ class CustomerController extends AbstractController
         ]);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function confirmRemoveMultiFactorAuthAction(Request $request): Response
     {
         $idCustomer = $this->castId($this->getParameterFromRequest($request, static::PARAM_ID_CUSTOMER));
@@ -192,12 +184,6 @@ class CustomerController extends AbstractController
         return $this->redirectResponse(static::URL_REDIRECT_CUSTOMER_LIST);
     }
 
-    /**
-     * @param int $idCustomer
-     * @param string $type
-     *
-     * @return void
-     */
     protected function deactivateCustomerMultiFactorAuth(int $idCustomer, string $type): void
     {
         $customerTransfer = new CustomerTransfer();
@@ -213,11 +199,6 @@ class CustomerController extends AbstractController
         $this->addSuccessMessage(static::DEACTIVATION_SUCCESS_MESSAGE);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return bool
-     */
     protected function validateCsrfToken(Request $request): bool
     {
         $token = $this->getParameterFromRequest($request, static::PARAM_REQUEST_TOKEN);
@@ -230,11 +211,6 @@ class CustomerController extends AbstractController
         return true;
     }
 
-    /**
-     * @param int $idCustomer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     protected function getCustomerMultiFactorAuthCollection(int $idCustomer): MultiFactorAuthTypesCollectionTransfer
     {
         $customerResponseTransfer = $this->getFactory()->getCustomerFacade()->getCustomerByCriteria(
@@ -245,12 +221,6 @@ class CustomerController extends AbstractController
         return $this->getRepository()->getCustomerMultiFactorAuthTypes($multiFactorAuthCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param string $type
-     *
-     * @return bool
-     */
     protected function hasCustomerMultiFactorAuthType(MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer, string $type): bool
     {
         foreach ($multiFactorAuthTypesCollectionTransfer->getMultiFactorAuthTypes() as $multiFactorAuthType) {
@@ -277,12 +247,6 @@ class CustomerController extends AbstractController
         ]);
     }
 
-    /**
-     * @param string|null $token
-     * @param string $tokenId
-     *
-     * @return bool
-     */
     protected function isCsrfTokenValid(?string $token, string $tokenId): bool
     {
         if (!$token) {
@@ -294,13 +258,6 @@ class CustomerController extends AbstractController
         return $this->csrfTokenManager->isTokenValid($csrfToken);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string $parameter
-     * @param string|null $formName
-     *
-     * @return mixed
-     */
     protected function getParameterFromRequest(Request $request, string $parameter, ?string $formName = null): mixed
     {
         return $this->getFactory()->createRequestReader()->get($request, $parameter, $formName);

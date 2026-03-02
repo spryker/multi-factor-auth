@@ -65,11 +65,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     public function provideBackendDependencies(BackendContainer $container): BackendContainer
     {
         $container = parent::provideBackendDependencies($container);
@@ -134,11 +129,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addMultiFactorAuthFacade(BackendContainer $container): BackendContainer
     {
         $container->set(static::FACADE_MULTI_FACTOR_AUTH, function (BackendContainer $container) {
@@ -150,11 +140,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addUserFacade(BackendContainer $container): BackendContainer
     {
         $container->set(static::FACADE_USER, function (BackendContainer $container) {
@@ -166,11 +151,6 @@ class MultiFactorAuthDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addUserMultiFactorAuthPlugins(BackendContainer $container): BackendContainer
     {
         $container->set(static::PLUGINS_USER_MULTI_FACTOR_AUTH, function () {

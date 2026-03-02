@@ -49,25 +49,16 @@ class MultiFactorAuthHandlerWidget extends AbstractWidget
         $this->addGetCustomerEnabledTypesRouteNameParameter();
     }
 
-    /**
-     * @return string
-     */
     public static function getName(): string
     {
         return 'MultiFactorAuthHandlerWidget';
     }
 
-    /**
-     * @return string
-     */
     public static function getTemplate(): string
     {
         return '@MultiFactorAuth/views/multi-factor-auth-handler/multi-factor-auth-handler.twig';
     }
 
-    /**
-     * @return void
-     */
     protected function addConfigurationsParameter(): void
     {
         $this->addParameter(static::PARAMETER_CONFIGURATIONS, []);
@@ -79,17 +70,11 @@ class MultiFactorAuthHandlerWidget extends AbstractWidget
         $this->addParameter(static::PARAMETER_CONFIGURATIONS, $this->getConfig()->getEnabledRoutesAndForms());
     }
 
-    /**
-     * @return void
-     */
     protected function addGetCustomerEnabledTypesRouteNameParameter(): void
     {
         $this->addParameter(static::PARAMETER_GET_CUSTOMER_ENABLED_TYPES_ROUTE_NAME, MultiFactorAuthCustomerRouteProviderPlugin::MULTI_FACTOR_AUTH_NAME_GET_CUSTOMER_ENABLED_TYPES);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CustomerTransfer|null
-     */
     protected function findCustomer(): ?CustomerTransfer
     {
         if ($this->getFactory()->getCustomerClient()->isLoggedIn() === false) {
@@ -99,9 +84,6 @@ class MultiFactorAuthHandlerWidget extends AbstractWidget
         return $this->getFactory()->getCustomerClient()->getCustomer();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\UserTransfer|null
-     */
     protected function findAgent(): ?UserTransfer
     {
         if ($this->getFactory()->getAgentClient()->isLoggedIn() === false) {
@@ -111,9 +93,6 @@ class MultiFactorAuthHandlerWidget extends AbstractWidget
         return $this->getFactory()->getAgentClient()->getAgent();
     }
 
-    /**
-     * @return bool
-     */
     protected function isSetUpPage(): bool
     {
         return in_array(
@@ -125,9 +104,6 @@ class MultiFactorAuthHandlerWidget extends AbstractWidget
         );
     }
 
-    /**
-     * @return bool
-     */
     protected function assertCustomerMultiFactorAuthShouldBeSkipped(): bool
     {
         $customerTransfer = $this->findCustomer();
@@ -141,9 +117,6 @@ class MultiFactorAuthHandlerWidget extends AbstractWidget
         return $this->getClient()->validateCustomerMultiFactorAuthStatus($multiFactorAuthValidationRequestTransfer)->getIsRequiredOrFail() && !$this->isSetUpPage();
     }
 
-    /**
-     * @return bool
-     */
     protected function assertAgentMultiFactorAuthShouldBeSkipped(): bool
     {
         $userTransfer = $this->findAgent();

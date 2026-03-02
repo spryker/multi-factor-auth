@@ -12,11 +12,5 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface CustomerMultiFactorAuthDeactivatorInterface
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return void
-     */
     public function deactivate(Request $request, CustomerTransfer $customerTransfer): void;
 }

@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\MailTransfer;
 
 interface MultiFactorAuthToMailFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MailTransfer $mailTransfer
-     *
-     * @return void
-     */
     public function handleMail(MailTransfer $mailTransfer): void;
 }

@@ -13,12 +13,6 @@ use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 
 interface MultiFactorAuthActivateProcessorInterface
 {
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function activateMultiFactorAuth(
         RestRequestInterface $restRequest,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

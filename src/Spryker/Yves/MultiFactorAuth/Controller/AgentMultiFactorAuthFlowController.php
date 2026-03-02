@@ -39,39 +39,21 @@ class AgentMultiFactorAuthFlowController extends AbstractMultiFactorAuthControll
      */
     protected const MULTI_FACTOR_AUTH_LOGIN_AGENT_EMAIL_SESSION_KEY = '_multi_factor_auth_login_agent_email';
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function getAgentEnabledTypesAction(Request $request): View
     {
         return $this->getEnabledTypesAction($request);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $multiFactorAuthType
-     * @param \Symfony\Component\Form\FormInterface|null $form
-     *
-     * @return \Spryker\Yves\Kernel\View\View
-     */
     public function sendAgentCodeAction(Request $request, ?string $multiFactorAuthType = null, ?FormInterface $form = null): View
     {
         return $this->sendCodeAction($request, $multiFactorAuthType, $form);
     }
 
-    /**
-     * @return string
-     */
     protected function getTypeSelectionFormTemplate(): string
     {
         return '@MultiFactorAuth/views/user-type-selection-form/user-type-selection-form.twig';
     }
 
-    /**
-     * @return string
-     */
     protected function getCodeValidationFormTemplate(): string
     {
         return '@MultiFactorAuth/views/user-code-validation-form/user-code-validation-form.twig';
@@ -103,9 +85,6 @@ class AgentMultiFactorAuthFlowController extends AbstractMultiFactorAuthControll
         }
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\UserTransfer
-     */
     protected function getIdentity(): UserTransfer
     {
         if ($this->getFactory()->getAgentClient()->isLoggedIn() === true) {
@@ -185,9 +164,6 @@ class AgentMultiFactorAuthFlowController extends AbstractMultiFactorAuthControll
         return $options;
     }
 
-    /**
-     * @return int
-     */
     protected function resolveCodeLength(): int
     {
         return $this->getFactory()->getConfig()->getAgentCodeLength();

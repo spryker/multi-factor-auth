@@ -68,9 +68,6 @@ class UserMultiFactorAuthActivatorTest extends Unit
      */
     protected UserMultiFactorAuthActivator $userMultiFactorAuthActivator;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -85,9 +82,6 @@ class UserMultiFactorAuthActivatorTest extends Unit
         $this->userMultiFactorAuthActivator = new UserMultiFactorAuthActivator($this->facadeMock, $this->requestReaderMock);
     }
 
-    /**
-     * @return void
-     */
     public function testActivateCallsFacadeWithProperData(): void
     {
         // Arrange
@@ -117,9 +111,6 @@ class UserMultiFactorAuthActivatorTest extends Unit
         $this->userMultiFactorAuthActivator->activate($request, $this->userTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testActivateCallsFacadeWithProperDataWhenPendingActivation(): void
     {
         // Arrange

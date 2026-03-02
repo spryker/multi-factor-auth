@@ -20,11 +20,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
  */
 class MultiFactorAuthEntityManager extends AbstractEntityManager implements MultiFactorAuthEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function saveCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $customerMultiFactorAuthEntity = $this->getFactory()
@@ -45,11 +40,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
             ->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function saveUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $userMultiFactorAuthEntity = $this->getFactory()
@@ -70,11 +60,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
             ->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function updateCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         /** @var \Orm\Zed\MultiFactorAuth\Persistence\SpyCustomerMultiFactorAuthCodesQuery $customerMultiFactorAuthCodesQuery */
@@ -99,11 +84,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
         )->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function updateUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         /** @var \Orm\Zed\MultiFactorAuth\Persistence\SpyUserMultiFactorAuthCodesQuery $userMultiFactorAuthCodesQuery */
@@ -128,11 +108,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
         )->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function saveCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $customerMultiFactorAuthEntity = $this->getFactory()
@@ -154,11 +129,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
             ->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function saveUserMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $userMultiFactorAuthEntity = $this->getFactory()
@@ -180,11 +150,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
             ->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function deleteCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $customerMultiFactorAuthEntity = $this->getFactory()
@@ -206,11 +171,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return void
-     */
     public function saveCustomerMultiFactorAuthCodeAttempt(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): void
     {
         $this->getFactory()
@@ -219,11 +179,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
             ->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return void
-     */
     public function saveUserMultiFactorAuthCodeAttempt(MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer): void
     {
         $this->getFactory()
@@ -232,11 +187,6 @@ class MultiFactorAuthEntityManager extends AbstractEntityManager implements Mult
             ->save();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
-     */
     public function deleteUserMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {
         $userMultiFactorAuthEntity = $this->getFactory()

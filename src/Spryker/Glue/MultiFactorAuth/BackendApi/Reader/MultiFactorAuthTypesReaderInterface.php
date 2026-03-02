@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\GlueResponseTransfer;
 
 interface MultiFactorAuthTypesReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function getMultiFactorAuthTypes(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer;
 }

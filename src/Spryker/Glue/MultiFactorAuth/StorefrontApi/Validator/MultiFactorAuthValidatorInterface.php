@@ -35,34 +35,16 @@ interface MultiFactorAuthValidatorInterface
         ?string $multiFactorAuthType = null
     ): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     public function isPendingActivationMultiFactorAuthType(
         CustomerTransfer $customerTransfer,
         string $multiFactorAuthType
     ): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     public function isActivatedMultiFactorAuthType(
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer,
         string $multiFactorAuthType
     ): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer|null
-     */
     public function validateMultiFactorAuthType(
         GlueRequestTransfer $glueRequestTransfer,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

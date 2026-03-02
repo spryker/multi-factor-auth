@@ -35,34 +35,16 @@ interface MultiFactorAuthValidatorInterface
         ?string $multiFactorAuthType = null
     ): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     public function isPendingActivationMultiFactorAuthType(
         CustomerTransfer $customerTransfer,
         string $multiFactorAuthType
     ): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     public function isActivatedMultiFactorAuthType(
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer,
         string $multiFactorAuthType
     ): bool;
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface|null
-     */
     public function validateMultiFactorAuthType(
         RestRequestInterface $restRequest,
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer

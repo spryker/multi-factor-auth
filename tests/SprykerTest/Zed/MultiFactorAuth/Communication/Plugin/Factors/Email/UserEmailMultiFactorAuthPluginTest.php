@@ -46,9 +46,6 @@ class UserEmailMultiFactorAuthPluginTest extends Unit
      */
     protected UserEmailMultiFactorAuthPlugin $userEmailMultiFactorAuthPlugin;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -56,9 +53,6 @@ class UserEmailMultiFactorAuthPluginTest extends Unit
         $this->userEmailMultiFactorAuthPlugin = new UserEmailMultiFactorAuthPlugin();
     }
 
-    /**
-     * @return void
-     */
     public function testGetNameReturnsCorrectValue(): void
     {
         // Act
@@ -68,9 +62,6 @@ class UserEmailMultiFactorAuthPluginTest extends Unit
         $this->assertSame(static::EMAIL_MULTI_FACTOR_AUTH_METHOD, $name);
     }
 
-    /**
-     * @return void
-     */
     public function testIsApplicableReturnsTrueForEmailMethod(): void
     {
         // Act
@@ -80,9 +71,6 @@ class UserEmailMultiFactorAuthPluginTest extends Unit
         $this->assertTrue($isApplicable);
     }
 
-    /**
-     * @return void
-     */
     public function testIsApplicableReturnsFalseForNonEmailMethod(): void
     {
         // Act
@@ -92,9 +80,6 @@ class UserEmailMultiFactorAuthPluginTest extends Unit
         $this->assertFalse($isApplicable);
     }
 
-    /**
-     * @return void
-     */
     public function testGetConfigurationReturnsEmptyString(): void
     {
         // Arrange
@@ -107,9 +92,6 @@ class UserEmailMultiFactorAuthPluginTest extends Unit
         $this->assertSame('', $configuration);
     }
 
-    /**
-     * @return void
-     */
     public function testSendCodeCallsFacadeMethod(): void
     {
         // Arrange

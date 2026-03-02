@@ -53,11 +53,6 @@ class MultiFactorAuthBusinessTester extends Actor
      */
     public const EXPIRATION_DATE_VALID = '+1 hour';
 
-    /**
-     * @param string $type
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     public function createMultiFactorAuthTransfer(string $type): MultiFactorAuthTransfer
     {
         $multiFactorAuthTransfer = new MultiFactorAuthTransfer();
@@ -67,13 +62,6 @@ class MultiFactorAuthBusinessTester extends Actor
         return $multiFactorAuthTransfer;
     }
 
-    /**
-     * @param string $expirationDate
-     * @param int $status
-     * @param string|null $code
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     public function createMultiFactorAuthCodeTransfer(string $expirationDate, int $status, ?string $code = null): MultiFactorAuthCodeTransfer
     {
         return (new MultiFactorAuthCodeTransfer())
@@ -82,11 +70,6 @@ class MultiFactorAuthBusinessTester extends Actor
             ->setStatus($status);
     }
 
-    /**
-     * @param string $type
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function createMultiFactorAuthTypesCollectionTransfer(string $type): MultiFactorAuthTypesCollectionTransfer
     {
         return (new MultiFactorAuthTypesCollectionTransfer())

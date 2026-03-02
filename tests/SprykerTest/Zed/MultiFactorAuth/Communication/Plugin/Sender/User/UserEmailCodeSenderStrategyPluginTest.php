@@ -55,9 +55,6 @@ class UserEmailCodeSenderStrategyPluginTest extends Unit
      */
     protected UserEmailCodeSenderStrategyPlugin $userEmailCodeSenderStrategyPlugin;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -70,9 +67,6 @@ class UserEmailCodeSenderStrategyPluginTest extends Unit
         $this->userEmailCodeSenderStrategyPlugin->setFactory($this->factoryMock);
     }
 
-    /**
-     * @return void
-     */
     public function testIsApplicableReturnsTrueWhenTypeIsEmail(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);
@@ -82,9 +76,6 @@ class UserEmailCodeSenderStrategyPluginTest extends Unit
         $this->assertTrue($result);
     }
 
-    /**
-     * @return void
-     */
     public function testIsApplicableReturnsFalseWhenTypeIsNotEmail(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer(static::TYPE_SMS);
@@ -94,9 +85,6 @@ class UserEmailCodeSenderStrategyPluginTest extends Unit
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testSendCallsHandleMail(): void
     {
         $multiFactorAuthTransfer = $this->tester->createMultiFactorAuthTransfer($this->tester::TYPE_EMAIL);

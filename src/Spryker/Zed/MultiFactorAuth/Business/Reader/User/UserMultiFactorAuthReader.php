@@ -26,11 +26,6 @@ class UserMultiFactorAuthReader implements UserMultiFactorAuthReaderInterface
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getAvailableUserMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
     ): MultiFactorAuthTypesCollectionTransfer {
@@ -44,11 +39,6 @@ class UserMultiFactorAuthReader implements UserMultiFactorAuthReaderInterface
         return $this->mapToMultiFactorAuthTypesCollectionTransfer($multiFactorAuthTypes);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getEnabledUserMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
     ): MultiFactorAuthTypesCollectionTransfer {

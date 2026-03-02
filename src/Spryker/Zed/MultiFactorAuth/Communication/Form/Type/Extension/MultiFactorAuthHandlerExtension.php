@@ -33,13 +33,6 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
      */
     protected const GET_ENABLED_TYPES_URL = '/multi-factor-auth/user/get-enabled-types';
 
-    /**
-     * @param \Spryker\Zed\MultiFactorAuth\MultiFactorAuthConfig $config
-     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-     * @param \Twig\Environment $twig
-     * @param \Spryker\Zed\MultiFactorAuth\Business\MultiFactorAuthFacadeInterface $facade
-     * @param \Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToUserFacadeInterface $userFacade
-     */
     public function __construct(
         protected MultiFactorAuthConfig $config,
         protected RequestStack $requestStack,
@@ -67,11 +60,6 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
         $view->vars[static::MULTI_FACTOR_AUTH_HANDLERS][$formName] = $this->renderMultiFactorHandler($formName);
     }
 
-    /**
-     * @param string $formName
-     *
-     * @return string
-     */
     protected function renderMultiFactorHandler(string $formName): string
     {
         return $this->twig->render('@MultiFactorAuth/Partials/multi-factor-authentication-handler.twig', [
@@ -83,9 +71,6 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
         ]);
     }
 
-    /**
-     * @return bool
-     */
     protected function assertUserMultiFactorAuthEnabled(): bool
     {
         if ($this->userFacade->hasCurrentUser() === false) {

@@ -19,19 +19,11 @@ use Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthRepositoryInterface;
 
 class CustomerMultiFactorAuthStatusValidator extends AbstractMultiFactorAuthStatusValidator
 {
-    /**
-     * @param \Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthRepositoryInterface $repository
-     */
     public function __construct(
         protected MultiFactorAuthRepositoryInterface $repository
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\CustomerTransfer
-     */
     protected function extractEntity(MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer): CustomerTransfer
     {
         return $multiFactorAuthValidationRequestTransfer->getCustomerOrFail();
@@ -54,21 +46,11 @@ class CustomerMultiFactorAuthStatusValidator extends AbstractMultiFactorAuthStat
         return $this->repository->getCustomerMultiFactorAuthTypes($multiFactorAuthCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
-     */
     protected function getCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthCodeTransfer
     {
         return $this->repository->getCustomerCode($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $customerTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     protected function buildMultiFactorAuthTransfer(AbstractTransfer $customerTransfer): MultiFactorAuthTransfer
     {
         /** @var \Generated\Shared\Transfer\CustomerTransfer $customerTransfer */

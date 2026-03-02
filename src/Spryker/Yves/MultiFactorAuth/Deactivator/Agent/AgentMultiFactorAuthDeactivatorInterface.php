@@ -12,11 +12,5 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface AgentMultiFactorAuthDeactivatorInterface
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
-     * @return void
-     */
     public function deactivate(Request $request, UserTransfer $userTransfer): void;
 }

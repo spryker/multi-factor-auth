@@ -25,10 +25,6 @@ class BasicMultiFactorAuthTypeExtension extends AbstractTypeExtension
      */
     protected bool $isValidationRequired = true;
 
-    /**
-     * @param \Spryker\Yves\MultiFactorAuth\MultiFactorAuthConfig $config
-     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-     */
     public function __construct(
         protected MultiFactorAuthConfig $config,
         protected RequestStack $requestStack
@@ -45,11 +41,6 @@ class BasicMultiFactorAuthTypeExtension extends AbstractTypeExtension
         ];
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $form
-     *
-     * @return bool
-     */
     protected function assertFormMustNotBeValidated(FormInterface $form): bool
     {
         $formName = $form->getName();

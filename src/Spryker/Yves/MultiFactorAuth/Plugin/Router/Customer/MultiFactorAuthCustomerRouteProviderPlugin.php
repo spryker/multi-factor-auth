@@ -123,11 +123,6 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addSetMultiFactorAuthRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute(
@@ -141,11 +136,6 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addActivateMultiFactorAuthRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute(
@@ -159,11 +149,6 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addDeactivateMultiFactorAuthRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute(
@@ -177,11 +162,6 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addGetEnabledTypesRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute(
@@ -195,11 +175,6 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addSendCodeRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute(

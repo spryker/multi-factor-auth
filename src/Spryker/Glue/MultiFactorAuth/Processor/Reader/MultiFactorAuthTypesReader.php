@@ -41,11 +41,6 @@ class MultiFactorAuthTypesReader implements MultiFactorAuthTypesReaderInterface
     ) {
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     public function getMultiFactorAuthTypes(RestRequestInterface $restRequest): RestResponseInterface
     {
         if (!$restRequest->getRestUser()) {
@@ -95,12 +90,6 @@ class MultiFactorAuthTypesReader implements MultiFactorAuthTypesReaderInterface
         return $restResponse;
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface $restResponse
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
     protected function addMultiFactorAuthTypeResourceToResponse(
         RestResponseInterface $restResponse,
         MultiFactorAuthTransfer $multiFactorAuthTransfer

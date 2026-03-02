@@ -25,11 +25,6 @@ class CustomerMultiFactorAuthReader implements CustomerMultiFactorAuthReaderInte
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     public function getAvailableCustomerMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
     ): MultiFactorAuthTypesCollectionTransfer {
@@ -71,9 +66,6 @@ class CustomerMultiFactorAuthReader implements CustomerMultiFactorAuthReaderInte
         return $multiFactorAuthTypesCollectionTransfer;
     }
 
-    /**
-     * @return bool
-     */
     public function isCustomerMultiFactorAuthPluginsAvailable(): bool
     {
         return $this->customerMultiFactorAuthPlugins !== [];

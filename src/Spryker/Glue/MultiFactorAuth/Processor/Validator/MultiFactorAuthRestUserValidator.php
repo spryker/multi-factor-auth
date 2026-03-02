@@ -28,12 +28,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidatorInterface
 {
-    /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Client\MultiFactorAuthToCustomerClientInterface $customerClient
-     * @param \Spryker\Glue\MultiFactorAuth\MultiFactorAuthConfig $config
-     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface $restResourceBuilder
-     */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthClientInterface $multiFactorAuthClient,
         protected MultiFactorAuthToCustomerClientInterface $customerClient,
@@ -42,11 +36,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
     ) {
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Generated\Shared\Transfer\RestErrorMessageTransfer|null
-     */
     public function validate(RestRequestInterface $restRequest): ?RestErrorMessageTransfer
     {
         if ($this->shouldSkipValidation($restRequest)) {
@@ -85,12 +74,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer
-     * @param string $multiFactorAuthType
-     *
-     * @return bool
-     */
     protected function isActivatedMultiFactorAuthType(
         MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollectionTransfer,
         string $multiFactorAuthType
@@ -104,11 +87,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
         return false;
     }
 
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return bool
-     */
     protected function shouldSkipValidation(RestRequestInterface $restRequest): bool
     {
         $resourceType = $restRequest->getResource()->getType();
@@ -119,21 +97,11 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
             || !$this->isRestApiMultiFactorAuthProtectedResource($resourceType);
     }
 
-    /**
-     * @param string $resourceType
-     *
-     * @return bool
-     */
     protected function isRestApiMultiFactorAuthProtectedResource(string $resourceType): bool
     {
         return in_array($resourceType, $this->config->getRestApiMultiFactorAuthProtectedResources(), true);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return bool
-     */
     protected function hasMultiFactorAuthCodeHeader(Request $request): bool
     {
         return $request->headers->has(MultiFactorAuthConfig::HEADER_MULTI_FACTOR_AUTH_CODE) &&
@@ -141,9 +109,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
             $request->headers->get(MultiFactorAuthConfig::HEADER_MULTI_FACTOR_AUTH_CODE) !== '';
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\RestErrorMessageTransfer
-     */
     protected function createMissingMultiFactorAuthCodeError(): RestErrorMessageTransfer
     {
         $restErrorMessageTransfer = new RestErrorMessageTransfer();
@@ -154,9 +119,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
         return $restErrorMessageTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\RestErrorMessageTransfer
-     */
     protected function createInvalidMultiFactorAuthCodeError(): RestErrorMessageTransfer
     {
         $restErrorMessageTransfer = new RestErrorMessageTransfer();
@@ -167,12 +129,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
         return $restErrorMessageTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
-     */
     protected function buildMultiFactorAuthTransfer(
         CustomerTransfer $customerTransfer,
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeTransfer
@@ -183,12 +139,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
             ->setMultiFactorAuthCode($multiFactorAuthCodeTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer $multiFactorAuthCodeWithTypeTransfer
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return bool
-     */
     protected function isMultiFactorAuthCodeValid(
         MultiFactorAuthCodeTransfer $multiFactorAuthCodeWithTypeTransfer,
         CustomerTransfer $customerTransfer
@@ -213,11 +163,6 @@ class MultiFactorAuthRestUserValidator implements MultiFactorAuthRestUserValidat
         return $this->isMultiFactorAuthCodeVerified($multiFactorAuthTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return bool
-     */
     protected function isMultiFactorAuthCodeVerified(MultiFactorAuthTransfer $multiFactorAuthTransfer): bool
     {
         $validationResponse = $this->multiFactorAuthClient->validateCustomerCode($multiFactorAuthTransfer);
