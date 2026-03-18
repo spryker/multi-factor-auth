@@ -64,6 +64,12 @@ export class MfaHandler {
                 return;
             }
 
+            if (responseData.redirectUrl) {
+                location.href = responseData.redirectUrl;
+
+                return;
+            }
+
             location.reload();
 
             return;
@@ -98,6 +104,7 @@ export class MfaHandler {
             if (contentType?.includes('application/json')) {
                 const data = JSON.parse(xhr.responseText);
                 result.requiresAdditionalAuth = data.requires_additional_auth;
+                result.redirectUrl = data.redirect_url ?? null;
 
                 return result;
             }
