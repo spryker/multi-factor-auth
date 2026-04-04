@@ -12,6 +12,7 @@ namespace Spryker\Glue\MultiFactorAuth\BackendApi\Activate;
 use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer;
+use Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthTransfer;
 use Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer;
 use Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer;
@@ -49,7 +50,7 @@ class MultiFactorAuthTypeActivateProcessor implements MultiFactorAuthTypeActivat
         $userCollectionTransfer = $this->userFacade->getUserCollection($this->multiFactorAuthTransferBuilder->createUserCriteriaTransfer([(int)$glueRequestTransfer->getRequestUser()?->getSurrogateIdentifier()]));
         $userTransfer = $userCollectionTransfer->getUsers()->getIterator()->current();
         $multiFactorAuthTypesCollectionTransfer = $this->multiFactorAuthFacade
-            ->getUserMultiFactorAuthTypes($userTransfer);
+            ->getUserMultiFactorAuthTypes((new MultiFactorAuthCriteriaTransfer())->setUser($userTransfer));
 
         if ($this->multiFactorAuthValidator->isActivatedMultiFactorAuthType($multiFactorAuthTypesCollectionTransfer, $multiFactorAuthType) === true) {
             return $this->multiFactorAuthResponseBuilder->createAlreadyActivatedMultiFactorAuthError();
