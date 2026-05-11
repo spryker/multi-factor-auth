@@ -29,6 +29,8 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
      */
     protected const FORM_SELECTOR_PLACEHOLDER = '[name="%s"]';
 
+    protected ?bool $isMultiFactorAuthEnabled = null;
+
     public function __construct(
         protected MultiFactorAuthConfig $config,
         protected RequestStack $requestStack,
@@ -69,15 +71,23 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
 
     protected function assertCustomerIsMultiFactorAuthEnabled(): bool
     {
+        if ($this->isMultiFactorAuthEnabled !== null) {
+            return $this->isMultiFactorAuthEnabled;
+        }
+
         $customerTransfer = $this->customerClient->getCustomer();
 
         if ($customerTransfer === null) {
+            $this->isMultiFactorAuthEnabled = false;
+
             return false;
         }
 
         $multiFactorAuthValidationRequestTransfer = (new MultiFactorAuthValidationRequestTransfer())->setCustomer($customerTransfer);
         $multiFactorAuthValidationTransfer = $this->client->validateCustomerMultiFactorAuthStatus($multiFactorAuthValidationRequestTransfer);
 
-        return $multiFactorAuthValidationTransfer->getIsRequiredOrFail();
+        $this->isMultiFactorAuthEnabled = $multiFactorAuthValidationTransfer->getIsRequiredOrFail();
+
+        return $this->isMultiFactorAuthEnabled;
     }
 }
