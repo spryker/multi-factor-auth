@@ -9,6 +9,7 @@
         "spryker-shop/customer-page-extension": "^1.8.0",
         "spryker/agent": "^1.0.0",
         "spryker/application": "^3.0.0",
+        "spryker/container": "^1.10.0",
         "spryker/customer": "^7.0.0",
         "spryker/customer-extension": "^1.6.0",
         "spryker/form-extension": "^1.0.0",
@@ -34,15 +35,15 @@
     "require-dev": {
         "spryker-shop/agent-page": "*",
         "spryker-shop/customer-page": "*",
+        "spryker/api-platform": "^1.0.0",
         "spryker/code-sniffer": "*",
-        "spryker/container": "*",
         "spryker/router": "*",
         "spryker/testify": "*"
     },
     "suggest": {
         "spryker-shop/agent-page": "Use this module when you want to use the AgentPage plugins.",
         "spryker-shop/customer-page": "Use this module when you want to use the CustomerPage plugins.",
-        "spryker/container": "Use this module when you want to use the Container.",
+        "spryker/api-platform": "Required to expose API Platform resources.",
         "spryker/router": "Use this module when you want to use the Router."
     },
     "autoload": {

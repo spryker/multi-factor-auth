@@ -1,0 +1,37 @@
+resource:
+    name: MultiFactorAuthTrigger
+    shortName: multi-factor-auth-trigger
+    description: 'Trigger sending a multi-factor authentication code to the customer.'
+
+    security: "is_granted('ROLE_CUSTOMER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Storefront\Processor\MultiFactorAuthTriggerStorefrontProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-trigger'
+          output: false
+          description: 'Trigger sending a multi-factor authentication code for the specified type.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Send MFA code'
+              description: 'Triggers sending a multi-factor authentication code to the authenticated customer for an activated MFA type.'
+              responses:
+                  204:
+                      description: 'MFA code sent successfully.'
+                  400:
+                      description: 'Missing MFA type (code 5902) or MFA type is not registered/active (code 5906).'
+                  401:
+                      description: 'Customer is not authenticated.'
+                  500:
+                      description: 'Failed to send the MFA code (code 5910).'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Multi-factor authentication type to trigger. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'

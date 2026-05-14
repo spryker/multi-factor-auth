@@ -1,0 +1,39 @@
+resource:
+    name: MultiFactorAuthTypeActivate
+    shortName: multi-factor-auth-type-activate
+    description: 'Activate a multi-factor authentication type for the customer.'
+
+    security: "is_granted('ROLE_CUSTOMER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Storefront\Processor\MultiFactorAuthTypeActivateStorefrontProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-type-activate'
+          output: false
+          description: 'Activate a new multi-factor authentication type for the authenticated customer.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Activate MFA type'
+              description: 'Activates a new multi-factor authentication type. If the customer already has an active MFA type, a valid X-MFA-Code header is required.'
+              responses:
+                  204:
+                      description: 'Activation initiated; a verification code was sent.'
+                  400:
+                      description: 'Missing MFA type (code 5902), MFA type is not registered (code 5906) or MFA type is already activated (code 5904).'
+                  401:
+                      description: 'Customer is not authenticated.'
+                  403:
+                      description: 'X-MFA-Code header missing (code 5900) or invalid (code 5901).'
+                  500:
+                      description: 'Failed to send the verification code (code 5910).'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Multi-factor authentication type to activate. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'

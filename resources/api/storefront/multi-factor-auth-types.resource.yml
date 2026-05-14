@@ -1,0 +1,38 @@
+resource:
+    name: MultiFactorAuthTypes
+    shortName: multi-factor-auth-types
+    description: 'Retrieve multi-factor authentication types for the authenticated customer.'
+
+    security: "is_granted('ROLE_CUSTOMER')"
+
+    provider: Spryker\Glue\MultiFactorAuth\Api\Storefront\Provider\MultiFactorAuthTypesStorefrontProvider
+
+    operations:
+        - type: GetCollection
+          uriTemplate: '/multi-factor-auth-types'
+          description: 'Retrieve available multi-factor authentication types and their current status.'
+          openapiContext:
+              summary: 'Get MFA types'
+              description: 'Returns all multi-factor authentication types and their current status for the authenticated customer.'
+              responses:
+                  200:
+                      description: 'MFA types returned.'
+                  401:
+                      description: 'Customer is not authenticated.'
+
+    properties:
+        type:
+            type: string
+            identifier: true
+            writable: false
+            readable: true
+            description: 'Multi-factor authentication type identifier. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'
+        status:
+            type: string
+            writable: false
+            readable: true
+            description: 'Current status of the multi-factor authentication type.'
+            openapiContext:
+                example: 'activated'

@@ -1,0 +1,37 @@
+resource:
+    name: MultiFactorAuthTypeVerify
+    shortName: multi-factor-auth-type-verify
+    description: 'Verify a multi-factor authentication code to finish activation.'
+
+    security: "is_granted('ROLE_CUSTOMER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Storefront\Processor\MultiFactorAuthTypeVerifyStorefrontProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-type-verify'
+          output: false
+          description: 'Verify an MFA code to complete activation of a pending MFA type.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Verify MFA code'
+              description: 'Verifies the MFA code from the X-MFA-Code header to complete activation of a pending MFA type.'
+              responses:
+                  204:
+                      description: 'MFA type activated successfully.'
+                  400:
+                      description: 'Missing MFA type (code 5902), MFA type is already activated (code 5903) or no pending activation found for the type (code 5906).'
+                  401:
+                      description: 'Customer is not authenticated.'
+                  403:
+                      description: 'X-MFA-Code header missing (code 5900) or invalid (code 5901).'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Multi-factor authentication type to verify. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'

@@ -1,0 +1,37 @@
+resource:
+    name: MultiFactorAuthTypeDeactivate
+    shortName: multi-factor-auth-type-deactivate
+    description: 'Deactivate a multi-factor authentication type for the customer.'
+
+    security: "is_granted('ROLE_CUSTOMER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Storefront\Processor\MultiFactorAuthTypeDeactivateStorefrontProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-type-deactivate'
+          output: false
+          description: 'Deactivate an active multi-factor authentication type for the authenticated customer.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Deactivate MFA type'
+              description: 'Deactivates an active multi-factor authentication type. Requires a valid X-MFA-Code header.'
+              responses:
+                  204:
+                      description: 'MFA type deactivated successfully.'
+                  400:
+                      description: 'Missing MFA type (code 5902) or MFA type is not activated (code 5906).'
+                  401:
+                      description: 'Customer is not authenticated.'
+                  403:
+                      description: 'X-MFA-Code header missing (code 5900) or invalid (code 5901).'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Multi-factor authentication type to deactivate. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'
