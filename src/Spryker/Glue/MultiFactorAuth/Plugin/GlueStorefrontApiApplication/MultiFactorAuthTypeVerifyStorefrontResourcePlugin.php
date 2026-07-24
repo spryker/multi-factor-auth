@@ -20,16 +20,31 @@ use Spryker\Glue\MultiFactorAuth\MultiFactorAuthConfig;
  */
 class MultiFactorAuthTypeVerifyStorefrontResourcePlugin extends AbstractResourcePlugin implements JsonApiResourceInterface
 {
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
     public function getType(): string
     {
         return MultiFactorAuthConfig::RESOURCE_MULTI_FACTOR_AUTH_TYPE_VERIFY;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
     public function getController(): string
     {
         return MultiFactorAuthTypeVerifyStorefrontResourceController::class;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
     public function getDeclaredMethods(): GlueResourceMethodCollectionTransfer
     {
         return (new GlueResourceMethodCollectionTransfer())
