@@ -24,8 +24,6 @@ export default class MultiFactorAuthenticationHandler extends Component {
     protected readonly SINGLE_CLICK_BTN = 'button[data-init-single-click]';
     protected readonly JS_MULTI_FACTOR_AUTHENTICATION_HANDLER_FIELD = '[multi_factor_auth_enabled]';
 
-    protected readyCallback(): void {}
-
     protected init(): void {
         this.popup = <MainPopup>this.getElementsByClassName(`${this.jsName}__popup`)[0];
         this.popupContent = this.getElementsByClassName(`${this.jsName}__popup-content`)[0];
