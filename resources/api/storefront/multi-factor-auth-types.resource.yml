@@ -18,7 +18,9 @@ resource:
                   200:
                       description: 'MFA types returned.'
                   401:
-                      description: 'Customer is not authenticated.'
+                      description: 'Invalid access token.'
+                  403:
+                      description: 'Access denied: missing access token.'
 
     properties:
         type:

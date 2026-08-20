@@ -23,9 +23,9 @@ resource:
                   400:
                       description: 'Missing MFA type (code 5902), MFA type is not registered (code 5906) or MFA type is already activated (code 5904).'
                   401:
-                      description: 'Customer is not authenticated.'
+                      description: 'Invalid access token.'
                   403:
-                      description: 'X-MFA-Code header missing (code 5900) or invalid (code 5901).'
+                      description: 'Access denied: missing access token, or X-MFA-Code header missing (code 5900) or invalid (code 5901).'
                   500:
                       description: 'Failed to send the verification code (code 5910).'
 
