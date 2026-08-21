@@ -41,29 +41,14 @@ class UserCodeValidatorTest extends Unit
      */
     protected const EXPIRATION_DATE_INVALID = '-1 hour';
 
-    /**
-     * @var \SprykerTest\Zed\MultiFactorAuth\MultiFactorAuthBusinessTester
-     */
     protected MultiFactorAuthBusinessTester $tester;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthRepositoryInterface
-     */
     protected MockObject|MultiFactorAuthRepositoryInterface $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthEntityManagerInterface
-     */
     protected MockObject|MultiFactorAuthEntityManagerInterface $entityManagerMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToGlossaryFacadeInterface
-     */
     protected MockObject|MultiFactorAuthToGlossaryFacadeInterface $glossaryFacadeMock;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Business\Validator\User\UserCodeValidator
-     */
     protected UserCodeValidator $userCodeValidator;
 
     protected function setUp(): void

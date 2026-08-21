@@ -20,9 +20,6 @@ class BasicMultiFactorAuthTypeExtension extends AbstractTypeExtension
      */
     protected const ROUTE_PARAM = '_route';
 
-    /**
-     * @var bool
-     */
     protected bool $isValidationRequired = true;
 
     public function __construct(

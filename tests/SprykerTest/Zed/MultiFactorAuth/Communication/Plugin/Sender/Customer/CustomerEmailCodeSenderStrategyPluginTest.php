@@ -36,24 +36,12 @@ class CustomerEmailCodeSenderStrategyPluginTest extends Unit
      */
     protected const TYPE_SMS = 'sms';
 
-    /**
-     * @var \SprykerTest\Zed\MultiFactorAuth\MultiFactorAuthCommunicationTester
-     */
     protected MultiFactorAuthCommunicationTester $tester;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToMailFacadeInterface
-     */
     protected MockObject|MultiFactorAuthToMailFacadeInterface $mailFacadeMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\MultiFactorAuth\Communication\MultiFactorAuthCommunicationFactory
-     */
     protected MockObject|MultiFactorAuthCommunicationFactory $factoryMock;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Business\Strategy\Customer\CustomerEmailCodeSenderStrategy
-     */
     protected CustomerEmailCodeSenderStrategy $customerEmailCodeSenderStrategy;
 
     protected function setUp(): void

@@ -41,9 +41,6 @@ class CodeGeneratorTest extends Unit
      */
     private const MAX_CODE_VALUE = 999999;
 
-    /**
-     * @var \SprykerTest\Zed\MultiFactorAuth\MultiFactorAuthBusinessTester
-     */
     protected MultiFactorAuthBusinessTester $tester;
 
     /**
@@ -52,9 +49,6 @@ class CodeGeneratorTest extends Unit
 
     protected MockObject|CodeGeneratorConfigProviderInterface $configProviderMock;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Business\Generator\CodeGenerator
-     */
     protected CodeGenerator $codeGenerator;
 
     protected function setUp(): void

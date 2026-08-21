@@ -128,8 +128,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the multi-factor authentication code length for customer.
      *
      * @api
-     *
-     * @return int
      */
     public function getCustomerCodeLength(): int
     {
@@ -141,8 +139,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the multi-factor authentication code length for user.
      *
      * @api
-     *
-     * @return int
      */
     public function getUserCodeLength(): int
     {
@@ -154,8 +150,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the code validity TTL in minutes for customer.
      *
      * @api
-     *
-     * @return int
      */
     public function getCustomerCodeValidityTtl(): int
     {
@@ -167,8 +161,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the code validity TTL in minutes for user.
      *
      * @api
-     *
-     * @return int
      */
     public function getUserCodeValidityTtl(): int
     {
@@ -206,8 +198,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the multi-factor authentication code validation attempt limit for customer.
      *
      * @api
-     *
-     * @return int
      */
     public function getCustomerAttemptsLimit(): int
     {
@@ -219,8 +209,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the multi-factor authentication code validation attempt limit for user.
      *
      * @api
-     *
-     * @return int
      */
     public function getUserAttemptsLimit(): int
     {

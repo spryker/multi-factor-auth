@@ -35,19 +35,10 @@ class CustomerMultiFactorAuthStatusValidatorTest extends Unit
      */
     protected const EXPIRATION_DATE_INVALID = '-1 hour';
 
-    /**
-     * @var \SprykerTest\Zed\MultiFactorAuth\MultiFactorAuthBusinessTester
-     */
     protected MultiFactorAuthBusinessTester $tester;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthRepositoryInterface
-     */
     protected MockObject|MultiFactorAuthRepositoryInterface $repositoryMock;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Business\Validator\Customer\CustomerMultiFactorAuthStatusValidator
-     */
     protected CustomerMultiFactorAuthStatusValidator $customerMultiFactorAuthStatusValidator;
 
     protected function setUp(): void

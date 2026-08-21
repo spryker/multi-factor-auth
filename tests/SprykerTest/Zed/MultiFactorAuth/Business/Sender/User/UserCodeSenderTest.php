@@ -35,14 +35,8 @@ class UserCodeSenderTest extends Unit
      */
     protected const CODE_VALIDITY_TTL = 10;
 
-    /**
-     * @var \SprykerTest\Zed\MultiFactorAuth\MultiFactorAuthBusinessTester
-     */
     protected MultiFactorAuthBusinessTester $tester;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthEntityManagerInterface
-     */
     protected MockObject|MultiFactorAuthEntityManagerInterface $entityManagerMock;
 
     /**
@@ -55,9 +49,6 @@ class UserCodeSenderTest extends Unit
      */
     protected array $sendStrategiesMock;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Business\Sender\User\UserCodeSender
-     */
     protected UserCodeSender $userCodeSender;
 
     protected function setUp(): void

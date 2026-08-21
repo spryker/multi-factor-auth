@@ -33,10 +33,6 @@ class MultiFactorAuthStorefrontResourceController extends AbstractController
      *           }
      *      }
      *  })
-     *
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
      */
     public function getCollectionAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {

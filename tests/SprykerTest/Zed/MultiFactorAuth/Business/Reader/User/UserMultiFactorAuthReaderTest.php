@@ -43,9 +43,6 @@ class UserMultiFactorAuthReaderTest extends Unit
      */
     protected const TEST_USER_ID = 1;
 
-    /**
-     * @var \Generated\Shared\Transfer\UserTransfer
-     */
     protected UserTransfer $userTransfer;
 
     /**
@@ -58,9 +55,6 @@ class UserMultiFactorAuthReaderTest extends Unit
      */
     protected array $userMultiFactorAuthPlugins;
 
-    /**
-     * @var \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
-     */
     protected MultiFactorAuthTypesCollectionTransfer $multiFactorAuthTypesCollection;
 
     /**
@@ -68,9 +62,6 @@ class UserMultiFactorAuthReaderTest extends Unit
      */
     protected $multiFactorAuthRepositoryMock;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Business\Reader\User\UserMultiFactorAuthReader
-     */
     protected UserMultiFactorAuthReader $userMultiFactorAuthReader;
 
     protected function setUp(): void

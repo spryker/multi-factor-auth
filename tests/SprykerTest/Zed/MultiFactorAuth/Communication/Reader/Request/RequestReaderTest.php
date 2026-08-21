@@ -42,9 +42,6 @@ class RequestReaderTest extends Unit
      */
     protected const FORM_NAME = 'form';
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Communication\Reader\Request\RequestReader
-     */
     protected RequestReader $requestReader;
 
     protected function setUp(): void

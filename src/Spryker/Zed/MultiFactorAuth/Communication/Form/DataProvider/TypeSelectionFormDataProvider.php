@@ -26,8 +26,6 @@ class TypeSelectionFormDataProvider
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return array<string, mixed>
      */
     public function getOptions(Request $request): array
@@ -41,8 +39,6 @@ class TypeSelectionFormDataProvider
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return array<int, string>
      */
     protected function getTypes(Request $request): array

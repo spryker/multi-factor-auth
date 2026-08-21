@@ -100,8 +100,6 @@ class UserController extends AbstractController
     protected const USER_POST_AUTHENTICATION_TYPE = 'USER_POST_AUTHENTICATION_TYPE';
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return \Symfony\Component\HttpFoundation\Response|array<string, mixed>
      */
     public function getEnabledTypesAction(Request $request)
@@ -140,10 +138,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $multiFactorAuthType
-     * @param \Symfony\Component\Form\FormInterface|null $form
-     *
      * @return \Symfony\Component\HttpFoundation\Response|array<string, mixed>
      */
     public function sendCodeAction(
@@ -196,10 +190,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Symfony\Component\Form\FormInterface $codeValidationForm
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
      * @return \Symfony\Component\HttpFoundation\Response|array<string, mixed>
      */
     protected function executeCodeValidation(
@@ -281,8 +271,6 @@ class UserController extends AbstractController
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @return bool
      */
     protected function assertNoTypesEnabled(array $options): bool
     {
@@ -291,8 +279,6 @@ class UserController extends AbstractController
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @return bool
      */
     protected function assertOneTypeEnabled(array $options): bool
     {
@@ -310,9 +296,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
      * @return array<string, mixed>
      */
     protected function extractSetupParameters(Request $request, ?string $formName = null): array

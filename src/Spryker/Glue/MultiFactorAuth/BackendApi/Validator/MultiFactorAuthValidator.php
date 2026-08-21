@@ -25,9 +25,7 @@ use Spryker\Shared\MultiFactorAuth\MultiFactorAuthConstants;
 class MultiFactorAuthValidator implements MultiFactorAuthValidatorInterface
 {
     /**
-     * @param \Spryker\Glue\MultiFactorAuth\Dependency\Facade\MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade
      * @param array<\Spryker\Shared\MultiFactorAuthExtension\Dependency\Plugin\MultiFactorAuthPluginInterface> $multiFactorAuthPlugins
-     * @param \Spryker\Glue\MultiFactorAuth\BackendApi\ResponseBuilder\MultiFactorAuthResponseBuilderInterface $multiFactorAuthResponseBuilder
      */
     public function __construct(
         protected MultiFactorAuthToMultiFactorAuthFacadeInterface $multiFactorAuthFacade,
@@ -37,13 +35,7 @@ class MultiFactorAuthValidator implements MultiFactorAuthValidatorInterface
     }
 
     /**
-     * @param string $multiFactorAuthCode
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
      * @param array<int> $additionalStatuses
-     * @param string|null $multiFactorAuthType
-     *
-     * @return bool
      */
     public function isMultiFactorAuthCodeValid(
         string $multiFactorAuthCode,

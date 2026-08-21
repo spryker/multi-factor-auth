@@ -237,9 +237,6 @@ class MultiFactorAuthRepository extends AbstractRepository implements MultiFacto
 
     /**
      * @param \Orm\Zed\MultiFactorAuth\Persistence\SpyCustomerMultiFactorAuthQuery|\Orm\Zed\MultiFactorAuth\Persistence\SpyUserMultiFactorAuthQuery $multiFactorAuthQuery
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
      */
     protected function addStatusFilter(
         ModelCriteria $multiFactorAuthQuery,

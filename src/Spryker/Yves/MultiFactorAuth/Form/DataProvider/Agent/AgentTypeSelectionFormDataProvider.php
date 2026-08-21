@@ -15,7 +15,6 @@ use Spryker\Yves\MultiFactorAuth\Controller\AgentMultiFactorAuthFlowController;
 class AgentTypeSelectionFormDataProvider
 {
     /**
-     * @param \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface $multiFactorAuthClient
      * @param array<\Spryker\Shared\MultiFactorAuthExtension\Dependency\Plugin\MultiFactorAuthPluginInterface> $userMultiFactorAuthPlugins
      */
     public function __construct(
@@ -25,8 +24,6 @@ class AgentTypeSelectionFormDataProvider
     }
 
     /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
      * @return array<string, mixed>
      */
     public function getOptions(UserTransfer $userTransfer): array
@@ -40,8 +37,6 @@ class AgentTypeSelectionFormDataProvider
     }
 
     /**
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
-     *
      * @return array<int, string>
      */
     protected function getEnabledTypes(UserTransfer $userTransfer): array

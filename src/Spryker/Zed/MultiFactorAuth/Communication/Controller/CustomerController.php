@@ -86,9 +86,6 @@ class CustomerController extends AbstractController
      */
     protected const ERROR_MULTI_FACTOR_AUTH_TYPE_NOT_FOUND = 'Multi-Factor Authentication type "%s" not found for this customer.';
 
-    /**
-     * @var \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
-     */
     protected CsrfTokenManagerInterface $csrfTokenManager;
 
     public function initialize(): void
@@ -98,8 +95,6 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return \Symfony\Component\HttpFoundation\Response|array<string, mixed>
      */
     public function removeMultiFactorAuthAction(Request $request): Response|array
@@ -143,8 +138,6 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return \Symfony\Component\HttpFoundation\Response|array<string, mixed>
      */
     public function removeMultiFactorAuthListAction(Request $request): Response|array
@@ -233,9 +226,6 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @param int $idCustomer
-     * @param string $type
-     *
      * @return array<string, mixed>
      */
     protected function createConfirmationResponse(int $idCustomer, string $type): array

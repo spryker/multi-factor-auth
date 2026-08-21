@@ -90,9 +90,6 @@ class UserManagementController extends AbstractController
      */
     protected const DEACTIVATE_FORM_NAME = 'deactivateForm';
 
-    /**
-     * @var \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
-     */
     protected CsrfTokenManagerInterface $csrfTokenManager;
 
     /**

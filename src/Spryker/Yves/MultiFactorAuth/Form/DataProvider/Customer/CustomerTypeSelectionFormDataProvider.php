@@ -15,7 +15,6 @@ use Spryker\Yves\MultiFactorAuth\Controller\CustomerMultiFactorAuthFlowControlle
 class CustomerTypeSelectionFormDataProvider
 {
     /**
-     * @param \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface $multiFactorAuthClient
      * @param array<\Spryker\Shared\MultiFactorAuthExtension\Dependency\Plugin\MultiFactorAuthPluginInterface> $customerMultiFactorAuthPlugins
      */
     public function __construct(
@@ -25,8 +24,6 @@ class CustomerTypeSelectionFormDataProvider
     }
 
     /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
      * @return array<string, mixed>
      */
     public function getOptions(CustomerTransfer $customerTransfer): array
@@ -40,8 +37,6 @@ class CustomerTypeSelectionFormDataProvider
     }
 
     /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
      * @return array<int, string>
      */
     protected function getEnabledTypes(CustomerTransfer $customerTransfer): array

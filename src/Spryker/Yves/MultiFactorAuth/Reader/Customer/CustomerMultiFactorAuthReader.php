@@ -16,7 +16,6 @@ use Spryker\Shared\MultiFactorAuth\MultiFactorAuthConstants;
 class CustomerMultiFactorAuthReader implements CustomerMultiFactorAuthReaderInterface
 {
     /**
-     * @param \Spryker\Client\MultiFactorAuth\MultiFactorAuthClientInterface $client
      * @param array<\Spryker\Shared\MultiFactorAuthExtension\Dependency\Plugin\MultiFactorAuthPluginInterface> $customerMultiFactorAuthPlugins
      */
     public function __construct(

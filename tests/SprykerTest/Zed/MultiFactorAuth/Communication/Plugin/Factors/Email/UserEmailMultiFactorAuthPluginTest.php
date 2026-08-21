@@ -36,14 +36,8 @@ class UserEmailMultiFactorAuthPluginTest extends Unit
      */
     protected const EMAIL_MULTI_FACTOR_AUTH_METHOD = 'email';
 
-    /**
-     * @var \SprykerTest\Zed\MultiFactorAuth\MultiFactorAuthCommunicationTester
-     */
     protected MultiFactorAuthCommunicationTester $tester;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Communication\Plugin\Factors\Email\UserEmailMultiFactorAuthPlugin
-     */
     protected UserEmailMultiFactorAuthPlugin $userEmailMultiFactorAuthPlugin;
 
     protected function setUp(): void

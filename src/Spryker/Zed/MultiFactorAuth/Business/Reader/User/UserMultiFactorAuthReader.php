@@ -17,7 +17,6 @@ use Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthRepositoryInterface;
 class UserMultiFactorAuthReader implements UserMultiFactorAuthReaderInterface
 {
     /**
-     * @param \Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthRepositoryInterface $repository
      * @param array<\Spryker\Shared\MultiFactorAuthExtension\Dependency\Plugin\MultiFactorAuthPluginInterface> $multiFactorAuthPlugins
      */
     public function __construct(
@@ -58,8 +57,6 @@ class UserMultiFactorAuthReader implements UserMultiFactorAuthReaderInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
      * @return array<string, \Generated\Shared\Transfer\MultiFactorAuthTransfer>
      */
     protected function getActiveConfiguredMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): array
@@ -78,7 +75,6 @@ class UserMultiFactorAuthReader implements UserMultiFactorAuthReaderInterface
 
     /**
      * @param array<string, \Generated\Shared\Transfer\MultiFactorAuthTransfer> $multiFactorAuthTypes
-     * @param \Generated\Shared\Transfer\UserTransfer $userTransfer
      *
      * @return array<string, \Generated\Shared\Transfer\MultiFactorAuthTransfer>
      */
@@ -106,8 +102,6 @@ class UserMultiFactorAuthReader implements UserMultiFactorAuthReaderInterface
 
     /**
      * @param array<string, \Generated\Shared\Transfer\MultiFactorAuthTransfer> $multiFactorAuthTypes
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     protected function mapToMultiFactorAuthTypesCollectionTransfer(array $multiFactorAuthTypes): MultiFactorAuthTypesCollectionTransfer
     {

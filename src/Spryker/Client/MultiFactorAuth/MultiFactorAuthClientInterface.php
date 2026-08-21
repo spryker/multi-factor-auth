@@ -23,10 +23,6 @@ interface MultiFactorAuthClientInterface
      * - Retrieves all multi-factor authentication types mapped with the corresponding data by the provided Customer.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     public function getCustomerMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer;
 
@@ -38,10 +34,6 @@ interface MultiFactorAuthClientInterface
      * - Sends the generated code to the Customer based on the provided multi-factor authentication method.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
      */
     public function sendCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer;
 
@@ -52,10 +44,6 @@ interface MultiFactorAuthClientInterface
      * - The validation will be handled by a selected multi-factor authentication strategy.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validateCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer;
 
@@ -66,10 +54,6 @@ interface MultiFactorAuthClientInterface
      * - The validation will be handled by a selected multi-factor authentication strategy.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validateCustomerMultiFactorAuthStatus(
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
@@ -81,10 +65,6 @@ interface MultiFactorAuthClientInterface
      * - Activates the provided multi-factor authentication method for the provided Customer.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
      */
     public function activateCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
@@ -94,10 +74,6 @@ interface MultiFactorAuthClientInterface
      * - Deactivates the provided multi-factor authentication method for the provided Customer.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
      */
     public function deactivateCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
@@ -107,10 +83,6 @@ interface MultiFactorAuthClientInterface
      * - Retrieves all multi-factor authentication types mapped with the corresponding data by the provided Agent.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     public function getAgentMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer;
 
@@ -122,10 +94,6 @@ interface MultiFactorAuthClientInterface
      * - Sends the generated code to the user based on the provided multi-factor authentication method.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
      */
     public function sendAgentCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer;
 
@@ -136,10 +104,6 @@ interface MultiFactorAuthClientInterface
      * - The validation will be handled by a selected multi-factor authentication strategy.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validateAgentCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer;
 
@@ -150,10 +114,6 @@ interface MultiFactorAuthClientInterface
      * - The validation will be handled by a selected multi-factor authentication strategy.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validateAgentMultiFactorAuthStatus(
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
@@ -165,10 +125,6 @@ interface MultiFactorAuthClientInterface
      * - Activates the provided multi-factor authentication method for the provided Agent.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
      */
     public function activateAgentMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
@@ -178,10 +134,6 @@ interface MultiFactorAuthClientInterface
      * - Deactivates the provided multi-factor authentication method for the provided Agent.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return void
      */
     public function deactivateAgentMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): void;
 
@@ -193,10 +145,6 @@ interface MultiFactorAuthClientInterface
      * - Returns type associated with the code.
      *
      * @api
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
      */
     public function findCustomerMultiFactorAuthType(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer

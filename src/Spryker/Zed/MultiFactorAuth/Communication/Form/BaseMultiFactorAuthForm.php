@@ -31,10 +31,7 @@ class BaseMultiFactorAuthForm extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
-     *
-     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -44,7 +41,6 @@ class BaseMultiFactorAuthForm extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
      *
      * @return $this
@@ -59,7 +55,6 @@ class BaseMultiFactorAuthForm extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
      *
      * @return $this
@@ -74,7 +69,6 @@ class BaseMultiFactorAuthForm extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
      *
      * @return $this

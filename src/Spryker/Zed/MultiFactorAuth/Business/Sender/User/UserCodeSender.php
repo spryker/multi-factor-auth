@@ -15,8 +15,6 @@ use Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthEntityManagerInterfac
 class UserCodeSender implements CodeSenderInterface
 {
     /**
-     * @param \Spryker\Zed\MultiFactorAuth\Persistence\MultiFactorAuthEntityManagerInterface $entityManager
-     * @param \Spryker\Zed\MultiFactorAuth\Business\Generator\CodeGeneratorInterface $codeGenerator
      * @param array<\Spryker\Shared\MultiFactorAuthExtension\Dependency\Plugin\SendStrategyPluginInterface> $sendStrategies
      */
     public function __construct(

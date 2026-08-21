@@ -10,7 +10,6 @@ namespace Spryker\Zed\MultiFactorAuth\Communication\ButtonCreator;
 interface MultiFactorAuthButtonCreatorInterface
 {
     /**
-     * @param int $idCustomer
      * @param array<\Generated\Shared\Transfer\ButtonTransfer> $buttonTransfers
      *
      * @return array<\Generated\Shared\Transfer\ButtonTransfer>

@@ -44,11 +44,7 @@ class MultiFactorAuthHandlerExtension extends BasicMultiFactorAuthTypeExtension
     }
 
     /**
-     * @param \Symfony\Component\Form\FormView $view
-     * @param \Symfony\Component\Form\FormInterface $form
      * @param array<string, mixed> $options
-     *
-     * @return void
      */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {

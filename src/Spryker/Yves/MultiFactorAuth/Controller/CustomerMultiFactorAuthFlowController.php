@@ -60,11 +60,7 @@ class CustomerMultiFactorAuthFlowController extends AbstractMultiFactorAuthContr
     }
 
     /**
-     * @param string $multiFactorAuthType
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return void
      */
     protected function sendCode(string $multiFactorAuthType, AbstractTransfer $customerTransfer, Request $request): void
     {
@@ -101,9 +97,6 @@ class CustomerMultiFactorAuthFlowController extends AbstractMultiFactorAuthContr
 
     /**
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param \Symfony\Component\Form\FormInterface $codeValidationForm
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     protected function validateCode(
         AbstractTransfer $customerTransfer,
@@ -130,8 +123,6 @@ class CustomerMultiFactorAuthFlowController extends AbstractMultiFactorAuthContr
 
     /**
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return void
      */
     protected function executePostLoginMultiFactorAuthenticationPlugins(AbstractTransfer $customerTransfer): void
     {
@@ -146,8 +137,6 @@ class CustomerMultiFactorAuthFlowController extends AbstractMultiFactorAuthContr
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return array<string, mixed>
      */
     protected function getOptions(Request $request): array

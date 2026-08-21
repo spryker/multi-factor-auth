@@ -110,9 +110,6 @@ class CustomerMultiFactorAuthManagementController extends AbstractController
      */
     protected const MESSAGE_MULTI_FACTOR_AUTH_INVALID_TOKEN = 'multi_factor_auth.invalid_csrf_token';
 
-    /**
-     * @var \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
-     */
     protected CsrfTokenManagerInterface $csrfTokenManager;
 
     public function initialize(): void

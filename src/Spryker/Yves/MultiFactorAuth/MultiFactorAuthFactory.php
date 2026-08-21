@@ -88,8 +88,6 @@ class MultiFactorAuthFactory extends AbstractFactory
 
     /**
      * @param array<string, mixed> $formOptions
-     *
-     * @return \Symfony\Component\Form\FormInterface
      */
     public function getTypeSelectionForm(array $formOptions = []): FormInterface
     {
@@ -98,8 +96,6 @@ class MultiFactorAuthFactory extends AbstractFactory
 
     /**
      * @param array<string, mixed> $formOptions
-     *
-     * @return \Symfony\Component\Form\FormInterface
      */
     public function getCodeValidationForm(array $formOptions = []): FormInterface
     {

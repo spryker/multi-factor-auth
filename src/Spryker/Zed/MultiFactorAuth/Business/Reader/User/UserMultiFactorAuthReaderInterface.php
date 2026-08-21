@@ -14,10 +14,6 @@ interface UserMultiFactorAuthReaderInterface
 {
     /**
      * Retrieves all available Multi-Factor Auth types to configure.
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     public function getAvailableUserMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
@@ -25,10 +21,6 @@ interface UserMultiFactorAuthReaderInterface
 
     /**
      * Retrieves all enabled Multi-Factor Auth types by the provided user.
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     public function getEnabledUserMultiFactorAuthTypes(
         MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer

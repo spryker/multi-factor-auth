@@ -52,10 +52,7 @@ class CodeValidationForm extends BaseMultiFactorAuthForm
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
-     *
-     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {
@@ -66,7 +63,6 @@ class CodeValidationForm extends BaseMultiFactorAuthForm
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
      *
      * @return $this
@@ -81,7 +77,6 @@ class CodeValidationForm extends BaseMultiFactorAuthForm
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
      *
      * @return $this

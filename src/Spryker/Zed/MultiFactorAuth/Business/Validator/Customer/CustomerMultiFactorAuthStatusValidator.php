@@ -32,8 +32,6 @@ class CustomerMultiFactorAuthStatusValidator extends AbstractMultiFactorAuthStat
     /**
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
      * @param array<int> $statuses
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     protected function getMultiFactorAuthTypesCollectionTransfer(
         AbstractTransfer $customerTransfer,

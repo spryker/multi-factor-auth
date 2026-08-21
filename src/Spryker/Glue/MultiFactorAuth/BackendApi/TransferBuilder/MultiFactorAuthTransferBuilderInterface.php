@@ -30,8 +30,6 @@ interface MultiFactorAuthTransferBuilderInterface
 
     /**
      * @param array<int> $userUuids
-     *
-     * @return \Generated\Shared\Transfer\UserCriteriaTransfer
      */
     public function createUserCriteriaTransfer(array $userUuids): UserCriteriaTransfer;
 }

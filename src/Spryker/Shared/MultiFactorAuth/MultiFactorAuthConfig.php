@@ -26,8 +26,6 @@ class MultiFactorAuthConfig extends AbstractSharedConfig
      * - Returns the multi-factor authentication code length for customer.
      *
      * @api
-     *
-     * @return int
      */
     public function getCustomerCodeLength(): int
     {
@@ -39,8 +37,6 @@ class MultiFactorAuthConfig extends AbstractSharedConfig
      * - Returns the multi-factor authentication code length for user.
      *
      * @api
-     *
-     * @return int
      */
     public function getUserCodeLength(): int
     {

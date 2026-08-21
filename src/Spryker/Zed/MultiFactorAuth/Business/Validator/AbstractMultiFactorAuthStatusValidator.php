@@ -19,11 +19,7 @@ use Spryker\Shared\MultiFactorAuth\MultiFactorAuthConstants;
 abstract class AbstractMultiFactorAuthStatusValidator implements MultiFactorAuthStatusValidatorInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
      * @param array<int> $statuses
-     * @param \DateTime|null $currentDateTime
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validate(
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer,
@@ -70,10 +66,7 @@ abstract class AbstractMultiFactorAuthStatusValidator implements MultiFactorAuth
     abstract protected function extractEntity(MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer): AbstractTransfer;
 
     /**
-     * @param \Spryker\Shared\Kernel\Transfer\AbstractTransfer $entityTransfer
      * @param array<int> $statuses
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     abstract protected function getMultiFactorAuthTypesCollectionTransfer(
         AbstractTransfer $entityTransfer,

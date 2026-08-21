@@ -40,9 +40,6 @@ class MultiFactorAuthSetupNavigationPluginTest extends Unit
      */
     protected const LABEL_SET_UP_MULTI_FACTOR_AUTHENTICATION = 'Set up Multi-Factor Authentication';
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Communication\Plugin\Navigation\MultiFactorAuthSetupNavigationPlugin
-     */
     protected MultiFactorAuthSetupNavigationPlugin $multiFactorAuthSetupNavigationPlugin;
 
     /**

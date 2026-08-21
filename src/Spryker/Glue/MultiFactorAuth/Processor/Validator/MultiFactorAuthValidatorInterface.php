@@ -19,13 +19,7 @@ use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 interface MultiFactorAuthValidatorInterface
 {
     /**
-     * @param string $multiFactorAuthCode
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
      * @param array<int> $additionalStatuses
-     * @param string|null $multiFactorAuthType
-     *
-     * @return bool
      */
     public function isMultiFactorAuthCodeValid(
         string $multiFactorAuthCode,

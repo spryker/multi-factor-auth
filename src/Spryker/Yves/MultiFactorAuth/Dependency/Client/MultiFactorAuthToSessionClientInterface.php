@@ -10,7 +10,6 @@ namespace Spryker\Yves\MultiFactorAuth\Dependency\Client;
 interface MultiFactorAuthToSessionClientInterface
 {
     /**
-     * @param string $name
      * @param mixed $default The default value if not found
      *
      * @return mixed

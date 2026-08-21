@@ -37,11 +37,6 @@ class MultiFactorAuthTriggerBackendResourceController extends AbstractController
      *           }
      *      }
      *  })
-     *
-     * @param \Generated\Shared\Transfer\RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
      */
     public function postAction(
         RestMultiFactorAuthAttributesTransfer $restMultiFactorAuthAttributesTransfer,

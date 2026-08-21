@@ -14,11 +14,7 @@ use Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer;
 interface MultiFactorAuthStatusValidatorInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
      * @param array<int> $statuses
-     * @param \DateTime|null $currentDateTime
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validate(
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer,

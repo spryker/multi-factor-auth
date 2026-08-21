@@ -24,10 +24,6 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
     /**
      * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::getCustomerMultiFactorAuthTypesAction()}
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer
      */
     public function getCustomerMultiFactorAuthTypes(MultiFactorAuthCriteriaTransfer $multiFactorAuthCriteriaTransfer): MultiFactorAuthTypesCollectionTransfer
     {
@@ -39,10 +35,6 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
     /**
      * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::sendCustomerCodeAction()}
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
      */
     public function sendCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
@@ -54,10 +46,6 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
     /**
      * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::validateCustomerMultiFactorAuthStatusAction()}
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validateCustomerMultiFactorAuthStatus(
         MultiFactorAuthValidationRequestTransfer $multiFactorAuthValidationRequestTransfer
@@ -70,10 +58,6 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
     /**
      * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::validateCustomerCodeAction()}
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthValidationResponseTransfer
      */
     public function validateCustomerCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthValidationResponseTransfer
     {
@@ -85,10 +69,6 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
     /**
      * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::activateCustomerMultiFactorAuthAction()}
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
      */
     public function activateCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
@@ -100,10 +80,6 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
     /**
      * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::deactivateCustomerMultiFactorAuthAction()}
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthTransfer $multiFactorAuthTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthTransfer
      */
     public function deactivateCustomerMultiFactorAuth(MultiFactorAuthTransfer $multiFactorAuthTransfer): MultiFactorAuthTransfer
     {
@@ -115,10 +91,6 @@ class CustomerMultiFactorAuthStub implements CustomerMultiFactorAuthStubInterfac
 
     /**
      * @uses {@link \Spryker\Zed\MultiFactorAuth\Communication\Controller\GatewayController::findCustomerMultiFactorAuthTypeAction()}
-     *
-     * @param \Generated\Shared\Transfer\MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\MultiFactorAuthCodeTransfer
      */
     public function findCustomerMultiFactorAuthType(
         MultiFactorAuthCodeCriteriaTransfer $multiFactorAuthCodeCriteriaTransfer

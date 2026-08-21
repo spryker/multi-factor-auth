@@ -191,8 +191,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
     abstract protected function getIdentity(): AbstractTransfer;
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @return array<string, mixed>
      */
     abstract protected function getOptions(Request $request): array;
@@ -213,8 +211,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @return bool
      */
     protected function assertNoTypesEnabled(array $options): bool
     {
@@ -223,8 +219,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @return bool
      */
     protected function assertOneTypeEnabled(array $options): bool
     {
@@ -242,9 +236,6 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param string|null $formName
-     *
      * @return array<string, mixed>
      */
     protected function extractSetupParameters(Request $request, ?string $formName = null): array

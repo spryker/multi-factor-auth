@@ -81,8 +81,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the multi-factor authentication code length for customer.
      *
      * @api
-     *
-     * @return int
      */
     public function getCustomerCodeLength(): int
     {
@@ -94,8 +92,6 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
      * - Returns the multi-factor authentication code length for agent.
      *
      * @api
-     *
-     * @return int
      */
     public function getAgentCodeLength(): int
     {

@@ -41,7 +41,6 @@ class MultiFactorAuthButtonCreator implements MultiFactorAuthButtonCreatorInterf
     }
 
     /**
-     * @param int $idCustomer
      * @param array<\Generated\Shared\Transfer\ButtonTransfer> $buttonTransfers
      *
      * @return array<\Generated\Shared\Transfer\ButtonTransfer>

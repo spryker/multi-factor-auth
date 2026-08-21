@@ -48,9 +48,6 @@ class UserMultiFactorAuthActivatorTest extends Unit
      */
     protected const TYPE_TO_SET_UP = 'type_to_set_up';
 
-    /**
-     * @var \Generated\Shared\Transfer\UserTransfer
-     */
     protected UserTransfer $userTransfer;
 
     /**
@@ -63,9 +60,6 @@ class UserMultiFactorAuthActivatorTest extends Unit
      */
     protected $requestReaderMock;
 
-    /**
-     * @var \Spryker\Zed\MultiFactorAuth\Communication\Activator\User\UserMultiFactorAuthActivator
-     */
     protected UserMultiFactorAuthActivator $userMultiFactorAuthActivator;
 
     protected function setUp(): void
