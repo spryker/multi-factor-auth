@@ -22,3 +22,6 @@ Continue,Continue
 "Enter code","Enter code"
 "Something went wrong while sending your code. Please try again later or contact the system administrator.","Something went wrong while sending your code. Please try again later or contact the system administrator."
 "The provided code is empty or invalid. Please try again.","The provided code is empty or invalid. Please try again."
+"Two-Factor Authentication","Two-Factor Authentication"
+Redirecting...,Redirecting...
+"Multi-Factor Authentication is required for your account, but no verification method is currently available. Please contact site support.","Multi-Factor Authentication is required for your account, but no verification method is currently available. Please contact site support."

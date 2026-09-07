@@ -166,18 +166,28 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
 
             $this->executePostLoginMultiFactorAuthenticationPlugins($identityTransfer);
 
-            return $this->view(['dataResult' => static::DATA_SUCCESS_PARAMETER], [], '@MultiFactorAuth/views/response/response.twig');
+            return $this->createCodeVerifiedView($identityTransfer);
         }
 
         if ($multiFactorAuthValidationResponseTransfer->getStatus() === MultiFactorAuthConstants::CODE_BLOCKED) {
-            $this->addErrorMessage($multiFactorAuthValidationResponseTransfer->getMessageOrFail());
-
-            return $this->view(['dataResult' => static::DATA_ERROR_PARAMETER], [], '@MultiFactorAuth/views/response/response.twig');
+            return $this->createCodeBlockedView($multiFactorAuthValidationResponseTransfer->getMessageOrFail());
         }
 
         $codeValidationForm->addError(new FormError($multiFactorAuthValidationResponseTransfer->getMessageOrFail()));
 
         return $this->view(['form' => $codeValidationForm->createView()], [], $this->getCodeValidationFormTemplate());
+    }
+
+    protected function createCodeVerifiedView(AbstractTransfer $identityTransfer): View
+    {
+        return $this->view(['dataResult' => static::DATA_SUCCESS_PARAMETER], [], '@MultiFactorAuth/views/response/response.twig');
+    }
+
+    protected function createCodeBlockedView(string $errorMessage): View
+    {
+        $this->addErrorMessage($errorMessage);
+
+        return $this->view(['dataResult' => static::DATA_ERROR_PARAMETER], [], '@MultiFactorAuth/views/response/response.twig');
     }
 
     abstract protected function getTypeSelectionFormTemplate(): string;

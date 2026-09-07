@@ -1,0 +1,16 @@
+{% extends '@SecurityGui/Layout/layout.twig' %}
+
+{% block login_heading %}
+    <div class="login-box__heading">
+        <h1 class="login-box__title">{{ 'Two-Factor Authentication' | trans }}</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="form-group d-grid">
+        <button class="btn btn-primary" type="submit">{{ 'Continue' | trans }}</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends '@SecurityGui/Layout/layout.twig' %}
+
+{% block login_heading %}{% endblock %}
+
+{% block content %}
+    <script>window.location.replace('{{ redirectUrl | e('js') }}');</script>
+    <noscript><meta http-equiv="refresh" content="0; url={{ redirectUrl | escape }}"></noscript>
+{% endblock %}

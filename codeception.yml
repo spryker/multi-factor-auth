@@ -1,6 +1,7 @@
 namespace: SprykerTest
 include:
     - tests/SprykerTest/Zed/MultiFactorAuth
+    - tests/SprykerTest/Yves/MultiFactorAuth
     - tests/SprykerTest/Shared/MultiFactorAuth
 paths:
     tests: tests/

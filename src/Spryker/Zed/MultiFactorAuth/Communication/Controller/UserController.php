@@ -158,9 +158,9 @@ class UserController extends AbstractController
             try {
                 $this->sendUserCode($multiFactorAuthType, $userTransfer, $request);
 
-                return $this->renderView(static::SEND_CODE_TWIG_TEMPLATE, ['form' => $codeValidationForm->createView()]);
+                return $this->renderView($this->getSendCodeTwigTemplate(), ['form' => $codeValidationForm->createView()]);
             } catch (Throwable $e) {
-                return $this->renderView(static::SEND_CODE_TWIG_TEMPLATE, [
+                return $this->renderView($this->getSendCodeTwigTemplate(), [
                     'form' => $codeValidationForm->createView(),
                     'errorMessage' => static::MESSAGE_SENDING_CODE_ERROR,
                 ]);
@@ -168,6 +168,11 @@ class UserController extends AbstractController
         }
 
         return $this->executeCodeValidation($request, $codeValidationForm, $userTransfer);
+    }
+
+    protected function getSendCodeTwigTemplate(): string
+    {
+        return static::SEND_CODE_TWIG_TEMPLATE;
     }
 
     protected function sendUserCode(string $multiFactorAuthType, UserTransfer $userTransfer, Request $request): void
@@ -210,18 +215,34 @@ class UserController extends AbstractController
 
             $this->executePostLoginMultiFactorAuthenticationPlugins($userTransfer);
 
-            return $this->renderView(static::VALIDATION_RESPONSE_TWIG_TEMPLATE, ['dataResult' => static::DATA_SUCCESS_PARAMETER]);
+            return $this->createCodeVerifiedResponse($userTransfer);
         }
 
         if ($multiFactorAuthValidationResponseTransfer->getStatus() === MultiFactorAuthConstants::CODE_BLOCKED) {
-            $this->addErrorMessage($multiFactorAuthValidationResponseTransfer->getMessageOrFail());
-
-            return $this->renderView(static::VALIDATION_RESPONSE_TWIG_TEMPLATE, ['dataResult' => static::DATA_ERROR_PARAMETER]);
+            return $this->createCodeBlockedResponse($multiFactorAuthValidationResponseTransfer->getMessageOrFail());
         }
 
         $codeValidationForm->addError(new FormError($multiFactorAuthValidationResponseTransfer->getMessageOrFail()));
 
-        return $this->renderView(static::SEND_CODE_TWIG_TEMPLATE, ['form' => $codeValidationForm->createView()]);
+        return $this->renderView($this->getSendCodeTwigTemplate(), ['form' => $codeValidationForm->createView()]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response|array<string, mixed>
+     */
+    protected function createCodeVerifiedResponse(UserTransfer $userTransfer)
+    {
+        return $this->renderView(static::VALIDATION_RESPONSE_TWIG_TEMPLATE, ['dataResult' => static::DATA_SUCCESS_PARAMETER]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response|array<string, mixed>
+     */
+    protected function createCodeBlockedResponse(string $errorMessage)
+    {
+        $this->addErrorMessage($errorMessage);
+
+        return $this->renderView(static::VALIDATION_RESPONSE_TWIG_TEMPLATE, ['dataResult' => static::DATA_ERROR_PARAMETER]);
     }
 
     protected function validateCode(

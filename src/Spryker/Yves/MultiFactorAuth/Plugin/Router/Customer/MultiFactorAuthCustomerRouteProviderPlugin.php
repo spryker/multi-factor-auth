@@ -30,6 +30,16 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
     /**
      * @var string
      */
+    public const MULTI_FACTOR_AUTH_NAME_GET_CUSTOMER_OAUTH_LOGIN_ENABLED_TYPES = 'multiFactorAuth/customerLogin';
+
+    /**
+     * @var string
+     */
+    public const MULTI_FACTOR_AUTH_NAME_SEND_CUSTOMER_OAUTH_LOGIN_CODE = 'multiFactorAuth/sendCustomerOauthLoginCode';
+
+    /**
+     * @var string
+     */
     public const MULTI_FACTOR_AUTH_ROUTE_GET_CUSTOMER_ENABLED_TYPES = '/multi-factor-auth/get-customer-enabled-types';
 
     /**
@@ -46,6 +56,31 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
      * @var string
      */
     protected const MULTI_FACTOR_AUTH_ROUTE_SEND_CUSTOMER_CODE = '/multi-factor-auth/send-customer-code';
+
+    /**
+     * @var string
+     */
+    protected const MULTI_FACTOR_AUTH_ROUTE_GET_CUSTOMER_OAUTH_LOGIN_ENABLED_TYPES = '/multi-factor-auth/customer/login';
+
+    /**
+     * @var string
+     */
+    protected const MULTI_FACTOR_AUTH_ROUTE_SEND_CUSTOMER_OAUTH_LOGIN_CODE = '/multi-factor-auth/send-customer-oauth-login-code';
+
+    /**
+     * @var string
+     */
+    protected const MULTI_FACTOR_AUTH_ACTION_GET_CUSTOMER_OAUTH_LOGIN_ENABLED_TYPES = 'getCustomerOauthLoginEnabledTypesAction';
+
+    /**
+     * @var string
+     */
+    protected const MULTI_FACTOR_AUTH_ACTION_SEND_CUSTOMER_OAUTH_LOGIN_CODE = 'sendCustomerOauthLoginCodeAction';
+
+    /**
+     * @var string
+     */
+    protected const MULTI_FACTOR_AUTH_CUSTOMER_OAUTH_FLOW_CONTROLLER = 'CustomerOauthMultiFactorAuthFlow';
 
     /**
      * @var string
@@ -119,6 +154,8 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
         $routeCollection = $this->addDeactivateMultiFactorAuthRoute($routeCollection);
         $routeCollection = $this->addGetEnabledTypesRoute($routeCollection);
         $routeCollection = $this->addSendCodeRoute($routeCollection);
+        $routeCollection = $this->addGetCustomerOauthLoginEnabledTypesRoute($routeCollection);
+        $routeCollection = $this->addSendCustomerOauthLoginCodeRoute($routeCollection);
 
         return $routeCollection;
     }
@@ -184,6 +221,32 @@ class MultiFactorAuthCustomerRouteProviderPlugin extends AbstractRouteProviderPl
             static::MULTI_FACTOR_AUTH_ACTION_SEND_CUSTOMER_CODE,
         );
         $routeCollection->add(static::MULTI_FACTOR_AUTH_NAME_SEND_CUSTOMER_CODE, $route);
+
+        return $routeCollection;
+    }
+
+    protected function addGetCustomerOauthLoginEnabledTypesRoute(RouteCollection $routeCollection): RouteCollection
+    {
+        $route = $this->buildRoute(
+            static::MULTI_FACTOR_AUTH_ROUTE_GET_CUSTOMER_OAUTH_LOGIN_ENABLED_TYPES,
+            static::MULTI_FACTOR_AUTH_MODULE,
+            static::MULTI_FACTOR_AUTH_CUSTOMER_OAUTH_FLOW_CONTROLLER,
+            static::MULTI_FACTOR_AUTH_ACTION_GET_CUSTOMER_OAUTH_LOGIN_ENABLED_TYPES,
+        );
+        $routeCollection->add(static::MULTI_FACTOR_AUTH_NAME_GET_CUSTOMER_OAUTH_LOGIN_ENABLED_TYPES, $route);
+
+        return $routeCollection;
+    }
+
+    protected function addSendCustomerOauthLoginCodeRoute(RouteCollection $routeCollection): RouteCollection
+    {
+        $route = $this->buildRoute(
+            static::MULTI_FACTOR_AUTH_ROUTE_SEND_CUSTOMER_OAUTH_LOGIN_CODE,
+            static::MULTI_FACTOR_AUTH_MODULE,
+            static::MULTI_FACTOR_AUTH_CUSTOMER_OAUTH_FLOW_CONTROLLER,
+            static::MULTI_FACTOR_AUTH_ACTION_SEND_CUSTOMER_OAUTH_LOGIN_CODE,
+        );
+        $routeCollection->add(static::MULTI_FACTOR_AUTH_NAME_SEND_CUSTOMER_OAUTH_LOGIN_CODE, $route);
 
         return $routeCollection;
     }

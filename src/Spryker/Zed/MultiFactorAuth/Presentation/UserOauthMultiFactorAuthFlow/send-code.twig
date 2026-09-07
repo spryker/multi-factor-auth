@@ -1,0 +1,22 @@
+{% extends '@SecurityGui/Layout/layout.twig' %}
+
+{% block login_heading %}
+    <div class="login-box__heading">
+        <h1 class="login-box__title">{{ 'Two-Factor Authentication' | trans }}</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if errorMessage is defined and errorMessage %}
+        <div class="alert alert-danger" role="alert">
+            {{ errorMessage | trans }}
+        </div>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="form-group d-grid">
+        <button class="btn btn-primary" type="submit">{{ 'Verify Code' | trans }}</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends template('page-layout-main', 'ShopUi') %}
+
+{% define data = {
+    redirectUrl: _view.redirectUrl,
+} %}
+
+{% block content %}
+    <script>window.location.replace('{{ data.redirectUrl | e('js') }}');</script>
+    <noscript><meta http-equiv="refresh" content="0; url={{ data.redirectUrl | escape }}"></noscript>
+{% endblock %}

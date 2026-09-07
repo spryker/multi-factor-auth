@@ -35,6 +35,7 @@
     "require-dev": {
         "spryker-shop/agent-page": "*",
         "spryker-shop/customer-page": "*",
+        "spryker-shop/shop-ui": "*",
         "spryker/api-platform": "^1.0.0",
         "spryker/code-sniffer": "*",
         "spryker/router": "*",
@@ -43,6 +44,7 @@
     "suggest": {
         "spryker-shop/agent-page": "Use this module when you want to use the AgentPage plugins.",
         "spryker-shop/customer-page": "Use this module when you want to use the CustomerPage plugins.",
+        "spryker-shop/shop-ui": "Use this module when you want to use Yves.",
         "spryker/api-platform": "Required to expose API Platform resources.",
         "spryker/router": "Use this module when you want to use the Router."
     },

@@ -1,0 +1,29 @@
+{% extends template('page-layout-main', 'ShopUi') %}
+
+{% define data = {
+    form: _view.form,
+    title: 'multi_factor_auth.code.validation' | trans,
+} %}
+
+{% block content %}
+    <div class="grid">
+        <div class="col col--sm-12">
+            <div class="box">
+                <div class="grid grid--center">
+                    <div class="col col--sm-12 col--md-8 col--lg-4">
+                        <div class="box">
+                            {% include molecule('multi-factor-authentication-content', 'MultiFactorAuth') with {
+                                data: {
+                                    form: data.form ? data.form : null,
+                                    title: data.title,
+                                    url: path('multiFactorAuth/sendCustomerOauthLoginCode'),
+                                    submitText: 'multi_factor_auth.verify_code' | trans,
+                                },
+                            } only %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

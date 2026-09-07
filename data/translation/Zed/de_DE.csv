@@ -22,3 +22,6 @@ Continue,Fortfahren
 "Enter code","Code eingeben"
 "Something went wrong while sending your code. Please try again later or contact the system administrator.","Beim Versenden Ihres Codes ist etwas schief gelaufen. Bitte versuchen Sie es erneut oder wenden Sie sich an den Systemadministrator."
 "The provided code is empty or invalid. Please try again.","Der angegebene Code ist leer oder ungültig. Bitte versuchen Sie es erneut."
+"Two-Factor Authentication",Zwei-Faktor-Authentifizierung
+Redirecting...,Weiterleiten...
+"Multi-Factor Authentication is required for your account, but no verification method is currently available. Please contact site support.","Für Ihr Konto ist eine Multi-Faktor-Authentifizierung erforderlich, es ist jedoch derzeit keine Verifizierungsmethode verfügbar. Bitte wenden Sie sich an den Support."
