@@ -1,6 +1,7 @@
 import Component from 'ShopUi/models/component';
 import MainPopup, { EVENT_POPUP_CLOSED, EVENT_CLOSE_POPUP } from 'ShopUi/components/molecules/main-popup/main-popup';
 import AjaxProvider from 'ShopUi/components/molecules/ajax-provider/ajax-provider';
+import { error as logError } from 'ShopUi/app/logger';
 
 interface AuthResult {
     requiresAdditionalAuth: boolean;
@@ -26,8 +27,8 @@ export default class MultiFactorAuthenticationHandler extends Component {
 
     protected init(): void {
         this.popup = <MainPopup>this.getElementsByClassName(`${this.jsName}__popup`)[0];
-        this.popupContent = this.getElementsByClassName(`${this.jsName}__popup-content`)[0];
-        this.navigation = this.getElementsByClassName(`${this.jsName}__navigation`)[0];
+        this.popupContent = <HTMLElement>this.getElementsByClassName(`${this.jsName}__popup-content`)[0];
+        this.navigation = <HTMLElement>this.getElementsByClassName(`${this.jsName}__navigation`)[0];
         this.form = <HTMLFormElement>document.querySelector(this.formSelector);
         this.ajaxProvider = <AjaxProvider>this.getElementsByClassName(`${this.jsName}__ajax-provider`)[0];
         this.ajaxProviderDynamic = <AjaxProvider>(
@@ -49,7 +50,7 @@ export default class MultiFactorAuthenticationHandler extends Component {
         event.preventDefault();
 
         if (!this.form) {
-            console.error('Form name is required for MFA validation.');
+            logError('Form name is required for MFA validation.');
             return;
         }
 
@@ -74,10 +75,7 @@ export default class MultiFactorAuthenticationHandler extends Component {
     }
 
     protected async isRequireAdditionalAuth(): Promise<AuthResult> {
-        const result: AuthResult = {
-            requiresAdditionalAuth: false,
-            failedLogin: false,
-        };
+        const result: AuthResult = { requiresAdditionalAuth: false, failedLogin: false };
 
         try {
             const formData = new FormData(this.form);
@@ -95,14 +93,11 @@ export default class MultiFactorAuthenticationHandler extends Component {
                 return result;
             }
 
-            if (xhr.responseURL.includes('/login')) {
-                result.failedLogin = true;
-                return result;
-            }
+            result.failedLogin = xhr.responseURL.includes('/login');
 
             return result;
         } catch (error) {
-            console.error('Error checking additional auth requirement:', error);
+            logError('Error checking additional auth requirement:', error);
             return result;
         }
     }
@@ -116,7 +111,7 @@ export default class MultiFactorAuthenticationHandler extends Component {
 
             this.initPopup();
         } catch (error) {
-            console.error('Error during initial MFA request:', error);
+            logError('Error during initial MFA request:', error);
         }
     }
 
@@ -167,7 +162,7 @@ export default class MultiFactorAuthenticationHandler extends Component {
         const contentElement = this.popup.clone.querySelector(this.CONTENT_SELECTOR);
 
         if (!popupForm || !contentElement) {
-            console.error('Required elements not found in popup content');
+            logError('Required elements not found in popup content');
             return;
         }
 
@@ -205,7 +200,7 @@ export default class MultiFactorAuthenticationHandler extends Component {
 
             this.setupDynamicContentEvents();
         } catch (error) {
-            console.error('Error processing popup form:', error);
+            logError('Error processing popup form:', error);
         }
     }
 

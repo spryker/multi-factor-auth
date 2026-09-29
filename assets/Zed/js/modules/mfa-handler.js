@@ -42,7 +42,7 @@ export class MfaHandler {
 
             data.modal.addEventListener('hidden.bs.modal', () => this.onModalHide(data));
 
-            data.form.addEventListener('submit', async (event) => await this.onSubmit(event, data));
+            data.form.addEventListener('submit', (event) => this.onSubmit(event, data));
         }
     }
 
