@@ -1,0 +1,47 @@
+resource:
+    name: MultiFactorAuthTypeActivate
+    shortName: multi-factor-auth-type-activate
+    description: 'Start activation of a multi-factor authentication type for the authenticated Back Office user or merchant user.'
+
+    security: "is_granted('ROLE_BACK_OFFICE_USER') or is_granted('ROLE_MERCHANT_USER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Backend\Processor\MultiFactorAuthTypeActivateBackendProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-type-activate'
+          output: false
+          description: 'Put a registered type into `activation is pending` and send a verification code through it. Finish the activation with `POST /multi-factor-auth-type-verify`.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Activate MFA type'
+              description: 'Starts activation of a registered multi-factor authentication type. If the user already has an activated type, a valid code of that type is required in the `X-MFA-Code` header.'
+              parameters:
+                  - name: X-MFA-Code
+                    in: header
+                    description: 'Required only when the user already has an activated type: a valid code of that type, sent by `POST /multi-factor-auth-trigger`.'
+                    required: false
+                    schema:
+                        type: string
+                    example: '591415'
+              responses:
+                  204:
+                      description: 'Activation started; a verification code was sent through the new type.'
+                  400:
+                      description: 'MFA type is missing, the type is not registered or the type is already activated.'
+                  401:
+                      description: 'Invalid access token.'
+                  403:
+                      description: 'Access denied: missing access token, or `X-MFA-Code` header missing or invalid while another type is already activated.'
+                  503:
+                      description: 'The verification code could not be sent, for example because the delivery channel of the type is unavailable. Retry later.'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Registered multi-factor authentication type to activate. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'

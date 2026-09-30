@@ -1,0 +1,45 @@
+resource:
+    name: MultiFactorAuthTypeVerify
+    shortName: multi-factor-auth-type-verify
+    description: 'Finish activation of a multi-factor authentication type for the authenticated Back Office user or merchant user.'
+
+    security: "is_granted('ROLE_BACK_OFFICE_USER') or is_granted('ROLE_MERCHANT_USER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Backend\Processor\MultiFactorAuthTypeVerifyBackendProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-type-verify'
+          output: false
+          description: 'Verify the code sent by `POST /multi-factor-auth-type-activate` and switch the type to `activated`.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Verify MFA type activation'
+              description: 'Verifies the code from the `X-MFA-Code` header against the pending activation of the given type and activates it.'
+              parameters:
+                  - name: X-MFA-Code
+                    in: header
+                    description: 'Code sent by `POST /multi-factor-auth-type-activate` for the type being verified.'
+                    required: true
+                    schema:
+                        type: string
+                    example: '591415'
+              responses:
+                  204:
+                      description: 'MFA type activated.'
+                  400:
+                      description: 'MFA type is missing, the type is already activated or the type has no pending activation for the current user.'
+                  401:
+                      description: 'Invalid access token.'
+                  403:
+                      description: 'Access denied: missing access token, or `X-MFA-Code` header missing or invalid.'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Multi-factor authentication type with a pending activation. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'

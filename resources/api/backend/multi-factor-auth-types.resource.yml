@@ -1,0 +1,42 @@
+resource:
+    name: MultiFactorAuthTypes
+    shortName: multi-factor-auth-types
+    description: 'Retrieve multi-factor authentication types of the authenticated Back Office user or merchant user.'
+
+    security: "is_granted('ROLE_BACK_OFFICE_USER') or is_granted('ROLE_MERCHANT_USER')"
+
+    provider: Spryker\Glue\MultiFactorAuth\Api\Backend\Provider\MultiFactorAuthTypesBackendProvider
+    paginationEnabled: false
+
+    operations:
+        - type: GetCollection
+          uriTemplate: '/multi-factor-auth-types'
+          description: 'Retrieve all registered multi-factor authentication types and their current status for the authenticated user.'
+          openapiContext:
+              summary: 'Get MFA types'
+              description: 'Returns every multi-factor authentication type registered for users with its status for the authenticated Back Office user or merchant user: `activated`, `activation is pending` or `deactivated`.'
+              responses:
+                  200:
+                      description: 'MFA types returned.'
+                  401:
+                      description: 'Invalid access token.'
+                  403:
+                      description: 'Access denied: missing access token, or the token belongs neither to a Back Office user nor to a merchant user.'
+
+    properties:
+        type:
+            type: string
+            identifier: true
+            writable: false
+            readable: true
+            description: 'Multi-factor authentication type identifier. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'
+        status:
+            type: string
+            writable: false
+            readable: true
+            description: 'Current status of the type for the authenticated user.'
+            openapiContext:
+                example: 'activated'
+                enum: ['activated', 'activation is pending', 'deactivated']

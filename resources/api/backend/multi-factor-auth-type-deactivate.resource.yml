@@ -1,0 +1,45 @@
+resource:
+    name: MultiFactorAuthTypeDeactivate
+    shortName: multi-factor-auth-type-deactivate
+    description: 'Deactivate a multi-factor authentication type of the authenticated Back Office user or merchant user.'
+
+    security: "is_granted('ROLE_BACK_OFFICE_USER') or is_granted('ROLE_MERCHANT_USER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Backend\Processor\MultiFactorAuthTypeDeactivateBackendProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-type-deactivate'
+          output: false
+          description: 'Deactivate an activated type. A valid code of that type is required in the `X-MFA-Code` header.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Deactivate MFA type'
+              description: 'Deactivates an activated multi-factor authentication type after verifying the code from the `X-MFA-Code` header.'
+              parameters:
+                  - name: X-MFA-Code
+                    in: header
+                    description: 'Valid code of the type being deactivated, sent by `POST /multi-factor-auth-trigger`.'
+                    required: true
+                    schema:
+                        type: string
+                    example: '591415'
+              responses:
+                  204:
+                      description: 'MFA type deactivated.'
+                  400:
+                      description: 'MFA type is missing or the type is not activated for the current user.'
+                  401:
+                      description: 'Invalid access token.'
+                  403:
+                      description: 'Access denied: missing access token, or `X-MFA-Code` header missing or invalid.'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Activated multi-factor authentication type to deactivate. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'

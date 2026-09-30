@@ -244,6 +244,11 @@ class MultiFactorAuthConfig extends AbstractBundleConfig
     public const RESPONSE_DETAIL_USER_NOT_FOUND = 'User not found.';
 
     /**
+     * @api
+     */
+    public const string ERROR_MESSAGE_MULTI_FACTOR_AUTH_TYPE_NOT_FOUND_FOR_USER = 'Multi-factor authentication type is not found for the current user.';
+
+    /**
      * Specification:
      * - Returns a list of enabled resources for the multi-factor authentication in the following format:
      * [

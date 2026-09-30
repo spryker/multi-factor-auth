@@ -20,6 +20,7 @@
         "spryker/gui": "^4.0.0 || ^5.8.0",
         "spryker/gui-extension": "^1.0.0",
         "spryker/kernel": "^3.52.0",
+        "spryker/log": "^3.0.0",
         "spryker/mail": "^4.6.0",
         "spryker/mail-extension": "^1.0.0",
         "spryker/multi-factor-auth-extension": "^1.2.0",

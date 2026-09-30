@@ -1,0 +1,39 @@
+resource:
+    name: MultiFactorAuthTrigger
+    shortName: multi-factor-auth-trigger
+    description: 'Send a multi-factor authentication code to the authenticated Back Office user or merchant user.'
+
+    security: "is_granted('ROLE_BACK_OFFICE_USER') or is_granted('ROLE_MERCHANT_USER')"
+
+    processor: Spryker\Glue\MultiFactorAuth\Api\Backend\Processor\MultiFactorAuthTriggerBackendProcessor
+
+    operations:
+        - type: Post
+          uriTemplate: '/multi-factor-auth-trigger'
+          output: false
+          description: 'Send a multi-factor authentication code through an activated type. The code is then passed in the `X-MFA-Code` header of protected requests.'
+          normalizationContext:
+              gen_id: false
+          openapiContext:
+              summary: 'Send MFA code'
+              description: 'Sends a multi-factor authentication code to the authenticated user through the given activated type.'
+              responses:
+                  204:
+                      description: 'MFA code sent.'
+                  400:
+                      description: 'MFA type is missing, or the type is not activated for the current user.'
+                  401:
+                      description: 'Invalid access token.'
+                  403:
+                      description: 'Access denied: missing access token, or the token belongs neither to a Back Office user nor to a merchant user.'
+                  503:
+                      description: 'The MFA code could not be sent, for example because the delivery channel of the type is unavailable. Retry later.'
+
+    properties:
+        type:
+            type: string
+            writable: true
+            readable: false
+            description: 'Activated multi-factor authentication type to send the code through. `email` is shipped by default; projects can register additional types via the configured `MultiFactorAuthPlugin` chain.'
+            openapiContext:
+                example: 'email'

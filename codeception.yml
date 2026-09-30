@@ -3,6 +3,7 @@ include:
     - tests/SprykerTest/Zed/MultiFactorAuth
     - tests/SprykerTest/Yves/MultiFactorAuth
     - tests/SprykerTest/Shared/MultiFactorAuth
+    - tests/SprykerTest/Glue/MultiFactorAuth
 paths:
     tests: tests/
     log: tests/_output/
