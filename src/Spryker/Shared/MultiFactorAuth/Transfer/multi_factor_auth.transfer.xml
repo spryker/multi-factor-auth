@@ -67,6 +67,7 @@
         <property name="firstName" type="string"/>
         <property name="lastName" type="string"/>
         <property name="idCustomer" type="int"/>
+        <property name="customerReference" type="string"/>
     </transfer>
 
     <transfer name="User">

@@ -70,8 +70,6 @@ class MultiFactorAuthTypeActivateBackendProcessor extends AbstractMultiFactorAut
      * issued for, not against the type being activated.
      *
      * @throws \Spryker\ApiPlatform\Exception\GlueApiException
-     *
-     * @return void
      */
     protected function assertActiveTypeCodeIsValid(UserTransfer $userTransfer): void
     {

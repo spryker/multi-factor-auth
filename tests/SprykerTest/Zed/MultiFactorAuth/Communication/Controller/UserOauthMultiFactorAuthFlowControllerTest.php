@@ -22,6 +22,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Auto-generated group annotations
@@ -76,6 +78,10 @@ class UserOauthMultiFactorAuthFlowControllerTest extends Unit
      * @uses \\Spryker\\Zed\\MultiFactorAuth\\Communication\\Controller\\UserController::MULTI_FACTOR_AUTH_LOGIN_USER_EMAIL_SESSION_KEY
      */
     protected const string MULTI_FACTOR_AUTH_LOGIN_EMAIL_SESSION_KEY = '_multi_factor_auth_login_user_email';
+
+    protected const string SESSION_ATTRIBUTE_KEY = 'session-attribute-key';
+
+    protected const string SESSION_ATTRIBUTE_VALUE = 'session-attribute-value';
 
     public function testGetUserOauthLoginEnabledTypesActionDelegatesToGetEnabledTypesAction(): void
     {
@@ -250,13 +256,14 @@ class UserOauthMultiFactorAuthFlowControllerTest extends Unit
         $expectedResponse = new Response();
         $controllerMock = $this->getMockBuilder(UserOauthMultiFactorAuthFlowController::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['validateCode', 'isSelectedTypeVerificationRequired', 'executePostLoginMultiFactorAuthenticationPlugins', 'renderView'])
+            ->onlyMethods(['validateCode', 'isSelectedTypeVerificationRequired', 'isSetUpMultiFactorAuthStep', 'executePostLoginMultiFactorAuthenticationPlugins', 'renderView'])
             ->getMock();
 
         $controllerMock->method('validateCode')->willReturn(
             (new MultiFactorAuthValidationResponseTransfer())->setStatus(MultiFactorAuthConstants::CODE_VERIFIED),
         );
         $controllerMock->method('isSelectedTypeVerificationRequired')->willReturn(false);
+        $controllerMock->method('isSetUpMultiFactorAuthStep')->willReturn(false);
         $controllerMock->expects($this->once())
             ->method('executePostLoginMultiFactorAuthenticationPlugins')
             ->with($userTransfer);
@@ -275,6 +282,83 @@ class UserOauthMultiFactorAuthFlowControllerTest extends Unit
             $response,
             'Expected a verified code to render the OAuth redirect template instead of the base validation-response template.',
         );
+    }
+
+    public function testExecuteCodeValidationRegeneratesSessionIdWhenCodeIsVerified(): void
+    {
+        // Arrange
+        $request = $this->createRequestWithStartedSession();
+        $preVerificationSessionId = $request->getSession()->getId();
+        $controllerMock = $this->getMockBuilder(UserOauthMultiFactorAuthFlowController::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['validateCode', 'isSelectedTypeVerificationRequired', 'isSetUpMultiFactorAuthStep', 'executePostLoginMultiFactorAuthenticationPlugins', 'renderView'])
+            ->getMock();
+
+        $controllerMock->method('validateCode')->willReturn(
+            (new MultiFactorAuthValidationResponseTransfer())->setStatus(MultiFactorAuthConstants::CODE_VERIFIED),
+        );
+        $controllerMock->method('isSelectedTypeVerificationRequired')->willReturn(false);
+        $controllerMock->method('isSetUpMultiFactorAuthStep')->willReturn(false);
+        $controllerMock->method('renderView')->willReturn(new Response());
+
+        // Act
+        (new ReflectionMethod($controllerMock, 'executeCodeValidation'))
+            ->invoke($controllerMock, $request, $this->createCodeValidationFormMock(), new UserTransfer());
+
+        // Assert
+        $this->assertNotSame($preVerificationSessionId, $request->getSession()->getId(), 'Expected a new session id after a verified Multi-Factor Authentication code.');
+        $this->assertSame(static::SESSION_ATTRIBUTE_VALUE, $request->getSession()->get(static::SESSION_ATTRIBUTE_KEY), 'Expected the session data to be kept after the session id change.');
+    }
+
+    public function testExecuteCodeValidationKeepsSessionIdWhenSetUpCodeIsVerified(): void
+    {
+        // Arrange
+        $request = $this->createRequestWithStartedSession();
+        $preVerificationSessionId = $request->getSession()->getId();
+        $controllerMock = $this->getMockBuilder(UserOauthMultiFactorAuthFlowController::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['validateCode', 'isSelectedTypeVerificationRequired', 'isSetUpMultiFactorAuthStep', 'executePostLoginMultiFactorAuthenticationPlugins', 'renderView'])
+            ->getMock();
+
+        $controllerMock->method('validateCode')->willReturn(
+            (new MultiFactorAuthValidationResponseTransfer())->setStatus(MultiFactorAuthConstants::CODE_VERIFIED),
+        );
+        $controllerMock->method('isSelectedTypeVerificationRequired')->willReturn(false);
+        $controllerMock->method('isSetUpMultiFactorAuthStep')->willReturn(true);
+        $controllerMock->method('renderView')->willReturn(new Response());
+
+        // Act
+        (new ReflectionMethod($controllerMock, 'executeCodeValidation'))
+            ->invoke($controllerMock, $request, $this->createCodeValidationFormMock(), new UserTransfer());
+
+        // Assert
+        $this->assertSame($preVerificationSessionId, $request->getSession()->getId());
+    }
+
+    public function testExecuteCodeValidationKeepsSessionIdWhenCodeIsBlocked(): void
+    {
+        // Arrange
+        $request = $this->createRequestWithStartedSession();
+        $preVerificationSessionId = $request->getSession()->getId();
+        $controllerMock = $this->getMockBuilder(UserOauthMultiFactorAuthFlowController::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['validateCode', 'executePostLoginMultiFactorAuthenticationPlugins', 'addErrorMessage', 'renderView'])
+            ->getMock();
+
+        $controllerMock->method('validateCode')->willReturn(
+            (new MultiFactorAuthValidationResponseTransfer())
+                ->setStatus(MultiFactorAuthConstants::CODE_BLOCKED)
+                ->setMessage(static::SOME_ERROR_MESSAGE),
+        );
+        $controllerMock->method('addErrorMessage')->willReturn($controllerMock);
+        $controllerMock->method('renderView')->willReturn(new Response());
+
+        // Act
+        (new ReflectionMethod($controllerMock, 'executeCodeValidation'))
+            ->invoke($controllerMock, $request, $this->createCodeValidationFormMock(), new UserTransfer());
+
+        // Assert
+        $this->assertSame($preVerificationSessionId, $request->getSession()->getId());
     }
 
     public function testExecuteCodeValidationRendersOauthRedirectWhenCodeIsBlocked(): void
@@ -465,5 +549,17 @@ class UserOauthMultiFactorAuthFlowControllerTest extends Unit
                 'Expected no pending challenge once the code is verified or the visitor never started a login.',
             ],
         ];
+    }
+
+    protected function createRequestWithStartedSession(): Request
+    {
+        $session = new Session(new MockArraySessionStorage());
+        $session->start();
+        $session->set(static::SESSION_ATTRIBUTE_KEY, static::SESSION_ATTRIBUTE_VALUE);
+
+        $request = new Request();
+        $request->setSession($session);
+
+        return $request;
     }
 }

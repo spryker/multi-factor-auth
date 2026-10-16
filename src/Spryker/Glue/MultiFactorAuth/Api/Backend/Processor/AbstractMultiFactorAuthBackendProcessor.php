@@ -59,8 +59,6 @@ abstract class AbstractMultiFactorAuthBackendProcessor extends AbstractBackendPr
 
     /**
      * @throws \Spryker\ApiPlatform\Exception\GlueApiException
-     *
-     * @return void
      */
     protected function sendUserCode(MultiFactorAuthTransfer $multiFactorAuthTransfer): void
     {

@@ -165,6 +165,9 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
             }
 
             $this->executePostLoginMultiFactorAuthenticationPlugins($identityTransfer);
+            if ($this->isSetUpMultiFactorAuthStep($request, $codeValidationForm->getName()) === false) {
+                $this->regenerateSession($request);
+            }
 
             return $this->createCodeVerifiedView($identityTransfer);
         }
@@ -260,5 +263,12 @@ abstract class AbstractMultiFactorAuthController extends AbstractController
     protected function getParameterFromRequest(Request $request, string $parameter, ?string $formName = null): mixed
     {
         return $this->getFactory()->createRequestReader()->get($request, $parameter, $formName);
+    }
+
+    protected function regenerateSession(Request $request): void
+    {
+        if ($request->hasSession()) {
+            $request->getSession()->migrate(true);
+        }
     }
 }

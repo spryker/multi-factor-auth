@@ -49,6 +49,10 @@ class AgentMultiFactorAuthFlowController extends AbstractMultiFactorAuthControll
         return $this->sendCodeAction($request, $multiFactorAuthType, $form);
     }
 
+    protected function regenerateSession(Request $request): void
+    {
+    }
+
     protected function getTypeSelectionFormTemplate(): string
     {
         return '@MultiFactorAuth/views/user-type-selection-form/user-type-selection-form.twig';
