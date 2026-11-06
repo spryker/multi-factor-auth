@@ -39,7 +39,9 @@
         "spryker-shop/shop-ui": "*",
         "spryker/api-platform": "^1.0.0",
         "spryker/code-sniffer": "*",
+        "spryker/propel": "*",
         "spryker/router": "*",
+        "spryker/store": "*",
         "spryker/testify": "*"
     },
     "suggest": {

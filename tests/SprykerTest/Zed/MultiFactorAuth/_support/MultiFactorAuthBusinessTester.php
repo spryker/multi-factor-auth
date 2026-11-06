@@ -26,6 +26,7 @@ use Generated\Shared\Transfer\MultiFactorAuthTypesCollectionTransfer;
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method void pause($vars = [])
+ * @method \Spryker\Zed\MultiFactorAuth\Business\MultiFactorAuthFacadeInterface getFacade(?string $moduleName = null)
  *
  * @SuppressWarnings(PHPMD)
  */
