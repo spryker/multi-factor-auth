@@ -30,6 +30,8 @@ export class MfaHandler {
                 form: document.querySelector(mfaHandler.getAttribute(this.options.formSelectorAttribute)),
                 modal: document.getElementById(mfaHandler.getAttribute(this.options.modalIdAttribute)),
                 isLogin: mfaHandler.getAttribute(this.options.isLogin) === 'true',
+                isLoginSubmitted: false,
+                isPageLeaving: false,
             };
 
             if (!data.url || !data.form) {
@@ -43,6 +45,8 @@ export class MfaHandler {
             data.modal.addEventListener('hidden.bs.modal', () => this.onModalHide(data));
 
             data.form.addEventListener('submit', (event) => this.onSubmit(event, data));
+
+            window.addEventListener('pageshow', (event) => this.onPageShow(event, data));
         }
     }
 
@@ -50,32 +54,61 @@ export class MfaHandler {
         event.preventDefault();
 
         if (data.isLogin) {
-            const responseData = await this.handleAdditionalAuth(data);
-
-            if (responseData.failedLogin === true) {
-                data.form.submit();
-
-                return;
-            }
-
-            if (responseData.requiresAdditionalAuth === true) {
-                await this.handleResponse(data);
-
-                return;
-            }
-
-            if (responseData.redirectUrl) {
-                location.href = responseData.redirectUrl;
-
-                return;
-            }
-
-            location.reload();
+            await this.submitLogin(data);
 
             return;
         }
 
         await this.handleResponse(data);
+    }
+
+    async submitLogin(data) {
+        if (data.isLoginSubmitted) {
+            return;
+        }
+
+        data.isLoginSubmitted = true;
+
+        try {
+            await this.processLogin(data);
+        } catch (error) {
+            data.isLoginSubmitted = false;
+
+            throw error;
+        }
+    }
+
+    async processLogin(data) {
+        const responseData = await this.handleAdditionalAuth(data);
+
+        if (responseData.failedLogin === true) {
+            data.form.submit();
+
+            return;
+        }
+
+        if (responseData.requiresAdditionalAuth === true) {
+            await this.handleResponse(data);
+
+            return;
+        }
+
+        if (responseData.redirectUrl) {
+            location.href = responseData.redirectUrl;
+
+            return;
+        }
+
+        location.reload();
+    }
+
+    onPageShow(event, data) {
+        if (!event.persisted) {
+            return;
+        }
+
+        data.isLoginSubmitted = false;
+        data.isPageLeaving = false;
     }
 
     async handleAdditionalAuth(data) {
@@ -149,6 +182,10 @@ export class MfaHandler {
             submitButton.disabled = false;
             submitButton.classList.remove('disabled');
         }
+
+        if (!data.isPageLeaving) {
+            data.isLoginSubmitted = false;
+        }
     }
 
     onSuccess(html, data) {
@@ -209,6 +246,7 @@ export class MfaHandler {
         modalInstance.hide();
 
         if (data.isLogin) {
+            data.isPageLeaving = true;
             location.reload();
             return;
         }
