@@ -23,7 +23,7 @@ class UserMultiFactorAuthActivator implements UserMultiFactorAuthActivatorInterf
     ) {
     }
 
-    public function activate(Request $request, UserTransfer $UserTransfer): void
+    public function activate(Request $request, UserTransfer $userTransfer): void
     {
         $isActivation = $this->requestReader->get($request, UserController::IS_ACTIVATION);
 
@@ -31,7 +31,7 @@ class UserMultiFactorAuthActivator implements UserMultiFactorAuthActivatorInterf
         $type = $isActivation ? $this->requestReader->get($request, UserController::TYPE_TO_SET_UP) : $request->query->get(MultiFactorAuthTransfer::TYPE);
 
         $multiFactorAuthTransfer = (new MultiFactorAuthTransfer())
-            ->setUser($UserTransfer)
+            ->setUser($userTransfer)
             ->setStatus($status)
             ->setType($type);
 

@@ -12,5 +12,5 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface UserMultiFactorAuthActivatorInterface
 {
-    public function activate(Request $request, UserTransfer $UserTransfer): void;
+    public function activate(Request $request, UserTransfer $userTransfer): void;
 }
