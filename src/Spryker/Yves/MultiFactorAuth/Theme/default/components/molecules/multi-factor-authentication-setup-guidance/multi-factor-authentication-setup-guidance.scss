@@ -1,0 +1,70 @@
+@mixin multi-factor-auth-multi-factor-authentication-setup-guidance(
+    $name: '.multi-factor-authentication-setup-guidance'
+) {
+    #{$name} {
+        display: block;
+
+        &__box {
+            padding: 1.5rem;
+        }
+
+        &__title {
+            @include helper-font-weight(bold);
+            margin-bottom: 0.75rem;
+        }
+
+        &__intro {
+            margin-bottom: 1.25rem;
+            color: $setting-color-darker;
+        }
+
+        &__steps {
+            margin: 0 0 1.25rem;
+            padding: 0;
+            list-style: none;
+            counter-reset: mfa-setup-step;
+        }
+
+        &__step {
+            position: relative;
+            min-height: 1.75rem;
+            margin-bottom: 0.75rem;
+            padding-left: 2.5rem;
+            line-height: 1.75rem;
+            counter-increment: mfa-setup-step;
+
+            &::before {
+                @include helper-font-size(small);
+                @include helper-font-weight(bold);
+                content: counter(mfa-setup-step);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1.75rem;
+                height: 1.75rem;
+                border-radius: 50%;
+                background-color: $setting-color-main;
+                color: $setting-color-white;
+                line-height: 1.75rem;
+                text-align: center;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &__note {
+            @include helper-font-size(small);
+            margin: 0;
+            padding: 0.75rem 1rem;
+            border-left: 3px solid $setting-color-main;
+            background-color: $setting-color-lightest;
+            color: $setting-color-darker;
+        }
+
+        @content;
+    }
+}
+
+@include multi-factor-auth-multi-factor-authentication-setup-guidance();

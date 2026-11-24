@@ -5,6 +5,27 @@
 {% block content %}
     {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Multi-Factor Authentication' | trans } %}
         {% block widget_content %}
+            {% block guidance %}
+                <div class="card border-0 bg-light mb-4" data-qa="mfa-setup-guidance">
+                    <div class="card-body">
+                        <h4 class="card-title mb-2">{{ 'Keep your account secure' | trans }}</h4>
+                        <p class="text-muted mb-3">{{ 'Add an extra step when you sign in. After you enter your password, we ask for a one-time code. This way, only you can access your account, even if someone else knows your password.' | trans }}</p>
+                        <ol class="list-unstyled mb-3">
+                            {% for step in [
+                                'Click "Activate" next to the method you want to use.',
+                                'We send you a one-time code. For Email, check the inbox of the email address you use for this account.',
+                                'Enter the code to confirm. From now on, you enter a new code after your password every time you sign in.',
+                            ] %}
+                                <li class="d-flex align-items-start mb-2">
+                                    <span class="badge rounded-pill bg-primary me-2">{{ loop.index }}</span>
+                                    <span>{{ step | trans }}</span>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                        <div class="alert alert-info mb-0" role="note">{{ 'You can turn this off at any time by clicking "Deactivate". To confirm, we ask you for a code.' | trans }}</div>
+                    </div>
+                </div>
+            {% endblock %}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="box">
@@ -12,9 +33,9 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>{{ 'Type' | trans }}</th>
-                                        <th>{{ 'Status' | trans }}</th>
-                                        <th>{{ 'Actions' | trans }}</th>
+                                        <th scope="col">{{ 'Type' | trans }}</th>
+                                        <th scope="col">{{ 'Status' | trans }}</th>
+                                        <th scope="col">{{ 'Actions' | trans }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,7 +60,7 @@
                                         <tr data-qa="mfa-type-section">
                                             <td>{{ method.type | capitalize }}</td>
                                             <td>
-                                                <span class="label label-primary">{{ label }}</span>
+                                                <span class="badge {{ method.status ? 'bg-success' : 'bg-secondary' }}">{{ label }}</span>
                                             </td>
                                             <td>
                                                 <form name="{{ formName }}" class="js-form-{{ method.type }}" method="post" action="{{ actionPath | raw }}">

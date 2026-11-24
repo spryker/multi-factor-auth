@@ -1,0 +1,18 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'multi-factor-authentication-setup-guidance',
+} %}
+
+{% block body %}
+    <div class="box {{ config.name }}__box" data-qa="mfa-setup-guidance">
+        <h2 class="title title--h5 {{ config.name }}__title">{{ 'multi_factor_auth.setup.title' | trans }}</h2>
+        <p class="{{ config.name }}__intro">{{ 'multi_factor_auth.setup.intro' | trans }}</p>
+        <ol class="{{ config.name }}__steps">
+            <li class="{{ config.name }}__step">{{ 'multi_factor_auth.setup.step.activate' | trans }}</li>
+            <li class="{{ config.name }}__step">{{ 'multi_factor_auth.setup.step.receive_code' | trans }}</li>
+            <li class="{{ config.name }}__step">{{ 'multi_factor_auth.setup.step.confirm' | trans }}</li>
+        </ol>
+        <p class="{{ config.name }}__note">{{ 'multi_factor_auth.setup.deactivation_note' | trans }}</p>
+    </div>
+{% endblock %}
